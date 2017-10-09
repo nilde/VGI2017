@@ -1,5 +1,3 @@
-En C++
-
 Cuando creamos una funci—n nueva:
 	+ (Nombre de la funci—n) Mensaje breve explicando lo realizado.
 Cuando borramos una funci—n:
