@@ -1,22 +1,8 @@
-En JavaScript y PHP:
+En C++
 
-Cuando creamos una función nueva:
-	+ (Nombre de la función) Mensaje breve explicando lo realizado.
-Cuando borramos una función:
-	- (Nombre de la función) Mensaje breve explicando lo realizado.
-Cuando modificamos una función:
-	# (Nombre de la función) Mensaje breve explicando lo realizado.
-
-En HTML:
-
-Mensaje breve explicando lo realizado.
-
-En css:
-
-Cuando creamos una sección nueva:
-	+ (Nombre de la id/clase) Mensaje breve explicando lo realizado.
-Cuando borramos una sección:
-	- (Nombre de la id/clase) Mensaje breve explicando lo realizado.
-Cuando modificamos una sección:
-	# (Nombre de la id/clase) Mensaje breve explicando lo realizado.
-	
+Cuando creamos una funci—n nueva:
+	+ (Nombre de la funci—n) Mensaje breve explicando lo realizado.
+Cuando borramos una funci—n:
+	- (Nombre de la funci—n) Mensaje breve explicando lo realizado.
+Cuando modificamos una funci—n:
+	# (Nombre de la funci—n) Mensaje breve explicando lo realizado.
