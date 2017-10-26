@@ -37,6 +37,21 @@ protected: // Crear sólo a partir de serialización
 public:
 	CEntornVGIDoc* GetDocument() const;
 
+	const float TSTEP = 0.01;
+	int global_i = 0;
+	float xo = 0;
+	float yo = 0;
+	float zo = 0;
+	float vyo = 10;
+	float vxo = 30;
+	float vzo = 20;
+	float vx ;
+	float vy ;
+	float vz ;
+	float ax = 0;
+	float ay = 0;
+	float az = -9.8;
+
 
 
 //-------------- Entorn VGI: Variables globals de CPractivaView
@@ -325,6 +340,17 @@ public:
 	afx_msg void OnAddAplha();
 	afx_msg void OnObjecteRocket();
 	afx_msg void OnUpdateObjecteRocket(CCmdUI *pCmdUI);
+	void executeTrayectory(int i);
+	afx_msg void OnTrayectoriaLaunch();
+	afx_msg void executeTrayectory();
+	void OnLaunch();
+	afx_msg void OnTrayectoriaStop();
+	afx_msg void OnTrayectoriaRestart();
+	afx_msg void OnCameraCam1();
+	afx_msg void OnCameraCam2();
+	afx_msg void OnCameraCam3();
+	afx_msg void OnCameraCam4();
+	afx_msg void OnCameraSeguir();
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

@@ -171,13 +171,26 @@
 #define ID_ALPHA                        32846
 #define ID_ADD_APLHA                    32847
 #define ID_OBJECTE_ROCKET               32848
+#define example1_ID                     32851
+#define TRAYECTORIA_ID                  32852
+#define ID_TRAYECTORY_1                 32853
+#define ID_TRAYECTORIA_LAUNCH           32854
+#define ID_LAUNCH                       32855
+#define ID_TRAYECTORIA_STOP             32856
+#define ID_TRAYECTORIA_RESTART          32857
+#define ID_CAMERA_CAM1                  32858
+#define ID_CAMERA_CAM2                  32859
+#define ID_CAMERA_CAM3                  32860
+#define ID_CAMERA_CAM4                  32861
+#define ID_CAMERA_SEGUIMIENT            32862
+#define ID_CAMERA_SEGUIR                32863
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32851
+#define _APS_NEXT_COMMAND_VALUE         32864
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

@@ -18,6 +18,7 @@
 //
 //
 
+
 #include "stdafx.h"
 
 // Se pueden definir SHARED_HANDLERS en un proyecto ATL implementando controladores de vista previa, miniatura
@@ -153,14 +154,31 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 	ON_COMMAND(ID_SUB_Z, &CEntornVGIView::OnSubZ)
 	ON_COMMAND(ID_ADD_APLHA, &CEntornVGIView::OnAddAplha)
 	ON_COMMAND(ID_OBJECTE_ROCKET, &CEntornVGIView::OnObjecteRocket)
-	ON_UPDATE_COMMAND_UI(ID_OBJECTE_ROCKET, &CEntornVGIView::OnUpdateObjecteRocket)
-	END_MESSAGE_MAP()
+	ON_UPDATE_COMMAND_UI(ID_OBJECTE_ROCKET, &CEntornVGIView::OnUpdateObjecteRocket)		
+		ON_COMMAND(ID_LAUNCH, &CEntornVGIView::OnLaunch)
+		ON_COMMAND(ID_TRAYECTORIA_STOP, &CEntornVGIView::OnTrayectoriaStop)
+		ON_COMMAND(ID_TRAYECTORIA_RESTART, &CEntornVGIView::OnTrayectoriaRestart)
+		ON_COMMAND(ID_CAMERA_CAM1, &CEntornVGIView::OnCameraCam1)
+		ON_COMMAND(ID_CAMERA_CAM2, &CEntornVGIView::OnCameraCam2)
+		ON_COMMAND(ID_CAMERA_CAM3, &CEntornVGIView::OnCameraCam3)
+		ON_COMMAND(ID_CAMERA_CAM4, &CEntornVGIView::OnCameraCam4)
+		ON_COMMAND(ID_CAMERA_SEGUIR, &CEntornVGIView::OnCameraSeguir)
+		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // Construcción o destrucción de CEntornVGIView
 
 CEntornVGIView::CEntornVGIView()
 {
+
+	rocket.set_x(xo);
+	rocket.set_z(zo);
+	rocket.set_y(yo);
+
+	vx = vxo;
+	vy = vyo;
+	vz = vzo;
+
 // TODO: agregar aquí el código de construcción
 //	int i = 0;
 
@@ -170,7 +188,7 @@ CEntornVGIView::CEntornVGIView()
 	fullscreen = false;
 
 // Entorn VGI: Variables de control per Menú Vista: canvi PV interactiu, Zoom i dibuixar eixos 
-	mobil = true;	zzoom = true;	satelit = false;	pan = false;	navega = false;		eixos = true;
+	mobil = true;	zzoom = true;	satelit = false;	pan = true;	navega = false;		eixos = true;
 
 // Entorn VGI: Variables opció Vista->Pan
 	fact_pan = 1;
@@ -178,11 +196,11 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables de control de l'opció Vista->Navega?
 	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 10.0;	opvN.y = 0.0;		opvN.z = 0.0;
+	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
 	angleZ = 0.0;
 
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
-	projeccio = CAP;			objecte = CAP;
+	projeccio = PERSPECT;			objecte = ROCKET;
 
 // Entorn VGI: Variables de control del menú Transforma
 	transf = false;		trasl = false;		rota = false;		escal = false;
@@ -226,7 +244,7 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables que controlen paràmetres visualització: Mides finestra Windows i PV
 	w = 0;			h = 0;								// Mides finestra
-	OPV.R = 15.0;		OPV.alfa = 0.0;		OPV.beta = 0.0;	// Origen PV en esfèriques
+	OPV.R = 110.0;		OPV.alfa = 00.0;		OPV.beta = 90.0;	// Origen PV en esfèriques
 	Vis_Polar = POLARZ;
 
 // Entorn VGI: Color de fons i de l'objecte
@@ -2100,9 +2118,10 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 // TODO: Agregue aquí su código de controlador de mensajes o llame al valor predeterminado
 	if (anima)	{
 		// Codi de tractament de l'animació quan transcorren els ms. del crono.
-
+		executeTrayectory();
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
+		
 		}
 	else if (satelit)	{	// OPCIÓ SATÈLIT: Increment OPV segons moviments mouse.
 		//OPV.R = OPV.R + m_EsfeIncEAvall.R;
@@ -3432,5 +3451,101 @@ void CEntornVGIView::OnSubZ()
 void CEntornVGIView::OnAddAplha()
 {
 	rocket.incAlpha();
+	OnPaint();
+}
+
+
+
+void CEntornVGIView::executeTrayectory() {
+	
+	float new_z = zo + vzo*t + az*t*t / 2;
+	float new_x = xo + vx*t;
+	float last_z = zo + vzo*(t - TSTEP) + az*(t - TSTEP) *(t - TSTEP) / 2;
+	float last_x = xo + vx*(t-TSTEP);
+
+	rocket.set_z(new_z);
+	rocket.set_x(new_x);
+
+	
+
+	if (rocket.get_z() < 0) {
+		anima = false;
+	}
+	
+	OnPaint();
+	t = t + TSTEP;
+}
+
+
+void CEntornVGIView::OnLaunch()
+{
+	anima = !anima;
+	SetTimer(WM_TIMER, 10, NULL);
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnTrayectoriaStop()
+{
+	anima = false;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnTrayectoriaRestart()
+{
+	rocket.set_x(xo);
+	rocket.set_y(yo);
+	rocket.set_z(zo);
+	rocket.set_alpha(0);
+	vx = vxo;
+	vy = vyo;
+	vz = vzo;
+	t = 0;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnCameraCam1()
+{
+	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
+	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
+	angleZ = 0.0;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnCameraCam2()
+{
+	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
+	opvN.x = 100.0;	opvN.y = 0.0;		opvN.z = 0.0;
+	angleZ = 0.0;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnCameraCam3()
+{
+	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
+	opvN.x = 0.0;	opvN.y = 100.0;		opvN.z = 0.0;
+	angleZ = 0.0;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnCameraCam4()
+{
+	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
+	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 100.0;
+	angleZ = 0.0;
+	OnPaint();
+}
+
+
+void CEntornVGIView::OnCameraSeguir()
+{
+	n[0] = 100.0;		n[1] = 0.0;		n[2] = 0.0;
+	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
+	angleZ = 0.0;
 	OnPaint();
 }

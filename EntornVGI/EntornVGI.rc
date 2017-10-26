@@ -244,161 +244,178 @@ BEGIN
     END
 END
 
-IDR_EntornVGITYPE MENUEX
+IDR_EntornVGITYPE MENU
 BEGIN
-    POPUP "&Archivo",                       65535,MFT_STRING,MFS_ENABLED
+    POPUP "&Archivo"
     BEGIN
-        MENUITEM "&Nuevo\tCtrl+N",              ID_FILE_NEW,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN,MFT_STRING,MFS_ENABLED
-        MENUITEM "Obrir Fractal              Ctrl+F", ID_ARXIU_OBRIR_FRACTAL,MFT_STRING,MFS_ENABLED
-        MENUITEM "Obrir Fixer OBJ",             ID_ARXIU_OBRIR_FITXER_OBJ,MFT_STRING,MFS_ENABLED
-        MENUITEM "Obrir Fitxer 3DS",            ID_ARXIU_OBRIR_FITXER_3DS,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Cerrar",                     ID_FILE_CLOSE,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Guardar\tCtrl+S",            ID_FILE_SAVE,MFT_STRING,MFS_ENABLED
-        MENUITEM "Guardar &como...",            ID_FILE_SAVE_AS,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "&Imprimir...\tCtrl+P",        ID_FILE_PRINT,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Vista previa de impresión",  ID_FILE_PRINT_PREVIEW,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Configurar impresión...",    ID_FILE_PRINT_SETUP,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Archivo reciente",            ID_FILE_MRU_FILE1,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "&Salir",                      ID_APP_EXIT,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Nuevo\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Obrir Fractal              Ctrl+F", ID_ARXIU_OBRIR_FRACTAL
+        MENUITEM "Obrir Fixer OBJ",             ID_ARXIU_OBRIR_FITXER_OBJ
+        MENUITEM "Obrir Fitxer 3DS",            ID_ARXIU_OBRIR_FITXER_3DS
+        MENUITEM "&Cerrar",                     ID_FILE_CLOSE
+        MENUITEM "&Guardar\tCtrl+S",            ID_FILE_SAVE
+        MENUITEM "Guardar &como...",            ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Imprimir...\tCtrl+P",        ID_FILE_PRINT
+        MENUITEM "&Vista previa de impresión",  ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Configurar impresión...",    ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Archivo reciente",            ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
+        MENUITEM "&Salir",                      ID_APP_EXIT
     END
-    POPUP "&Edición",                       65535,MFT_STRING,MFS_ENABLED
+    POPUP "&Edición"
     BEGIN
-        MENUITEM "&Deshacer\tCtrl+Z",           ID_EDIT_UNDO,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Cor&tar\tCtrl+X",             ID_EDIT_CUT,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY,MFT_STRING,MFS_ENABLED
-        MENUITEM "&Pegar\tCtrl+V",              ID_EDIT_PASTE,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Deshacer\tCtrl+Z",           ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cor&tar\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Pegar\tCtrl+V",              ID_EDIT_PASTE
     END
-    POPUP "&Ver",                           65535,MFT_STRING,MFS_ENABLED
+    POPUP "&Ver"
     BEGIN
-        POPUP "&Barras de herramientas y ventanas de acoplamiento", 65535,MFT_STRING,MFS_ENABLED
+        POPUP "&Barras de herramientas y ventanas de acoplamiento"
         BEGIN
-            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR,MFT_STRING,MFS_ENABLED
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
         END
-        MENUITEM "&Barra de estado",            ID_VIEW_STATUS_BAR,MFT_STRING,MFS_ENABLED
-        POPUP "&Aspecto de la aplicación",      65535,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Barra de estado",            ID_VIEW_STATUS_BAR
+        POPUP "&Aspecto de la aplicación"
         BEGIN
-            MENUITEM "Windows &2000",               ID_VIEW_APPLOOK_WIN_2000,MFT_STRING,MFS_ENABLED
-            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_OFF_XP,MFT_STRING,MFS_ENABLED
-            MENUITEM "&Windows XP",                 ID_VIEW_APPLOOK_WIN_XP,MFT_STRING,MFS_ENABLED
-            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_OFF_2003,MFT_STRING,MFS_ENABLED
-            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005,MFT_STRING,MFS_ENABLED
-            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008,MFT_STRING,MFS_ENABLED
-            POPUP "Office 200&7",                   65535,MFT_STRING,MFS_ENABLED
+            MENUITEM "Windows &2000",               ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "&Windows XP",                 ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008
+            POPUP "Office 200&7"
             BEGIN
-                MENUITEM "Estilo a&zul",                ID_VIEW_APPLOOK_OFF_2007_BLUE,MFT_STRING,MFS_ENABLED
-                MENUITEM "Estilo &negro",               ID_VIEW_APPLOOK_OFF_2007_BLACK,MFT_STRING,MFS_ENABLED
-                MENUITEM "Estilo pla&teado",            ID_VIEW_APPLOOK_OFF_2007_SILVER,MFT_STRING,MFS_ENABLED
-                MENUITEM "Estilo &aguamarina",          ID_VIEW_APPLOOK_OFF_2007_AQUA,MFT_STRING,MFS_ENABLED
+                MENUITEM "Estilo a&zul",                ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "Estilo &negro",               ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "Estilo pla&teado",            ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "Estilo &aguamarina",          ID_VIEW_APPLOOK_OFF_2007_AQUA
             END
         END
     END
-    POPUP "&Ventana",                       65535,MFT_STRING,MFS_ENABLED
+    POPUP "&Ventana"
     BEGIN
-        MENUITEM "&Nueva ventana",              ID_WINDOW_NEW,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Nueva ventana",              ID_WINDOW_NEW
     END
-    MENUITEM MFT_SEPARATOR
-    POPUP "Vista",                          65535,MFT_STRING,MFS_ENABLED
+    MENUITEM SEPARATOR
+    POPUP "Vista"
     BEGIN
-        MENUITEM "Mòbil?",                      32775,MFT_STRING,MFS_CHECKED
-        MENUITEM "Zoom?",                       ID_VISTA_ZOOM,MFT_STRING,MFS_CHECKED
-        MENUITEM "Satèl.lit?",                  32829,MFT_STRING,MFS_CHECKED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Polars Eix X",                ID_VISTA_POLARS_X,MFT_STRING,MFS_CHECKED
-        MENUITEM "Polars Eix Y",                32779,MFT_STRING,MFS_CHECKED
-        MENUITEM "Polars Eix Z",                32780,MFT_STRING,MFS_CHECKED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Pan?",                        ID_VISTA_PAN,MFT_STRING,MFS_CHECKED
-        MENUITEM "Origen Pan",                  ID_VISTA_ORIGENPAN,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Navega?",                     ID_VISTA_NAVEGA,MFT_STRING,MFS_CHECKED
-        MENUITEM "Origen Navega",               ID_VISTA_ORIGENNAVEGA,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Eixos?",                      ID_VISTA_EIXOS,MFT_STRING,MFS_CHECKED
+        MENUITEM "Mòbil?",                      32775, CHECKED
+        MENUITEM "Zoom?",                       ID_VISTA_ZOOM, CHECKED
+        MENUITEM "Satèl.lit?",                  32829, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Polars Eix X",                ID_VISTA_POLARS_X, CHECKED
+        MENUITEM "Polars Eix Y",                32779, CHECKED
+        MENUITEM "Polars Eix Z",                32780, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Pan?",                        ID_VISTA_PAN, CHECKED
+        MENUITEM "Origen Pan",                  ID_VISTA_ORIGENPAN
+        MENUITEM SEPARATOR
+        MENUITEM "Navega?",                     ID_VISTA_NAVEGA, CHECKED
+        MENUITEM "Origen Navega",               ID_VISTA_ORIGENNAVEGA
+        MENUITEM SEPARATOR
+        MENUITEM "Eixos?",                      ID_VISTA_EIXOS, CHECKED
     END
-    POPUP "Projecció",                      65535,MFT_STRING,MFS_ENABLED
+    POPUP "Projecció"
     BEGIN
-        MENUITEM "Perspectiva",                 ID_PROJECCIO_PERSPECTIVA,MFT_STRING,MFS_CHECKED
-        MENUITEM "Ortogràfica",                 ID_PROJECCIO_ORTOGRAFICA,MFT_STRING,MFS_CHECKED
+        MENUITEM "Perspectiva",                 ID_PROJECCIO_PERSPECTIVA, CHECKED
+        MENUITEM "Ortogràfica",                 ID_PROJECCIO_ORTOGRAFICA, CHECKED
     END
-    POPUP "Objecte",                        65535,MFT_STRING,MFS_ENABLED
+    POPUP "Objecte"
     BEGIN
-        MENUITEM "Cub",                         32787,MFT_STRING,MFS_CHECKED
-        MENUITEM "Esfera",                      32788,MFT_STRING,MFS_CHECKED
-        MENUITEM "Tetera",                      32789,MFT_STRING,MFS_CHECKED
-        MENUITEM "Truck",                       32790,MFT_STRING,MFS_CHECKED
-        MENUITEM "Rocket",                      ID_OBJECTE_ROCKET,MFT_STRING,MFS_CHECKED
+        MENUITEM "Cub",                         32787, CHECKED
+        MENUITEM "Esfera",                      32788, CHECKED
+        MENUITEM "Tetera",                      32789, CHECKED
+        MENUITEM "Truck",                       32790, CHECKED
+        MENUITEM "Rocket",                      ID_OBJECTE_ROCKET, CHECKED
     END
-    POPUP "Transforma",                     65535,MFT_STRING,MFS_ENABLED
+    POPUP "Transforma"
     BEGIN
-        MENUITEM "Traslació?",                  32791,MFT_STRING,MFS_CHECKED
-        MENUITEM "Origen Traslació",            ID_TRANSFORMA_ORIGENTRASLACIO,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Rotació?",                    32793,MFT_STRING,MFS_CHECKED
-        MENUITEM "Origen Rotació",              ID_TRANSFORMA_ORIGENROTACIO,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Escalat?",                    ID_TRANSFORMA_ESCALAT,MFT_STRING,MFS_CHECKED
-        MENUITEM "Origen Escalat",              ID_TRANSFORMA_ORIGENESCALAT,MFT_STRING,MFS_ENABLED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Mobil Eix X?",                32799,MFT_STRING,MFS_CHECKED
-        MENUITEM "Mobil Eix Y?",                32800,MFT_STRING,MFS_CHECKED
-        MENUITEM "Mobil Eix Z?",                32801,MFT_STRING,MFS_CHECKED
+        MENUITEM "Traslació?",                  32791, CHECKED
+        MENUITEM "Origen Traslació",            ID_TRANSFORMA_ORIGENTRASLACIO
+        MENUITEM SEPARATOR
+        MENUITEM "Rotació?",                    32793, CHECKED
+        MENUITEM "Origen Rotació",              ID_TRANSFORMA_ORIGENROTACIO
+        MENUITEM SEPARATOR
+        MENUITEM "Escalat?",                    ID_TRANSFORMA_ESCALAT, CHECKED
+        MENUITEM "Origen Escalat",              ID_TRANSFORMA_ORIGENESCALAT
+        MENUITEM SEPARATOR
+        MENUITEM "Mobil Eix X?",                32799, CHECKED
+        MENUITEM "Mobil Eix Y?",                32800, CHECKED
+        MENUITEM "Mobil Eix Z?",                32801, CHECKED
     END
-    POPUP "Ocultacions",                    65535,MFT_STRING,MFS_ENABLED
+    POPUP "Ocultacions"
     BEGIN
-        MENUITEM "Test Visibilitat?",           32802,MFT_STRING,MFS_CHECKED
-        MENUITEM "Z-Buffer?",                   32803,MFT_STRING,MFS_CHECKED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Back Line?",                  32804,MFT_STRING,MFS_CHECKED
+        MENUITEM "Test Visibilitat?",           32802, CHECKED
+        MENUITEM "Z-Buffer?",                   32803, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Back Line?",                  32804, CHECKED
     END
-    POPUP "Iluminació",                     65535,MFT_STRING,MFS_ENABLED
+    POPUP "Iluminació"
     BEGIN
-        MENUITEM "Llum Fixe?",                  ID_ILUMINACIO_LLUMFIXE,MFT_STRING,MFS_CHECKED
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Filferros",                   32808,MFT_STRING,MFS_CHECKED
-        MENUITEM "Plana",                       32809,MFT_STRING,MFS_CHECKED
-        MENUITEM "Gouraud",                     32810,MFT_STRING,MFS_CHECKED
-        MENUITEM MFT_SEPARATOR
-        POPUP "Refl. Material",                 65535,MFT_STRING,MFS_ENABLED
+        MENUITEM "Llum Fixe?",                  ID_ILUMINACIO_LLUMFIXE, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Filferros",                   32808, CHECKED
+        MENUITEM "Plana",                       32809, CHECKED
+        MENUITEM "Gouraud",                     32810, CHECKED
+        MENUITEM SEPARATOR
+        POPUP "Refl. Material"
         BEGIN
-            MENUITEM "Emissio?",                    32814,MFT_STRING,MFS_CHECKED
-            MENUITEM "Ambient?",                    32815,MFT_STRING,MFS_CHECKED
-            MENUITEM "Difusa",                      32816,MFT_STRING,MFS_CHECKED
-            MENUITEM "Especular",                   32817,MFT_STRING,MFS_CHECKED
+            MENUITEM "Emissio?",                    32814, CHECKED
+            MENUITEM "Ambient?",                    32815, CHECKED
+            MENUITEM "Difusa",                      32816, CHECKED
+            MENUITEM "Especular",                   32817, CHECKED
         END
-        MENUITEM MFT_SEPARATOR
-        MENUITEM "Textures?",                   32818,MFT_STRING,MFS_CHECKED
-        POPUP "Textura",                        65535,MFT_STRING,MFS_ENABLED
+        MENUITEM SEPARATOR
+        MENUITEM "Textures?",                   32818, CHECKED
+        POPUP "Textura"
         BEGIN
-            MENUITEM "FItxer Imatge",               ID_ILUMINACIO_TEXTURA_FITXERIMATGE,MFT_STRING,MFS_CHECKED
+            MENUITEM "FItxer Imatge",               ID_ILUMINACIO_TEXTURA_FITXERIMATGE, CHECKED
         END
     END
-    POPUP "Llums",                          65535,MFT_STRING,MFS_ENABLED
+    POPUP "Llums"
     BEGIN
-        MENUITEM "Llum Ambient?",               32823,MFT_STRING,MFS_CHECKED
-        MENUITEM "Llum 0?",                     ID_LLUMS_LLUM0,MFT_STRING,MFS_CHECKED
+        MENUITEM "Llum Ambient?",               32823, CHECKED
+        MENUITEM "Llum 0?",                     ID_LLUMS_LLUM0, CHECKED
     END
-    POPUP "Shaders",                        65535,MFT_STRING,MFS_ENABLED
+    POPUP "Shaders"
     BEGIN
-        MENUITEM "Sense",                       32826,MFT_STRING,MFS_CHECKED
-        MENUITEM "Gouraud (shader)",            32827,MFT_STRING,MFS_CHECKED
-        MENUITEM "Phong (shader)",              32828,MFT_STRING,MFS_CHECKED
+        MENUITEM "Sense",                       32826, CHECKED
+        MENUITEM "Gouraud (shader)",            32827, CHECKED
+        MENUITEM "Phong (shader)",              32828, CHECKED
     END
-    POPUP "Ay&uda",                         65535,MFT_STRING,MFS_ENABLED
+    POPUP "Ay&uda"
     BEGIN
-        MENUITEM "&Acerca de EntornVGI (Tecla ALT)...", ID_APP_ABOUT,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Acerca de EntornVGI (Tecla ALT)...", ID_APP_ABOUT
     END
-    MENUITEM "+y",                          ID_ADD_Y,MFT_STRING,MFS_CHECKED
-    MENUITEM "-y",                          ID_SUB_Y,MFT_STRING | MFT_RIGHTORDER,MFS_CHECKED
-    MENUITEM "+x",                          ID_ADD_X,MFT_STRING,MFS_CHECKED
-    MENUITEM "-x",                          ID_SUB_X,MFT_STRING,MFS_CHECKED
-    MENUITEM "+z",                          ID_ADD_Z,MFT_STRING,MFS_CHECKED
-    MENUITEM "-z",                          ID_SUB_Z,MFT_STRING,MFS_CHECKED
-    MENUITEM "alpha",                       ID_ADD_APLHA,MFT_STRING,MFS_CHECKED
+    MENUITEM "alpha",                       ID_ADD_APLHA
+    POPUP "move"
+    BEGIN
+        MENUITEM "-z",                          ID_SUB_Z, CHECKED
+        MENUITEM "+z",                          ID_ADD_Z, CHECKED
+        MENUITEM "+y",                          ID_ADD_Y, CHECKED
+        MENUITEM "-y",                          ID_SUB_Y, CHECKED
+        MENUITEM "+x",                          ID_ADD_X, CHECKED
+        MENUITEM "-x",                          ID_SUB_X, CHECKED
+    END
+    POPUP "trayectoria"
+    BEGIN
+        MENUITEM "launch",                      ID_LAUNCH
+        MENUITEM "stop",                        ID_TRAYECTORIA_STOP
+        MENUITEM "restart",                     ID_TRAYECTORIA_RESTART
+    END
+    POPUP "camera"
+    BEGIN
+        MENUITEM "cam1",                        ID_CAMERA_CAM1
+        MENUITEM "cam2",                        ID_CAMERA_CAM2
+        MENUITEM "cam3",                        ID_CAMERA_CAM3
+        MENUITEM "cam4",                        ID_CAMERA_CAM4
+        MENUITEM "seguir",                      ID_CAMERA_SEGUIR
+    END
 END
 
 IDR_POPUP_EDIT MENU

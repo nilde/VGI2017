@@ -14,6 +14,14 @@ public:
 	//En esta se calclaran las coordenadas a partir de las físicas
 	void calculateCoords();
 
+	void set_x(int x);
+
+	void set_y(int y);
+
+	void set_z(int z);
+
+	void set_alpha(float alpha);
+
 	void createRocket();
 	//Se van a usar para mover el objeto a partir de botones
 	void incX();
@@ -23,6 +31,11 @@ public:
 	void incZ();
 	void decZ();
 	void incAlpha();
+	void decAlpha();
+	float get_x();
+	float get_y();
+	float get_z();
+	float get_alpha();
 };
 
 
