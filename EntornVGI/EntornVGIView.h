@@ -37,22 +37,7 @@ protected: // Crear sólo a partir de serialización
 public:
 	CEntornVGIDoc* GetDocument() const;
 
-	const float TSTEP = 0.01;
-	int global_i = 0;
-	float xo = 0;
-	float yo = 0;
-	float zo = 0;
-	float vyo = 10;
-	float vxo = 30;
-	float vzo = 20;
-	float vx ;
-	float vy ;
-	float vz ;
-	float ax = 0;
-	float ay = 0;
-	float az = -9.8;
-
-
+	bool seguir = false;
 
 //-------------- Entorn VGI: Variables globals de CPractivaView
 	HGLRC	 m_hrc;		// OpenGL Rendering Context 
@@ -351,6 +336,7 @@ public:
 	afx_msg void OnCameraCam3();
 	afx_msg void OnCameraCam4();
 	afx_msg void OnCameraSeguir();
+	afx_msg void OnUpdateCameraSeguir(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

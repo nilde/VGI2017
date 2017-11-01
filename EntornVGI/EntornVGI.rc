@@ -392,16 +392,6 @@ BEGIN
     BEGIN
         MENUITEM "&Acerca de EntornVGI (Tecla ALT)...", ID_APP_ABOUT
     END
-    MENUITEM "alpha",                       ID_ADD_APLHA
-    POPUP "move"
-    BEGIN
-        MENUITEM "-z",                          ID_SUB_Z, CHECKED
-        MENUITEM "+z",                          ID_ADD_Z, CHECKED
-        MENUITEM "+y",                          ID_ADD_Y, CHECKED
-        MENUITEM "-y",                          ID_SUB_Y, CHECKED
-        MENUITEM "+x",                          ID_ADD_X, CHECKED
-        MENUITEM "-x",                          ID_SUB_X, CHECKED
-    END
     POPUP "trayectoria"
     BEGIN
         MENUITEM "launch",                      ID_LAUNCH

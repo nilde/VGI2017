@@ -7,35 +7,38 @@ private:
 	int m_y;
 	int m_z;
 	int m_alpha;
+
+	bool stop;
+
+	float xo;
+	float yo;
+	float zo;
+
+	float vyo;
+	float vxo;
+	float vzo;
+
+	float vx;
+	float vy;
+	float vz;
+
+	float ax;
+	float ay;
+	float az;
+
+
 public:
 	//Constructor
 	Rocket();
 
-	//En esta se calclaran las coordenadas a partir de las físicas
-	void calculateCoords();
+	void ExecuteTrayectory(float t);
 
-	void set_x(int x);
+	bool Stoped();
 
-	void set_y(int y);
-
-	void set_z(int z);
-
-	void set_alpha(float alpha);
+	void Restart();
 
 	void createRocket();
-	//Se van a usar para mover el objeto a partir de botones
-	void incX();
-	void decX();
-	void incY();
-	void decY();
-	void incZ();
-	void decZ();
-	void incAlpha();
-	void decAlpha();
-	float get_x();
-	float get_y();
-	float get_z();
-	float get_alpha();
+
 };
 
 

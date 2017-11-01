@@ -4,71 +4,46 @@
 
 Rocket::Rocket()
 {
-	float m_x = 0;
-	float m_y = 0;
-	float m_z = 30;
-	float m_alpha = 0;
+	stop = false;
+
+	xo = 0;
+	yo = 0;
+	zo = 0;
+
+	m_x = xo;
+	m_y = yo;
+	m_z = zo;
+	m_alpha = 0;
+
+	vyo = 0;
+	vxo = 10;
+	vzo = 200;
+
+	vx = vxo;
+	vy = vyo;
+	vz = vzo;
+
+	ax = 0;
+	ay = 0;
+	ax = -9.8;
 }
 
-float  Rocket::get_x() {
-	return m_x;
-}
-float  Rocket::get_y() {
-	return m_y;
-}
-float  Rocket::get_z() {
-	return m_z;
-}
-float  Rocket::get_alpha() {
-	return m_alpha;
+
+void Rocket::ExecuteTrayectory(float t) {
+	m_z = zo + vzo*t + az*t*t / 2;
+	m_x = xo + vx*t;
+
+	if (m_z < 0) {
+		stop = true;
+	}
 }
 
-void Rocket::calculateCoords()
-{
+bool Rocket::Stoped() {
+	return(stop);
 }
 
-void Rocket::set_x(int x) {
-	m_x = x;
-}
-void Rocket::set_y(int y) {
-	m_y = y;
-}
-void Rocket::set_z(int z) {
-	m_z = z;
-}
-void Rocket::set_alpha(float alpha) {
-	m_alpha = alpha;
-}
+void Rocket::Restart() {
+	
+	Rocket();
 
-void Rocket::incX()
-{
-	m_x++;
-}
-void Rocket::decX()
-{
-	m_x--;
-}
-void Rocket::incY()
-{
-	m_y++;
-}
-void Rocket::decY()
-{
-	m_y--;
-}
-void Rocket::incZ()
-{
-	m_z++;
-}
-void Rocket::decZ()
-{
-	m_z--;
-}
-void Rocket::incAlpha()
-{
-	m_alpha++;
-}
-void Rocket::decAlpha()
-{
-	m_alpha--;
 }

@@ -146,13 +146,6 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 	ON_UPDATE_COMMAND_UI(ID_VISTA_SATELIT, &CEntornVGIView::OnUpdateVistaSatelit)
 	ON_COMMAND(ID_PROJECCIO_ORTOGRAFICA, &CEntornVGIView::OnProjeccioOrtografica)
 	ON_UPDATE_COMMAND_UI(ID_PROJECCIO_ORTOGRAFICA, &CEntornVGIView::OnUpdateProjeccioOrtografica)
-	ON_COMMAND(ID_ADD_Y, &CEntornVGIView::OnAddY)
-	ON_COMMAND(ID_SUB_Y, &CEntornVGIView::OnSubY)
-	ON_COMMAND(ID_ADD_X, &CEntornVGIView::OnAddX)
-	ON_COMMAND(ID_SUB_X, &CEntornVGIView::OnSubX)
-	ON_COMMAND(ID_ADD_Z, &CEntornVGIView::OnAddZ)
-	ON_COMMAND(ID_SUB_Z, &CEntornVGIView::OnSubZ)
-	ON_COMMAND(ID_ADD_APLHA, &CEntornVGIView::OnAddAplha)
 	ON_COMMAND(ID_OBJECTE_ROCKET, &CEntornVGIView::OnObjecteRocket)
 	ON_UPDATE_COMMAND_UI(ID_OBJECTE_ROCKET, &CEntornVGIView::OnUpdateObjecteRocket)		
 		ON_COMMAND(ID_LAUNCH, &CEntornVGIView::OnLaunch)
@@ -163,6 +156,7 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_CAMERA_CAM3, &CEntornVGIView::OnCameraCam3)
 		ON_COMMAND(ID_CAMERA_CAM4, &CEntornVGIView::OnCameraCam4)
 		ON_COMMAND(ID_CAMERA_SEGUIR, &CEntornVGIView::OnCameraSeguir)
+		ON_UPDATE_COMMAND_UI(ID_CAMERA_SEGUIR, &CEntornVGIView::OnUpdateCameraSeguir)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -170,14 +164,6 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 
 CEntornVGIView::CEntornVGIView()
 {
-
-	rocket.set_x(xo);
-	rocket.set_z(zo);
-	rocket.set_y(yo);
-
-	vx = vxo;
-	vy = vyo;
-	vz = vzo;
 
 // TODO: agregar aquí el código de construcción
 //	int i = 0;
@@ -3406,103 +3392,35 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 	}
 }
 
-void CEntornVGIView::OnAddY()
-{
-	rocket.incY();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnSubY()
-{
-	rocket.decY();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnAddX()
-{
-	rocket.incX();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnSubX()
-{
-	rocket.decX();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnAddZ()
-{
-	rocket.incZ();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnSubZ()
-{
-	rocket.decZ();
-	OnPaint();
-}
-
-
-void CEntornVGIView::OnAddAplha()
-{
-	rocket.incAlpha();
-	OnPaint();
-}
-
 
 
 void CEntornVGIView::executeTrayectory() {
 	
-	float new_z = zo + vzo*t + az*t*t / 2;
-	float new_x = xo + vx*t;
-	float last_z = zo + vzo*(t - TSTEP) + az*(t - TSTEP) *(t - TSTEP) / 2;
-	float last_x = xo + vx*(t-TSTEP);
-
-	rocket.set_z(new_z);
-	rocket.set_x(new_x);
-
-	
-
-	if (rocket.get_z() < 0) {
-		anima = false;
+	if (!rocket.Stoped()) {
+		rocket.ExecuteTrayectory(t);
 	}
-	
-	OnPaint();
-	t = t + TSTEP;
+
+	t = t + 0.001;
 }
 
 
 void CEntornVGIView::OnLaunch()
 {
 	anima = !anima;
-	SetTimer(WM_TIMER, 10, NULL);
-	OnPaint();
+	SetTimer(WM_TIMER, 100, NULL);
 }
 
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
 	anima = false;
-	OnPaint();
 }
 
 
 void CEntornVGIView::OnTrayectoriaRestart()
 {
-	rocket.set_x(xo);
-	rocket.set_y(yo);
-	rocket.set_z(zo);
-	rocket.set_alpha(0);
-	vx = vxo;
-	vy = vyo;
-	vz = vzo;
+	rocket.Restart();
 	t = 0;
-	OnPaint();
 }
 
 
@@ -3548,4 +3466,17 @@ void CEntornVGIView::OnCameraSeguir()
 	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
 	angleZ = 0.0;
 	OnPaint();
+}
+
+
+void CEntornVGIView::OnUpdateCameraSeguir(CCmdUI *pCmdUI)
+{
+	if (seguir) {
+		pCmdUI->SetCheck(1);
+		seguir = false;
+	}
+	else {
+		pCmdUI->SetCheck(0);
+		seguir = true;
+	}
 }
