@@ -40,6 +40,8 @@ public:
 
 	void Restart();
 
+	void Initialize();
+
 	void createRocket();
 
 };

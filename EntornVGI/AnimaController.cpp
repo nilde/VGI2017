@@ -6,11 +6,11 @@
 AnimaController::AnimaController()
 {
 	seguir = false;
-	camaras[0] = Camera(rocket.xo, rocket.yo, rocket.zo, 10, 0, 0, 0);
-	camaras[1] = Camera(rocket.xo, rocket.yo, rocket.zo, 20, 0, 0, 0);
-	camaras[2] = Camera(rocket.xo, rocket.yo, rocket.zo, 30, 0, 0, 0);
-	camaras[3] = Camera(rocket.xo, rocket.yo, rocket.zo, 40, 0, 0, 0);
-	camaras[4] = Camera(rocket.xo, rocket.yo, rocket.zo, 50, 0, 0, 0);
+	camaras[0] = Camera(rocket.xo, rocket.yo, rocket.zo, 10, 10, 10, 110);
+	camaras[1] = Camera(rocket.xo, rocket.yo, rocket.zo, 10, 10, 10, 110);
+	camaras[2] = Camera(rocket.xo, rocket.yo, rocket.zo, 100, 0, 0, 100);
+	camaras[3] = Camera(rocket.xo, rocket.yo, rocket.zo, 100, 100, 0, 0);
+	camaras[4] = Camera(rocket.xo, rocket.yo, rocket.zo, 10, 100, 20, 100);
 }
 
 void AnimaController::ExecuteTrayectory(float t) {

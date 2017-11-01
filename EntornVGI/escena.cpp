@@ -44,7 +44,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		break;
 
 	case ROCKET:
+
+		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 		rocket.createRocket();
+		SeleccionaMaterialiColor(MAT_GESPA, sw_mat, ref_mat, col_object);
+		glPushMatrix();
+		glTranslatef(000, 0, -1000);
+		glutSolidSphere(1000, 100, 100);
+		glPopMatrix();
+
 		break;
 
 	// Dibuix de la resta d'objectes
@@ -106,7 +114,7 @@ void Rocket::createRocket()
 	glPushMatrix();
 	glTranslatef(rocket.m_x, rocket.m_y, rocket.m_z);
 	glRotatef(rocket.m_alpha,1.0,0.0,0.0);
-	glScalef(1, 1, 5);
+	glScalef(1, 1, 4);
 	glutSolidCube(1.0);
 	glPopMatrix();
 	glPopMatrix();

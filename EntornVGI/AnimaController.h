@@ -44,8 +44,8 @@ public:
 
 	int camara_activa = 0;
 
-	const float TSTEP = 0.01;
-	const float TIMER = 10; // milisegundos
+	const float TSTEP = 0.1;
+	const float TIMER = 5; // milisegundos
 	
 };
 

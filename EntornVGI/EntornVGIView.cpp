@@ -3413,7 +3413,7 @@ void CEntornVGIView::executeTrayectory() {
 
 void CEntornVGIView::OnLaunch()
 {
-	anima = !anima;
+	anima = true;
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 
@@ -3430,6 +3430,8 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	rocket.Restart();
 	rocket.stop = false;
 	t = 0;
+	SetVista(animaController.camaras[animaController.camara_activa]);
+	InvalidateRect(NULL, false);
 }
 
 

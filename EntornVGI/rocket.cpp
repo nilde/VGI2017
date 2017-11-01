@@ -3,28 +3,7 @@
 
 Rocket::Rocket()
 {
-	stop = false;
-
-	xo = 0;
-	yo = 0;
-	zo = 0;
-
-	m_x = xo;
-	m_y = yo;
-	m_z = zo;
-	m_alpha = 0;
-
-	vyo = 10;
-	vxo = 0;
-	vzo = 30;
-
-	vx = vxo;
-	vy = vyo;
-	vz = vzo;
-
-	ax = 0;
-	ay = 0;
-	az = -9.8;
+	Initialize();
 }
 
 float Rocket::DespZ(float t) {
@@ -52,7 +31,30 @@ void Rocket::ExecuteTrayectory(float t) {
 
 
 void Rocket::Restart() {
-	
-	Rocket();
+	Initialize();
+}
 
+void Rocket::Initialize() {
+	stop = false;
+
+	xo = 0;
+	yo = 0;
+	zo = 2;
+
+	m_x = xo;
+	m_y = yo;
+	m_z = zo;
+	m_alpha = 0;
+
+	vxo = 10;
+	vyo = 00;
+	vzo = 30;
+
+	vx = vxo;
+	vy = vyo;
+	vz = vzo;
+
+	ax = 0;
+	ay = 0;
+	az = -9.8;
 }
