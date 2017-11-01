@@ -14,9 +14,9 @@ Rocket::Rocket()
 	m_z = zo;
 	m_alpha = 0;
 
-	vyo = 0;
+	vyo = 10;
 	vxo = 0;
-	vzo = 50;
+	vzo = 30;
 
 	vx = vxo;
 	vy = vyo;
@@ -36,7 +36,7 @@ float Rocket::DespX(float t) {
 }
 
 float Rocket::DespY(float t) {
-	return(0);
+	return(vy*t);
 }
 
 

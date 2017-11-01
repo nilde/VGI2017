@@ -3401,6 +3401,10 @@ void CEntornVGIView::executeTrayectory() {
 		anima = false;
 	}else{
 		rocket.ExecuteTrayectory(t);
+		if (animaController.seguir) {
+			animaController.ExecuteTrayectory(t);
+		}
+		SetVista(animaController.camaras[animaController.camara_activa]);
 	}
 
 	t = t + animaController.TSTEP;
@@ -3417,6 +3421,7 @@ void CEntornVGIView::OnLaunch()
 void CEntornVGIView::OnTrayectoriaStop()
 {
 	anima = !anima;
+	rocket.stop = !rocket.stop;
 }
 
 
@@ -3431,14 +3436,16 @@ void CEntornVGIView::OnTrayectoriaRestart()
 void CEntornVGIView::OnCameraCam1()
 {
 	Navega();
-	SetVista(animaController.camara1);
+	animaController.camara_activa = 1;
+	SetVista(animaController.camaras[animaController.camara_activa]);
 	InvalidateRect(NULL, false);
 }
 
 void CEntornVGIView::OnCameraCam2()
 {
 	Navega();
-	SetVista(animaController.camara2);
+	animaController.camara_activa = 2;
+	SetVista(animaController.camaras[animaController.camara_activa]);
 	InvalidateRect(NULL, false);
 }
 
@@ -3446,7 +3453,8 @@ void CEntornVGIView::OnCameraCam2()
 void CEntornVGIView::OnCameraCam3()
 {
 	Navega();
-	SetVista(animaController.camara3);
+	animaController.camara_activa = 3;
+	SetVista(animaController.camaras[animaController.camara_activa]);
 	InvalidateRect(NULL, false);
 }
 
@@ -3454,14 +3462,15 @@ void CEntornVGIView::OnCameraCam3()
 void CEntornVGIView::OnCameraCam4()
 {
 	Navega();
-	SetVista(animaController.camara4);
+	animaController.camara_activa = 4;
+	SetVista(animaController.camaras[animaController.camara_activa]);
 	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraSeguir()
 {
-
+	animaController.seguir = !animaController.seguir;
 }
 
 

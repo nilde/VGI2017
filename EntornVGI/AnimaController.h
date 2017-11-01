@@ -22,15 +22,7 @@ public:
 	float angulo;
 	float angulo_o;
 
-	Camera(float n_0, float n_1, float n_2, float xx, float yy, float zz, float ang) {
-		objetivo_x = n_0;
-		objetivo_y = n_1;
-		objetivo_z = n_2;
-		pos_x = xx;
-		pos_y = yy;
-		pos_z = zz;
-		angulo = ang;
-	}
+	Camera(float n_0, float n_1, float n_2, float xx, float yy, float zz, float ang);
 	Camera();
 
 	void ExecuteTrayectory(float t);
@@ -42,14 +34,15 @@ class AnimaController {
 public:
 	AnimaController();
 
+	void ExecuteTrayectory(float t);
+
 	bool Siguiendo();
 
 	bool seguir;
 
-	Camera camara1;
-	Camera camara2;
-	Camera camara3;
-	Camera camara4;
+	Camera camaras[5];
+
+	int camara_activa = 0;
 
 	const float TSTEP = 0.01;
 	const float TIMER = 10; // milisegundos
