@@ -395,7 +395,7 @@ BEGIN
     POPUP "trayectoria"
     BEGIN
         MENUITEM "launch",                      ID_LAUNCH
-        MENUITEM "stop",                        ID_TRAYECTORIA_STOP
+        MENUITEM "STOP/CONTINUE",               ID_TRAYECTORIA_STOP
         MENUITEM "restart",                     ID_TRAYECTORIA_RESTART
     END
     POPUP "camera"

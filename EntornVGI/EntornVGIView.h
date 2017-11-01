@@ -26,6 +26,8 @@
 
 // Entorn VGI: OBJECTE OBJ. Include per la definició de l'objecte Obj_OBJ
 #include "objLoader.h"	
+#include "AnimaController.h"
+
 
 class CEntornVGIView : public CView
 {
@@ -35,9 +37,10 @@ protected: // Crear sólo a partir de serialización
 
 // Atributos
 public:
-	CEntornVGIDoc* GetDocument() const;
 
-	bool seguir = false;
+	AnimaController animaController; 
+
+	CEntornVGIDoc* GetDocument() const;
 
 //-------------- Entorn VGI: Variables globals de CPractivaView
 	HGLRC	 m_hrc;		// OpenGL Rendering Context 
@@ -152,8 +155,6 @@ public:
 	CString buffer; // Buffer que magatzema string caracters corresponent a variables float a printar en Status Bar (funció Barra_Estat).
 //-------------- Entorn VGI: Fi De Variables globals de CEntornVGIView
 
-// Operaciones
-public:
 
 // Reemplazos
 public:
@@ -316,17 +317,8 @@ public:
 	afx_msg void OnUpdateVistaSatelit(CCmdUI *pCmdUI);
 	afx_msg void OnProjeccioOrtografica();
 	afx_msg void OnUpdateProjeccioOrtografica(CCmdUI *pCmdUI);
-	afx_msg void OnAddY();
-	afx_msg void OnSubY();
-	afx_msg void OnAddX();
-	afx_msg void OnSubX();
-	afx_msg void OnAddZ();
-	afx_msg void OnSubZ();
-	afx_msg void OnAddAplha();
 	afx_msg void OnObjecteRocket();
 	afx_msg void OnUpdateObjecteRocket(CCmdUI *pCmdUI);
-	void executeTrayectory(int i);
-	afx_msg void OnTrayectoriaLaunch();
 	afx_msg void executeTrayectory();
 	void OnLaunch();
 	afx_msg void OnTrayectoriaStop();
@@ -337,6 +329,9 @@ public:
 	afx_msg void OnCameraCam4();
 	afx_msg void OnCameraSeguir();
 	afx_msg void OnUpdateCameraSeguir(CCmdUI *pCmdUI);
+	void Navega();
+	void SetVista(Camera camara);
+	afx_msg void OnUpdateTrayectoriaStop(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

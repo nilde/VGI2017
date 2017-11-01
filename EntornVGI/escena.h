@@ -5,7 +5,7 @@
 //
 
 #include "rocket.h"
-
+#include "AnimaController.h"
 
 #ifndef GLSOURCE_H
 #define GLSOURCE_H

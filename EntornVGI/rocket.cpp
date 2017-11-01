@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "rocket.h"
 
@@ -16,8 +15,8 @@ Rocket::Rocket()
 	m_alpha = 0;
 
 	vyo = 0;
-	vxo = 10;
-	vzo = 200;
+	vxo = 0;
+	vzo = 50;
 
 	vx = vxo;
 	vy = vyo;
@@ -25,22 +24,32 @@ Rocket::Rocket()
 
 	ax = 0;
 	ay = 0;
-	ax = -9.8;
+	az = -9.8;
+}
+
+float Rocket::DespZ(float t) {
+	return (vzo*t + az*t*t / 2);
+}
+
+float Rocket::DespX(float t) {
+	return(vx*t);
+}
+
+float Rocket::DespY(float t) {
+	return(0);
 }
 
 
 void Rocket::ExecuteTrayectory(float t) {
-	m_z = zo + vzo*t + az*t*t / 2;
-	m_x = xo + vx*t;
+	m_z = zo + DespZ(t);
+	m_x = xo + DespX(t);
+	m_y = yo + DespY(t);
 
 	if (m_z < 0) {
 		stop = true;
 	}
 }
 
-bool Rocket::Stoped() {
-	return(stop);
-}
 
 void Rocket::Restart() {
 	

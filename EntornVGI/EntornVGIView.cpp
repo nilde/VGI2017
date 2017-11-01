@@ -157,6 +157,7 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_CAMERA_CAM4, &CEntornVGIView::OnCameraCam4)
 		ON_COMMAND(ID_CAMERA_SEGUIR, &CEntornVGIView::OnCameraSeguir)
 		ON_UPDATE_COMMAND_UI(ID_CAMERA_SEGUIR, &CEntornVGIView::OnUpdateCameraSeguir)
+		ON_UPDATE_COMMAND_UI(ID_TRAYECTORIA_STOP, &CEntornVGIView::OnUpdateTrayectoriaStop)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3395,88 +3396,103 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 
 void CEntornVGIView::executeTrayectory() {
-	
-	if (!rocket.Stoped()) {
+
+	if (rocket.stop) {
+		anima = false;
+	}else{
 		rocket.ExecuteTrayectory(t);
 	}
 
-	t = t + 0.001;
+	t = t + animaController.TSTEP;
 }
 
 
 void CEntornVGIView::OnLaunch()
 {
 	anima = !anima;
-	SetTimer(WM_TIMER, 100, NULL);
+	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
-	anima = false;
+	anima = !anima;
 }
 
 
 void CEntornVGIView::OnTrayectoriaRestart()
 {
 	rocket.Restart();
+	rocket.stop = false;
 	t = 0;
 }
 
 
 void CEntornVGIView::OnCameraCam1()
 {
-	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
-	angleZ = 0.0;
-	OnPaint();
+	Navega();
+	SetVista(animaController.camara1);
+	InvalidateRect(NULL, false);
 }
-
 
 void CEntornVGIView::OnCameraCam2()
 {
-	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 100.0;	opvN.y = 0.0;		opvN.z = 0.0;
-	angleZ = 0.0;
-	OnPaint();
+	Navega();
+	SetVista(animaController.camara2);
+	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraCam3()
 {
-	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 0.0;	opvN.y = 100.0;		opvN.z = 0.0;
-	angleZ = 0.0;
-	OnPaint();
+	Navega();
+	SetVista(animaController.camara3);
+	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraCam4()
 {
-	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 100.0;
-	angleZ = 0.0;
-	OnPaint();
+	Navega();
+	SetVista(animaController.camara4);
+	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraSeguir()
 {
-	n[0] = 100.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
-	angleZ = 0.0;
-	OnPaint();
+
 }
 
 
 void CEntornVGIView::OnUpdateCameraSeguir(CCmdUI *pCmdUI)
 {
-	if (seguir) {
+	if (animaController.seguir) {
 		pCmdUI->SetCheck(1);
-		seguir = false;
 	}
 	else {
 		pCmdUI->SetCheck(0);
-		seguir = true;
+	}
+}
+
+void CEntornVGIView::Navega() {
+	if (!navega) {
+		navega = true;
+	}
+}
+
+void CEntornVGIView::SetVista(Camera camara) {
+	n[0] = camara.objetivo_x ; n[1] = camara.objetivo_y; n[2] = camara.objetivo_z;
+	opvN.x = camara.pos_x; opvN.y = camara.pos_y; opvN.z = camara.pos_z; 
+	angleZ = camara.angulo;
+}
+
+void CEntornVGIView::OnUpdateTrayectoriaStop(CCmdUI *pCmdUI)
+{
+	if (rocket.stop) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
 	}
 }

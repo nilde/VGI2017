@@ -1,7 +1,8 @@
-#pragma once
+#ifndef _ROCKET
+#define _ROCKET
 
 class Rocket {
-private:
+public:
 	//Coordenadas en que se encontrará el objeto rocket a lo largo de la ejecución
 	int m_x;
 	int m_y;
@@ -26,14 +27,16 @@ private:
 	float ay;
 	float az;
 
-
-public:
 	//Constructor
 	Rocket();
 
-	void ExecuteTrayectory(float t);
+	float DespZ(float t);
 
-	bool Stoped();
+	float DespX(float t);
+
+	float DespY(float t);
+
+	void ExecuteTrayectory(float t);
 
 	void Restart();
 
@@ -42,3 +45,4 @@ public:
 };
 
 
+#endif
