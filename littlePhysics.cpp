@@ -103,7 +103,7 @@ float accelerationY(){
 float posXMax(float VelocityX,float angle){
 	return float((VelocityX**2*sin(double(2.0*angle))) / GRAVITY_ACCELERATION);
 
-
+}
 float posYMax(float initVelocityX,float angle){
 	return float((initVelocityX**2 *(0.5 - 0.5 * cos(double(2.0*angle)) ))/2.0*GRAVITY_ACCELERATION);
 
