@@ -41,7 +41,7 @@ float timeElapsedTopHeight(float rocketMass,float Kvalue,float burnoutVelocity){
 
 float qa = sqrt(rocketMass*GRAVITY_ACCELERATION / kValue);
 float qb = sqrt(GRAVITY_ACCELERATION*kValue / rocketMass);
-return arctan(burnoutVelocity / qa) / qb;
+return atan(burnoutVelocity / qa) / qb;
 
 
 }
@@ -61,15 +61,12 @@ float distanceUntilTopHeight(float rocketMass,float kValue,float burnoutVelocity
 
 }
 
-
-
-//Equations for parabolic trajectory
-
 float timeToVelocityZero(float rocketMass,float kValue,float burnoutVelocity){
 
 	return (sqrt(rocketMass / (kValue*GRAVITY_ACCELERATION))*arctan(burnoutVelocity / sqrt(rocketMass*GRAVITY_ACCELERATION/kValue)));
 }
 
+//Parabolico
 float posX(float angle,float VelocityX,float time){
 	return VelocityX * time *cos(double(angle));
 
