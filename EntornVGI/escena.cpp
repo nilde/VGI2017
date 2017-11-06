@@ -47,10 +47,10 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 		rocket.createRocket();
-		SeleccionaMaterialiColor(MAT_GESPA, sw_mat, ref_mat, col_object);
+		SeleccionaMaterialiColor(MAT_BASE, sw_mat, ref_mat, col_object);
 		glPushMatrix();
-		glTranslatef(000, 0, -1000);
-		glutSolidSphere(1000, 100, 100);
+		glTranslatef(000, 0, -10000);
+		glutSolidSphere(10000, 100, 100);
 		glPopMatrix();
 
 		break;

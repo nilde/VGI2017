@@ -46,9 +46,9 @@ void Rocket::Initialize() {
 	m_z = zo;
 	m_alpha = 0;
 
-	vxo = 10;
+	vxo = 1;
 	vyo = 00;
-	vzo = 30;
+	vzo = 200;
 
 	vx = vxo;
 	vy = vyo;

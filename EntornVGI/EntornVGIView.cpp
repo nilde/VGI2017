@@ -175,7 +175,7 @@ CEntornVGIView::CEntornVGIView()
 	fullscreen = false;
 
 // Entorn VGI: Variables de control per Menú Vista: canvi PV interactiu, Zoom i dibuixar eixos 
-	mobil = true;	zzoom = true;	satelit = false;	pan = true;	navega = false;		eixos = true;
+	mobil = true;	zzoom = true;	satelit = false;	pan = false;	navega = false;		eixos = true;
 
 // Entorn VGI: Variables opció Vista->Pan
 	fact_pan = 1;
@@ -183,8 +183,8 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables de control de l'opció Vista->Navega?
 	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
-	angleZ = 0.0;
+	opvN.x = 10.0;	opvN.y = 15.0;		opvN.z = 20.0;
+	angleZ = 25.0;
 
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
 	projeccio = PERSPECT;			objecte = ROCKET;
