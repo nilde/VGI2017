@@ -203,10 +203,10 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables de control del menú Iluminació		
 	ilumina = FILFERROS;			ifixe = false;
-// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
+	// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
 	sw_material[0] = false;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = true;
 	sw_material_old[0] = false;		sw_material_old[1] = true;		sw_material_old[2] = true;		sw_material_old[3] = true;
-	textura = false;				t_textura = CAP;				textura_map = true;
+	textura = true;				t_textura = CAP;				textura_map = true;
 
 // Entorn VGI: Variables de control del menú Llums
 	llum_ambient = true;
