@@ -31,7 +31,14 @@ void Rocket::ExecuteTrayectory(float t) {
 
 
 void Rocket::Restart() {
-	Initialize();
+	xo = 0;
+	yo = 0;
+	zo = 5;
+
+	m_x = xo;
+	m_y = yo;
+	m_z = zo;
+	m_alpha = 0;
 }
 
 void Rocket::Initialize() {
@@ -46,15 +53,15 @@ void Rocket::Initialize() {
 	m_z = zo;
 	m_alpha = 0;
 
-	vxo = 1;
+	vxo = 0;
 	vyo = 00;
-	vzo = 200;
+	vzo = 0;
 
 	vx = vxo;
 	vy = vyo;
 	vz = vzo;
 
-	ax = 0;
+	ax = 0.001;
 	ay = 0;
-	az = -9.8;
+	az = 0.1;
 }

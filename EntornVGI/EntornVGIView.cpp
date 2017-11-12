@@ -154,6 +154,12 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_CAMERA_SEGUIR, &CEntornVGIView::OnCameraSeguir)
 		ON_UPDATE_COMMAND_UI(ID_CAMERA_SEGUIR, &CEntornVGIView::OnUpdateCameraSeguir)
 		ON_UPDATE_COMMAND_UI(ID_TRAYECTORIA_STOP, &CEntornVGIView::OnUpdateTrayectoriaStop)
+		ON_COMMAND(ID_CAMERA_ESF32864, &CEntornVGIView::OnCameraEsf32864)
+		ON_UPDATE_COMMAND_UI(ID_CAMERA_ESF32864, &CEntornVGIView::OnUpdateCameraEsf32864)
+		ON_COMMAND(ID_MIRARA_ROCKET, &CEntornVGIView::OnMiraraRocket)
+		ON_UPDATE_COMMAND_UI(ID_MIRARA_ROCKET, &CEntornVGIView::OnUpdateMiraraRocket)
+		ON_COMMAND(ID_MIRARA_PLANET, &CEntornVGIView::OnMiraraPlanet)
+		ON_UPDATE_COMMAND_UI(ID_MIRARA_PLANET, &CEntornVGIView::OnUpdateMiraraPlanet)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,8 +191,12 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables de control de l'opció Vista->Navega?
 	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-	opvN.x = 10.0;	opvN.y = 15.0;		opvN.z = 20.0;
-	angleZ = 25.0;
+	opvN.x = 0 ;	opvN.y = sqrt(dist*dist - opvN.x*opvN.x);		opvN.z = 10;
+	angleZ = 0;
+
+
+
+
 
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
 	projeccio = PERSPECT;			objecte = ROCKET;
@@ -1324,6 +1334,7 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 	float modul = 0;
 
 // Entorn VGI: Controls de moviment de navegació
+	/*
 	vdir[0] = n[0] - opvN.x;
 	vdir[1] = n[1] - opvN.y;
 	vdir[2] = n[2] - opvN.z;
@@ -1331,26 +1342,64 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 	vdir[0] = vdir[0] / modul;
 	vdir[1] = vdir[1] / modul;
 	vdir[2] = vdir[2] / modul;
+	*/
+
+	float factor_x = 1; // no cambiar D: 
+	float factor_dist = 1;
+
+	float factor = 10;
+
+	float x_2 = opvN.x;
+	float y_2 = opvN.y;
+	float x_1 = center[0];
+	float y_1 = center[1];
+
+
 	switch (nChar)
 	{	
+	
 	// Tecla cursor amunt
 	case VK_UP:
+		/*
 		opvN.x += nRepCnt*fact_pan*vdir[0];
 		opvN.y += nRepCnt*fact_pan*vdir[1];
 		n[0] += nRepCnt*fact_pan*vdir[0];
 		n[1] += nRepCnt*fact_pan*vdir[1];
+		
+		if (opvN.x - factor_dist != x_1) {
+			dist -= factor_dist;
+			opvN.x -= factor_dist;
+			opvN.y = (y_2 - y_1) / (x_2 - x_1)*(opvN.x - x_1) + y_1;
+		}
+
+		*/
+		opvN.y += factor;
+
 		break;
 
 	// Tecla cursor avall
 	case VK_DOWN:
+		/*
 		opvN.x -= nRepCnt*fact_pan*vdir[0];
 		opvN.y -= nRepCnt*fact_pan*vdir[1];
 		n[0] -= nRepCnt*fact_pan*vdir[0];
 		n[1] -= nRepCnt*fact_pan*vdir[1];
+		
+
+		if (opvN.x + factor_dist != x_1) {
+			dist += factor_dist;
+			opvN.x += factor_dist;
+			opvN.y = (y_2 - y_1) / (x_2 - x_1)*(opvN.x - x_1) + y_1;
+		}
+
+		*/
+
+		opvN.y -= factor;
 		break;
 
 	// Tecla cursor esquerra
 	case VK_LEFT:
+		/*
 		angleZ = +nRepCnt*fact_pan;
 		n[0] = n[0] - opvN.x;
 		n[1] = n[1] - opvN.y;
@@ -1358,10 +1407,27 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 		n[1] = n[0] * sin(angleZ*pi / 180) + n[1] * cos(angleZ*pi / 180);
 		n[0] = n[0] + opvN.x;
 		n[1] = n[1] + opvN.y;
+		
+
+		opvN.x -= factor_x;
+		if (opvN.x == dist) {
+			opvN.x = dist - factor_x;
+			factor_x = -factor_x;
+		}
+		if (opvN.x == -dist) {
+			opvN.x = -dist + factor_x;
+			factor_x = -factor_x;
+		}
+		opvN.y = sqrt(dist*dist - opvN.x*opvN.x);
+
+		*/
+
+		opvN.x -= factor;
 		break;
 
 	// Tecla cursor dret
 	case VK_RIGHT:
+		/*
 		angleZ = 360 - nRepCnt*fact_pan;
 		n[0] = n[0] - opvN.x;
 		n[1] = n[1] - opvN.y;
@@ -1369,7 +1435,32 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 		n[1] = n[0] * sin(angleZ*pi / 180) + n[1] * cos(angleZ*pi / 180);
 		n[0] = n[0] + opvN.x;
 		n[1] = n[1] + opvN.y;
+		
+		opvN.x += factor_x;
+		if (opvN.x == dist) {
+				opvN.x = dist - factor_x;
+				factor_x = -factor_x;
+			}
+		if (opvN.x == -dist) {
+			opvN.x = -dist + factor_x;
+			factor_x = -factor_x;
+		}
+		opvN.y = sqrt(dist*dist - opvN.x*opvN.x);
+		*/
+		opvN.x += factor;
 		break;
+
+		// Tecla '+' (augmentar tot l'escalat)
+	case 107:
+		opvN.z += factor;
+		break;
+
+		// Tecla '-' (disminuir tot l'escalat)
+	case 109:
+		opvN.z -= factor;
+		break;
+
+
 
 	// Tecla Inicio
 	case VK_HOME:
@@ -2106,6 +2197,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: Agregue aquí su código de controlador de mensajes o llame al valor predeterminado
 	if (anima)	{
+		
 		// Codi de tractament de l'animació quan transcorren els ms. del crono.
 		executeTrayectory();
 		// Crida a OnPaint() per redibuixar l'escena
@@ -2450,7 +2542,7 @@ void CEntornVGIView::OnVistaOrigennavega()
 {
 // TODO: Agregue aquí su código de controlador de comandos
 	if (navega) {	n[0] = 0.0;		n[1] = 0.0;		n[2] = 0.0;
-					opvN.x = 10.0;	opvN.y = 0.0;		opvN.z = 0.0;
+					opvN.x = 0.0;	opvN.y = 0.0;		opvN.z = 0.0;
 					angleZ = 0.0;
 				}
 
@@ -3401,7 +3493,15 @@ void CEntornVGIView::executeTrayectory() {
 	animaController.rocket.ExecuteTrayectory(t);
 	t += animaController.TSTEP;
 	if (animaController.seguir) {
-		setCenterWith(ROCKET);
+		switch (animaController.lookat) {
+		case ROCKET:
+			setCenterWith(ROCKET);
+			break;
+		case PLANET:
+			setCenterWith(PLANET);
+			break;
+		}
+
 	}
 }
 
@@ -3422,6 +3522,7 @@ void CEntornVGIView::OnTrayectoriaStop()
 void CEntornVGIView::OnTrayectoriaRestart()
 {
 	animaController.rocket.Restart();
+	t = 0;
 	InvalidateRect(NULL, false);
 }
 
@@ -3472,4 +3573,61 @@ void CEntornVGIView::setCenterWith(char object) {
 		center[1] = animaController.planet.center[1];
 		center[2] = animaController.planet.center[2];
 	}
+	n[0] = center[0];
+	n[1] = center[1];
+	n[2] = center[2];
 }
+
+
+void CEntornVGIView::OnCameraEsf32864()
+{
+	animaController.esferica = !animaController.esferica;
+	navega = !navega;
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdateCameraEsf32864(CCmdUI *pCmdUI)
+{
+	if (animaController.esferica) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+void CEntornVGIView::OnMiraraRocket()
+{
+	animaController.lookat = ROCKET;
+}
+
+
+void CEntornVGIView::OnUpdateMiraraRocket(CCmdUI *pCmdUI)
+{
+	if (animaController.lookat == ROCKET) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+void CEntornVGIView::OnMiraraPlanet()
+{
+	animaController.lookat = PLANET;
+}
+
+
+void CEntornVGIView::OnUpdateMiraraPlanet(CCmdUI *pCmdUI)
+{
+	if (animaController.lookat == PLANET) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+

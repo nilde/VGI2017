@@ -38,6 +38,8 @@ protected: // Crear sólo a partir de serialización
 // Atributos
 public:
 
+	float dist = 10;
+
 	AnimaController animaController; 
 
 	CEntornVGIDoc* GetDocument() const;
@@ -334,6 +336,12 @@ public:
 	void Navega();
 	afx_msg void OnUpdateTrayectoriaStop(CCmdUI *pCmdUI);
 	void setCenterWith(char object);
+	afx_msg void OnCameraEsf32864();
+	afx_msg void OnUpdateCameraEsf32864(CCmdUI *pCmdUI);
+	afx_msg void OnMiraraRocket();
+	afx_msg void OnUpdateMiraraRocket(CCmdUI *pCmdUI);
+	afx_msg void OnMiraraPlanet();
+	afx_msg void OnUpdateMiraraPlanet(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

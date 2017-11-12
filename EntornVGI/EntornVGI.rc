@@ -401,6 +401,12 @@ BEGIN
     POPUP "camera"
     BEGIN
         MENUITEM "SEGUIMIENTO",                 ID_CAMERA_SEGUIR
+        MENUITEM "Esférica",                    ID_CAMERA_ESF32864
+        POPUP "Mirar a"
+        BEGIN
+            MENUITEM "Rocket",                      ID_MIRARA_ROCKET
+            MENUITEM "planet",                      ID_MIRARA_PLANET
+        END
     END
 END
 

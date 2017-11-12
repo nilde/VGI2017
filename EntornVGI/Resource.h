@@ -184,13 +184,17 @@
 #define ID_CAMERA_CAM4                  32861
 #define ID_CAMERA_SEGUIMIENT            32862
 #define ID_CAMERA_SEGUIR                32863
+#define ID_CAMERA_ESF32864              32864
+#define ID_CAMERA_MIRARA                32865
+#define ID_MIRARA_ROCKET                32866
+#define ID_MIRARA_PLANET                32867
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32864
+#define _APS_NEXT_COMMAND_VALUE         32868
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

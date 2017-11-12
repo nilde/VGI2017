@@ -12,6 +12,10 @@ public:
 
 	bool seguir = true;
 
+	bool esferica = true;
+
+	char lookat = ROCKET;
+
 	const float TSTEP = 0.1;
 	const float TIMER = 5; // milisegundos
 	
