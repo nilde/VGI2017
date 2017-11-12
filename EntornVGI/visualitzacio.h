@@ -24,7 +24,7 @@ void Vista_Ortografica(int prj,GLfloat Raux,CColor col_fons,CColor col_object,ch
 void Projeccio_Perspectiva(int,int,GLsizei,GLsizei,float);
 void Vista_Esferica(CEsfe3D opv,char VPol,bool pant,CPunt3D tr,CPunt3D trF,
 				 CColor col_fons,CColor col_object,char objecte,double mida,int step,bool oculta,bool testv,
-				 bool bck_ln,char iluminacio,bool llum_amb,LLUM lumi,bool textur,bool textur_map,bool ifix,bool eix);
+				 bool bck_ln,char iluminacio,bool llum_amb,LLUM lumi,bool textur,bool textur_map,bool ifix,bool eix, GLfloat center[]);
 
 void Vista_Navega(CPunt3D pv,bool pvb,GLfloat n[3],GLfloat v[3], bool pant,CPunt3D tr,CPunt3D trF,
 				  CColor col_fons,CColor col_object,char objecte,bool color,

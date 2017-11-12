@@ -151,10 +151,6 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_LAUNCH, &CEntornVGIView::OnLaunch)
 		ON_COMMAND(ID_TRAYECTORIA_STOP, &CEntornVGIView::OnTrayectoriaStop)
 		ON_COMMAND(ID_TRAYECTORIA_RESTART, &CEntornVGIView::OnTrayectoriaRestart)
-		ON_COMMAND(ID_CAMERA_CAM1, &CEntornVGIView::OnCameraCam1)
-		ON_COMMAND(ID_CAMERA_CAM2, &CEntornVGIView::OnCameraCam2)
-		ON_COMMAND(ID_CAMERA_CAM3, &CEntornVGIView::OnCameraCam3)
-		ON_COMMAND(ID_CAMERA_CAM4, &CEntornVGIView::OnCameraCam4)
 		ON_COMMAND(ID_CAMERA_SEGUIR, &CEntornVGIView::OnCameraSeguir)
 		ON_UPDATE_COMMAND_UI(ID_CAMERA_SEGUIR, &CEntornVGIView::OnUpdateCameraSeguir)
 		ON_UPDATE_COMMAND_UI(ID_TRAYECTORIA_STOP, &CEntornVGIView::OnUpdateTrayectoriaStop)
@@ -165,6 +161,8 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 
 CEntornVGIView::CEntornVGIView()
 {
+
+	AnimaController animaController;
 
 // TODO: agregar aquí el código de construcción
 //	int i = 0;
@@ -724,7 +722,7 @@ void CEntornVGIView::OnPaint()
 		else {	n[0] = 0;		n[1] = 0;		n[2] = 0;
 				Vista_Esferica(OPV, Vis_Polar, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, mida, pas,
 					oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura,
-					textura_map, ifixe, eixos);
+					textura_map, ifixe, eixos, n);
 			}
 
 		// Dibuix de l'Objecte o l'Escena
@@ -779,7 +777,7 @@ void CEntornVGIView::configura_Escena() {
 void CEntornVGIView::dibuixa_Escena() {
 
 //	Dibuix geometria de l'escena amb comandes GL.
-	dibuixa_EscenaGL(objecte, col_obj, true, sw_material, textura);
+	dibuixa_EscenaGL(objecte, col_obj, true, sw_material, textura, animaController);
 }
 
 // Barra_Estat: Actualitza la barra d'estat (Status Bar) de l'aplicació amb els
@@ -3397,17 +3395,7 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 void CEntornVGIView::executeTrayectory() {
 
-	if (rocket.stop) {
-		anima = false;
-	}else{
-		rocket.ExecuteTrayectory(t);
-		if (animaController.seguir) {
-			animaController.ExecuteTrayectory(t);
-		}
-		SetVista(animaController.camaras[animaController.camara_activa]);
-	}
 
-	t = t + animaController.TSTEP;
 }
 
 
@@ -3420,70 +3408,26 @@ void CEntornVGIView::OnLaunch()
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
-	anima = !anima;
-	rocket.stop = !rocket.stop;
+	
 }
 
 
 void CEntornVGIView::OnTrayectoriaRestart()
 {
-	rocket.Restart();
-	rocket.stop = false;
-	t = 0;
-	SetVista(animaController.camaras[animaController.camara_activa]);
-	InvalidateRect(NULL, false);
-}
-
-
-void CEntornVGIView::OnCameraCam1()
-{
-	Navega();
-	animaController.camara_activa = 1;
-	SetVista(animaController.camaras[animaController.camara_activa]);
-	InvalidateRect(NULL, false);
-}
-
-void CEntornVGIView::OnCameraCam2()
-{
-	Navega();
-	animaController.camara_activa = 2;
-	SetVista(animaController.camaras[animaController.camara_activa]);
-	InvalidateRect(NULL, false);
-}
-
-
-void CEntornVGIView::OnCameraCam3()
-{
-	Navega();
-	animaController.camara_activa = 3;
-	SetVista(animaController.camaras[animaController.camara_activa]);
-	InvalidateRect(NULL, false);
-}
-
-
-void CEntornVGIView::OnCameraCam4()
-{
-	Navega();
-	animaController.camara_activa = 4;
-	SetVista(animaController.camaras[animaController.camara_activa]);
+	
 	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraSeguir()
 {
-	animaController.seguir = !animaController.seguir;
+
 }
 
 
 void CEntornVGIView::OnUpdateCameraSeguir(CCmdUI *pCmdUI)
 {
-	if (animaController.seguir) {
-		pCmdUI->SetCheck(1);
-	}
-	else {
-		pCmdUI->SetCheck(0);
-	}
+
 }
 
 void CEntornVGIView::Navega() {
@@ -3492,15 +3436,11 @@ void CEntornVGIView::Navega() {
 	}
 }
 
-void CEntornVGIView::SetVista(Camera camara) {
-	n[0] = camara.objetivo_x ; n[1] = camara.objetivo_y; n[2] = camara.objetivo_z;
-	opvN.x = camara.pos_x; opvN.y = camara.pos_y; opvN.z = camara.pos_z; 
-	angleZ = camara.angulo;
-}
+
 
 void CEntornVGIView::OnUpdateTrayectoriaStop(CCmdUI *pCmdUI)
 {
-	if (rocket.stop) {
+	if (animaController.rocket.stop) {
 		pCmdUI->SetCheck(1);
 	}
 	else {

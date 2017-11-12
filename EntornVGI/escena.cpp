@@ -7,13 +7,13 @@
 #include "stdafx.h"
 #include "material.h"
 #include "escena.h"
+#include "AnimaController.h"
 
 // TEXTURES: Vector de noms de textura
 GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-Rocket rocket;
 
 // dibuixa_EscenaGL: Dibuix de l'escena amb comandes GL
-void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur)
+void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController animaController)
 {
 	float altfar = 0;
 
@@ -45,12 +45,23 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 	case ROCKET:
 
+
+		/* DRAW ROCKET*/
 		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
-		rocket.createRocket();
+		
+		glPushMatrix();
+		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
+		glRotatef(animaController.rocket.m_alpha, 1.0, 0.0, 0.0);
+		glScalef(2,2,10);
+		glutSolidCube(1.0);
+		glPopMatrix();
+
+
+		/* DRAW PLANET */
 		SeleccionaMaterialiColor(MAT_BASE, sw_mat, ref_mat, col_object);
 		glPushMatrix();
-		glTranslatef(000, 0, -10000);
-		glutSolidSphere(10000, 100, 100);
+		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
+		glutSolidSphere(animaController.planet.size, 100, 100);
 		glPopMatrix();
 
 		break;
@@ -104,20 +115,6 @@ void dibuixa(char obj)
 
 	}
 
-}
-/* Function: createRocket
-	Todos los componentes para poder crear el Cohete y que se vaya moviendo en el esacio segun las variables de x,y,z y alpha.
-*/
-void Rocket::createRocket()
-{
-	glPushMatrix();
-	glPushMatrix();
-	glTranslatef(rocket.m_x, rocket.m_y, rocket.m_z);
-	glRotatef(rocket.m_alpha,1.0,0.0,0.0);
-	glScalef(1, 1, 4);
-	glutSolidCube(1.0);
-	glPopMatrix();
-	glPopMatrix();
 }
 
 // OBJECTE Truck amb imatges textura si són actives

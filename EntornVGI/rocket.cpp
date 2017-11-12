@@ -39,7 +39,7 @@ void Rocket::Initialize() {
 
 	xo = 0;
 	yo = 0;
-	zo = 2;
+	zo = 5;
 
 	m_x = xo;
 	m_y = yo;

@@ -124,6 +124,8 @@ public:
 	int w, h;				// Mides de la finestra Windows (w-amplada,h-alçada)
 	CEsfe3D OPV;			// Paràmetres camera en coord. esfèriques (R,alfa,beta)
 	char Vis_Polar;			// Variable que controla orientació dels eixos en Visualització Interactiva (POLARZ,POLARY,POLARX)
+	GLfloat center[3];   // Punt cap on mira.
+
 
 // Entorn VGI: Color de fons i de l'objecte
 	bool fonsR, fonsG, fonsB;	// Booleanes per controlar variació de color per teclat.
@@ -330,7 +332,6 @@ public:
 	afx_msg void OnCameraSeguir();
 	afx_msg void OnUpdateCameraSeguir(CCmdUI *pCmdUI);
 	void Navega();
-	void SetVista(Camera camara);
 	afx_msg void OnUpdateTrayectoriaStop(CCmdUI *pCmdUI);
 };
 

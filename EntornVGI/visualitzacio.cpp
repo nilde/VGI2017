@@ -295,7 +295,7 @@ void Projeccio_Perspectiva(int minx,int miny,GLsizei w,GLsizei h,float zoom)
 void Vista_Esferica(CEsfe3D opv,char VPol,bool pant,CPunt3D tr,CPunt3D trF,
 				 CColor col_fons,CColor col_object,char objecte,double mida,int step, 
 				 bool oculta,bool testv,bool bck_ln,char iluminacio, bool llum_amb,LLUM lumi,bool textur,
-				 bool textur_map,bool ifix,bool eix)
+				 bool textur_map,bool ifix,bool eix, GLfloat center[])
 {    
 	GLfloat cam[3],up[3];
 
@@ -336,7 +336,7 @@ void Vista_Esferica(CEsfe3D opv,char VPol,bool pant,CPunt3D tr,CPunt3D trF,
 	glTranslatef(trF.x,trF.y,trF.z);	// Traslació fixada amb la INSERT dins l'opció pan
 
 // Especificació del punt de vista
-   gluLookAt(cam[0],cam[1],cam[2],0.,0.,0.,up[0],up[1],up[2]);
+   gluLookAt(cam[0]+center[0],cam[1]+center[1],cam[2]+center[2],center[0],center[1],center[2],up[0],up[1],up[2]);
 
 // Iluminacio fixe respecte la camara (després glLookAt)
 	if (ifix) Iluminacio(iluminacio,ifix,llum_amb,lumi,textur,textur_map,objecte,bck_ln,step);
