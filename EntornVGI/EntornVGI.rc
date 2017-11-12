@@ -400,11 +400,7 @@ BEGIN
     END
     POPUP "camera"
     BEGIN
-        MENUITEM "cam1",                        ID_CAMERA_CAM1
-        MENUITEM "cam2",                        ID_CAMERA_CAM2
-        MENUITEM "cam3",                        ID_CAMERA_CAM3
-        MENUITEM "cam4",                        ID_CAMERA_CAM4
-        MENUITEM "seguir",                      ID_CAMERA_SEGUIR
+        MENUITEM "SEGUIMIENTO",                 ID_CAMERA_SEGUIR
     END
 END
 

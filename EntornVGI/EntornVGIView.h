@@ -333,10 +333,10 @@ public:
 	afx_msg void OnUpdateCameraSeguir(CCmdUI *pCmdUI);
 	void Navega();
 	afx_msg void OnUpdateTrayectoriaStop(CCmdUI *pCmdUI);
+	void setCenterWith(char object);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp
 inline CEntornVGIDoc* CEntornVGIView::GetDocument() const
    { return reinterpret_cast<CEntornVGIDoc*>(m_pDocument); }
 #endif
-

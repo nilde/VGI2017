@@ -35,6 +35,7 @@
 #define TORUS 'o'
 #define TRUCK 'T'
 #define ROCKET 'R'
+#define PLANET '¨'
 #define VAIXELL 'v'
 #define OBJ3DS '3'		// Objecte format 3DS
 #define OBJOBJ '4'		// Objecte format OBJ

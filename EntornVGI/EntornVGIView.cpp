@@ -162,6 +162,10 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 CEntornVGIView::CEntornVGIView()
 {
 
+	center[0] = 0;
+	center[1] = 0;
+	center[2] = 0;
+
 	AnimaController animaController;
 
 // TODO: agregar aquí el código de construcción
@@ -722,7 +726,7 @@ void CEntornVGIView::OnPaint()
 		else {	n[0] = 0;		n[1] = 0;		n[2] = 0;
 				Vista_Esferica(OPV, Vis_Polar, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, mida, pas,
 					oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura,
-					textura_map, ifixe, eixos, n);
+					textura_map, ifixe, eixos, center);
 			}
 
 		// Dibuix de l'Objecte o l'Escena
@@ -3394,8 +3398,11 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 
 void CEntornVGIView::executeTrayectory() {
-
-
+	animaController.rocket.ExecuteTrayectory(t);
+	t += animaController.TSTEP;
+	if (animaController.seguir) {
+		setCenterWith(ROCKET);
+	}
 }
 
 
@@ -3408,26 +3415,31 @@ void CEntornVGIView::OnLaunch()
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
-	
+	anima = !anima;
 }
 
 
 void CEntornVGIView::OnTrayectoriaRestart()
 {
-	
+	animaController.rocket.Restart();
 	InvalidateRect(NULL, false);
 }
 
 
 void CEntornVGIView::OnCameraSeguir()
 {
-
+	animaController.seguir = !animaController.seguir;
 }
 
 
 void CEntornVGIView::OnUpdateCameraSeguir(CCmdUI *pCmdUI)
 {
-
+	if (animaController.seguir) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
 }
 
 void CEntornVGIView::Navega() {
@@ -3445,5 +3457,19 @@ void CEntornVGIView::OnUpdateTrayectoriaStop(CCmdUI *pCmdUI)
 	}
 	else {
 		pCmdUI->SetCheck(0);
+	}
+}
+
+void CEntornVGIView::setCenterWith(char object) {
+	if (object == ROCKET) {
+		center[0] = animaController.rocket.m_x;
+		center[1] = animaController.rocket.m_y;
+		center[2] = animaController.rocket.m_z;
+
+	}
+	else if (object == PLANET) {
+		center[0] = animaController.planet.center[0];
+		center[1] = animaController.planet.center[1];
+		center[2] = animaController.planet.center[2];
 	}
 }
