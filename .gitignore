@@ -16,3 +16,9 @@ Thumbs.db
 ## Visual studio:
 
 .vs/*
+
+
+*.obj
+*.log
+*.exe
+*.ilk
