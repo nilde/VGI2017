@@ -30,7 +30,7 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 		az = ax = ay = 0;
 	}
 
-	float dy =  center[1] - m_x;
+	float dy =  center[1] - m_y;
 	float dz =  center[2] - m_z;
 
 
@@ -71,34 +71,13 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 }
 
 
-void Rocket::Restart(){
-	float angle = 90; // entre 0 y 90
-	float impulse = 0;
-
-	xo = 0;
-	yo = 100;
-	zo = 200;
-
-	m_x = xo;
-	m_y = yo;
-	m_z = zo;
-	m_alpha = angle;
-
-	vx = vz = vy = 0;
-
-	ax = 0;
-	auto a = seno(angle);
-	az = impulse * seno(angle);
-	ay = impulse * coseno(angle);
-}
-
 void Rocket::Initialize() {
-	float angle = 90; // entre 0 y 90
-	float impulse = 0;
+	float angle = 70; // entre 0 y 90
+	float impulse = 2;
 
 	xo = 0;
-	yo = 100;
-	zo = 200;
+	yo = 0;
+	zo = 5;
 
 	m_x = xo;
 	m_y = yo;
@@ -115,3 +94,9 @@ void Rocket::Initialize() {
 }
 
 
+
+
+
+void Rocket::Restart(){
+	Initialize();
+}
