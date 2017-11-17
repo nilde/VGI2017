@@ -1,6 +1,7 @@
 #ifndef _ROCKET
 #define _ROCKET
 
+
 class Rocket {
 public:
 	//Coordenadas en que se encontrará el objeto rocket a lo largo de la ejecución
@@ -36,11 +37,13 @@ public:
 
 	float DespY(float t);
 
-	void ExecuteTrayectory(float t);
+		void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
 
 	void Restart();
 
 	void Initialize();
+
+	float Rocket::angleGenerated(float previousX, float previousY, float actualX, float actualY);
 
 };
 

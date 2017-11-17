@@ -5,6 +5,7 @@
 //				 CENtornVGIView.cpp, visualitzacio.cpp i escena.cpp
 
 
+
 #ifndef CONST_H
 #define CONST_H
 

@@ -3,11 +3,11 @@ class Planet
 {
 public:
 	Planet();
-	Planet(float _size);
-	Planet(float x, float y, float z, float size);
+	Planet(float radius);
+	Planet(float x, float y, float z, float radius);
 	~Planet();
 
-	float size;
+	float radius;
 	GLfloat center[3];
 };
 

@@ -4,24 +4,25 @@
 
 Planet::Planet()
 {
-	size = 1000;
+	radius = 1000;
 	center[0] = 0;
 	center[1] = 0;
-	center[2] = -size;
+	center[2] = -radius;
 }
 
-Planet::Planet(float _size) {
-	size = _size;
+Planet::Planet(float r) {
+	radius = r;
 	center[0] = 0;
 	center[1] = 0;
-	center[2] = -size;
+	center[2] = -radius;
 }
 
-Planet::Planet(float x, float y, float z, float _size) {
+Planet::Planet(float x, float y, float z, float r) {
+	radius = r;
 	center[0] = x;
 	center[1] = y;
 	center[2] = z;
-	size = _size;
+
 }
 
 

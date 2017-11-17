@@ -195,9 +195,6 @@ CEntornVGIView::CEntornVGIView()
 	angleZ = 0;
 
 
-
-
-
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
 	projeccio = PERSPECT;			objecte = ROCKET;
 
@@ -211,10 +208,11 @@ CEntornVGIView::CEntornVGIView()
 	transX = false;	transY = false;	transZ = false;
 
 // Entorn VGI: Variables de control per les opcions de menú Ocultacions
-	oculta = false;			test_vis = false;			back_line = false;
+	oculta = true;			test_vis = false;			back_line = false;
+
 
 // Entorn VGI: Variables de control del menú Iluminació		
-	ilumina = FILFERROS;			ifixe = false;
+	ilumina = GOURAUD;			ifixe = false;
 	// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
 	sw_material[0] = false;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = true;
 	sw_material_old[0] = false;		sw_material_old[1] = true;		sw_material_old[2] = true;		sw_material_old[3] = true;
@@ -2202,6 +2200,8 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		executeTrayectory();
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
+
+
 		
 		}
 	else if (satelit)	{	// OPCIÓ SATÈLIT: Increment OPV segons moviments mouse.
@@ -3490,8 +3490,11 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 
 void CEntornVGIView::executeTrayectory() {
-	animaController.rocket.ExecuteTrayectory(t);
+	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center);
 	t += animaController.TSTEP;
+	iter++; 
+
+
 	if (animaController.seguir) {
 		switch (animaController.lookat) {
 		case ROCKET:
@@ -3523,6 +3526,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 {
 	animaController.rocket.Restart();
 	t = 0;
+	this->setCenterWith(ROCKET);
 	InvalidateRect(NULL, false);
 }
 

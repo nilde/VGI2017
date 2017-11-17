@@ -1,67 +1,117 @@
 #include "stdafx.h"
 #include "rocket.h"
+#include <stdlib.h>
+#include "math.h"
+
+#define PI 3.14159265
+
 
 Rocket::Rocket()
 {
 	Initialize();
 }
 
-float Rocket::DespZ(float t) {
-	return (vzo*t + az*t*t / 2);
+float seno(float x) {
+	return sin(x*PI / 180);
 }
 
-float Rocket::DespX(float t) {
-	return(vx*t);
+float coseno(float x) {
+	return cos(x*PI / 180);
 }
 
-float Rocket::DespY(float t) {
-	return(vy*t);
+float arcotangente(float x) {
+	return (atan(x)*(180/PI));
 }
 
 
-void Rocket::ExecuteTrayectory(float t) {
-	m_z = zo + DespZ(t);
-	m_x = xo + DespX(t);
-	m_y = yo + DespY(t);
+void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
-	if (m_z < 0) {
-		stop = true;
+	if (iteracion == 200) {
+		az = ax = ay = 0;
 	}
+
+	float dy =  center[1] - m_x;
+	float dz =  center[2] - m_z;
+
+
+	if (dy != 0) {
+		m_alpha = arcotangente(dz/dy);
+	}
+	else {
+		if (m_z > center[2]) {
+			m_alpha = 90;
+		}
+		else if(m_z < center[2]){
+			m_alpha = 270;
+		}
+		else {
+			m_alpha = 0;
+		}
+	}
+
+	float distancia = sqrt(dy*dy + dz*dz);
+
+	float real_az = az - 1.2 * seno(m_alpha);
+	float real_ay = ay - 1.2 * coseno(m_alpha);
+
+
+
+	vx = vx + ax * step;
+	vy = vy + real_ay * step;
+	vz = vz + real_az * step;
+
+	m_z = m_z + vz*step;
+	m_x = m_x + vx*step;
+	m_y = m_y + vy*step;
+
+	
+
+
+
 }
 
 
-void Rocket::Restart() {
+void Rocket::Restart(){
+	float angle = 90; // entre 0 y 90
+	float impulse = 0;
+
 	xo = 0;
-	yo = 0;
-	zo = 5;
+	yo = 100;
+	zo = 200;
 
 	m_x = xo;
 	m_y = yo;
 	m_z = zo;
-	m_alpha = 0;
+	m_alpha = angle;
+
+	vx = vz = vy = 0;
+
+	ax = 0;
+	auto a = seno(angle);
+	az = impulse * seno(angle);
+	ay = impulse * coseno(angle);
 }
 
 void Rocket::Initialize() {
-	stop = false;
+	float angle = 90; // entre 0 y 90
+	float impulse = 0;
 
 	xo = 0;
-	yo = 0;
-	zo = 5;
+	yo = 100;
+	zo = 200;
 
 	m_x = xo;
 	m_y = yo;
 	m_z = zo;
-	m_alpha = 0;
+	m_alpha = angle;
 
-	vxo = 0;
-	vyo = 00;
-	vzo = 0;
+	vx = vz = vy = 0;
 
-	vx = vxo;
-	vy = vyo;
-	vz = vzo;
+	ax = 0;
+	auto a = seno(angle);
+	az = impulse * seno(angle);
+	ay = impulse * coseno(angle);
 
-	ax = 0.001;
-	ay = 0;
-	az = 0.1;
 }
+
+

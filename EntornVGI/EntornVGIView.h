@@ -38,6 +38,8 @@ protected: // Crear sólo a partir de serialización
 // Atributos
 public:
 
+	int iter = 0;
+
 	float dist = 10;
 
 	AnimaController animaController; 
