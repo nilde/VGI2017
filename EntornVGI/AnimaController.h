@@ -6,9 +6,11 @@ class AnimaController {
 public:
 	AnimaController();
 
-
 	Rocket rocket;
 	Planet planet;
+
+	char activePlanet = CAP;
+	char activeRocket = '1';
 
 	bool seguir = true;
 

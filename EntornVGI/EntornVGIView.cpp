@@ -160,6 +160,10 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_UPDATE_COMMAND_UI(ID_MIRARA_ROCKET, &CEntornVGIView::OnUpdateMiraraRocket)
 		ON_COMMAND(ID_MIRARA_PLANET, &CEntornVGIView::OnMiraraPlanet)
 		ON_UPDATE_COMMAND_UI(ID_MIRARA_PLANET, &CEntornVGIView::OnUpdateMiraraPlanet)
+		ON_COMMAND(ID_PLANETA_TIERRA, &CEntornVGIView::OnPlanetaTierra)
+		ON_UPDATE_COMMAND_UI(ID_PLANETA_TIERRA, &CEntornVGIView::OnUpdatePlanetaTierra)
+		ON_COMMAND(ID_COHETE_UNO, &CEntornVGIView::OnCoheteUno)
+		ON_UPDATE_COMMAND_UI(ID_COHETE_UNO, &CEntornVGIView::OnUpdateCoheteUno)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -214,7 +218,7 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Variables de control del menú Iluminació		
 	ilumina = GOURAUD;			ifixe = false;
 	// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
-	sw_material[0] = false;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = true;
+	sw_material[0] = true;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = true;
 	sw_material_old[0] = false;		sw_material_old[1] = true;		sw_material_old[2] = true;		sw_material_old[3] = true;
 	textura = true;				t_textura = CAP;				textura_map = true;
 
@@ -3526,6 +3530,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 {
 	animaController.rocket.Restart();
 	t = 0;
+	iter = 0;
 	this->setCenterWith(ROCKET);
 	InvalidateRect(NULL, false);
 }
@@ -3605,6 +3610,7 @@ void CEntornVGIView::OnUpdateCameraEsf32864(CCmdUI *pCmdUI)
 void CEntornVGIView::OnMiraraRocket()
 {
 	animaController.lookat = ROCKET;
+	InvalidateRect(NULL, false);
 }
 
 
@@ -3622,6 +3628,9 @@ void CEntornVGIView::OnUpdateMiraraRocket(CCmdUI *pCmdUI)
 void CEntornVGIView::OnMiraraPlanet()
 {
 	animaController.lookat = PLANET;
+	setCenterWith(PLANET);
+	InvalidateRect(NULL, false);
+
 }
 
 
@@ -3635,3 +3644,87 @@ void CEntornVGIView::OnUpdateMiraraPlanet(CCmdUI *pCmdUI)
 	}
 }
 
+
+
+void CEntornVGIView::OnPlanetaTierra()
+{
+	animaController.activePlanet = TIERRA; 
+
+	// Entorn VGI: Activació el contexte OpenGL
+	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
+
+	loadIMA("./textures/earth_daymap.jpg", 0);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Desactivació contexte OpenGL: Permet la coexistencia d'altres contextes de generació
+	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
+
+	// Crida a OnPaint() per redibuixar l'escena
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdatePlanetaTierra(CCmdUI *pCmdUI)
+{
+	if (animaController.activePlanet == TIERRA) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+
+void CEntornVGIView::OnCoheteUno()
+{
+animaController.activeRocket = '1';
+
+	// TODO: Agregue aquí su código de controlador de comandos
+	//if (ObOBJ != NULL) delete ObOBJ;
+
+	objecte = OBJOBJ;
+
+	// Entorn VGI: Obrir diàleg de lectura de fitxer
+	/*
+	CFileDialog openOBJ(TRUE, NULL, NULL,
+		OFN_FILEMUSTEXIST | OFN_HIDEREADONLY,
+		_T("OBJ Files(*.obj)|*.obj|Error Files (*.err)|*err|All Files (*.*)|*.*||"));;
+
+	if (openOBJ.DoModal() != IDOK)	return;  // stay with old data file
+	else 
+	*/
+	nom = "./objects/cohete2.obj";
+
+	// Entorn VGI: Variable de tipus CString 'nom' conté el nom del fitxer seleccionat
+
+	// Entorn VGI: Conversió de la variable CString nom a la variable char *nomfitx, 
+	//		compatible amb  les funcions de càrrega de fitxers fractals
+	char *nomfitx = CString2Char(nom);
+
+	// i carreguem
+	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+
+	if (ObOBJ == NULL) ObOBJ = new COBJModel;
+	ObOBJ->LoadModel(nomfitx, OBJECTEOBJ);
+
+	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+
+												// Crida a OnPaint() per redibuixar l'escena
+	InvalidateRect(NULL, false);}
+
+
+void CEntornVGIView::OnUpdateCoheteUno(CCmdUI *pCmdUI)
+{
+	if (animaController.activeRocket == '1') {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}

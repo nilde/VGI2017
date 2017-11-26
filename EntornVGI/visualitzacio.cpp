@@ -122,6 +122,7 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 // Configuració de les textures.
 	if (textur)
 	{
+
 // Activació de la textura 0.
 	  glBindTexture(GL_TEXTURE_2D,textures[0]) ;
 
@@ -140,8 +141,8 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 
 	  if ((obj != OBJ3DS) && (obj != OBJOBJ))
 	  {
-		glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
-		glTexGeni(GL_T,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
+		glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_SPHERE_MAP);
+		glTexGeni(GL_T,GL_TEXTURE_GEN_MODE,GL_SPHERE_MAP);
 
 // Coeficicients coordenades textura per a fractals
 //			     sfPlane =     p1    ,  p2 ,   p3 ,  p4
@@ -151,10 +152,10 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 
 // Coeficicients coordenades textura per a resta d'objectes
 //				 sPlane =     p1 ,   p2 ,  p3 ,  p4
-		GLfloat sPlane[4] = { -1.0f, -1.0f, 0.0f, 1.0f }; // s=p1*x0+p2*y0+p3*z0+p4*w0 on p=(x0,y0,z0,w0)
+		GLfloat sPlane[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; // s=p1*x0+p2*y0+p3*z0+p4*w0 on p=(x0,y0,z0,w0)
 
 //				 tPlane =     p1 ,   p2 ,  p3 ,  p4
-		GLfloat tPlane[4] = { -1.0f, 0.0f, 1.0f, 1.0f }; // t=p1*x0+p2*y0+p3*z0+p4*w0 on p=(x0,y0,z0,w0)
+		GLfloat tPlane[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; // t=p1*x0+p2*y0+p3*z0+p4*w0 on p=(x0,y0,z0,w0)
 
 		// Generació coordenades textura.
 		if (obj == O_FRACTAL)
@@ -162,8 +163,8 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 			glTexGenfv(GL_T, GL_OBJECT_PLANE, tfPlane);
 
 		}
-		else	{	glTexGenfv(GL_S, GL_OBJECT_PLANE, sPlane);
-					glTexGenfv(GL_T, GL_OBJECT_PLANE, tPlane);
+		else	{	glTexGenfv(GL_S, GL_SPHERE_MAP, sPlane);
+					glTexGenfv(GL_T, GL_SPHERE_MAP, tPlane);
 				}
 		glEnable(GL_TEXTURE_GEN_S);
 		glEnable(GL_TEXTURE_GEN_T);
@@ -570,11 +571,11 @@ void Init_Textures()
 	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE) ;
 
 	loadIMA("./textures/metall.bmp",6); 
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);	
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);	
-	 
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);	
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE) ;
 }

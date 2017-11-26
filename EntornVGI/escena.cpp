@@ -45,7 +45,6 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 	case ROCKET:
 
-
 		/* DRAW ROCKET*/
 		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 		
@@ -58,11 +57,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 
 		/* DRAW PLANET */
-		SeleccionaMaterialiColor(MAT_BASE, sw_mat, ref_mat, col_object);
+		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 		glPushMatrix();
 		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
 		glutSolidSphere(animaController.planet.radius, 100, 100);
 		glPopMatrix();
+
+
 
 		break;
 

@@ -35,6 +35,7 @@ public:
 
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+	afx_msg void OnCobeteUno();
 };
 
 extern CEntornVGIApp theApp;

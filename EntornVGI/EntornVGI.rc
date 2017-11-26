@@ -408,6 +408,14 @@ BEGIN
             MENUITEM "planet",                      ID_MIRARA_PLANET
         END
     END
+    POPUP "Planeta"
+    BEGIN
+        MENUITEM "Tierra",                      ID_PLANETA_TIERRA
+    END
+    POPUP "cohete"
+    BEGIN
+        MENUITEM "uno",                         ID_COHETE_UNO
+    END
 END
 
 IDR_POPUP_EDIT MENU

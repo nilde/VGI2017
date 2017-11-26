@@ -344,6 +344,12 @@ public:
 	afx_msg void OnUpdateMiraraRocket(CCmdUI *pCmdUI);
 	afx_msg void OnMiraraPlanet();
 	afx_msg void OnUpdateMiraraPlanet(CCmdUI *pCmdUI);
+	afx_msg void OnPlanetaTierra();
+	afx_msg void OnUpdatePlanetaTierra(CCmdUI *pCmdUI);
+	afx_msg void OnCobeteUno();
+	afx_msg void OnUpdateCobeteUno(CCmdUI *pCmdUI);
+	afx_msg void OnCoheteUno();
+	afx_msg void OnUpdateCoheteUno(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

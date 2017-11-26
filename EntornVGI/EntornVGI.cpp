@@ -219,5 +219,3 @@ void CEntornVGIApp::SaveCustomState()
 
 // Controladores de mensaje de CEntornVGIApp
 
-
-
