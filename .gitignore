@@ -22,3 +22,9 @@ Thumbs.db
 *.log
 *.exe
 *.ilk
+
+\.vs/
+
+Debug/
+
+EntornVGI/
