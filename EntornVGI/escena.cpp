@@ -50,20 +50,10 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
-		glRotatef(animaController.rocket.m_alpha,0,1,0);
-		glScalef(10,2,2);
-		glutSolidCube(1.0);
+		glRotatef(animaController.rocket.m_alpha,90,1,0);
+		glScalef(2,2,2);
+		glCallList(ROCKET1OBJ);
 		glPopMatrix();
-
-
-		/* DRAW PLANET */
-		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
-		glPushMatrix();
-		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
-		glutSolidSphere(animaController.planet.radius, 100, 100);
-		glPopMatrix();
-
-
 
 		break;
 
@@ -74,6 +64,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		dibuixa(objecte);
 		break;
 	}
+
+			/* DRAW PLANET */
+		SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
+		glPushMatrix();
+		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
+		glutSolidSphere(animaController.planet.radius, 100, 100);
+		glPopMatrix();
 
 	// Enviar les comandes gràfiques a pantalla
 	glFlush();

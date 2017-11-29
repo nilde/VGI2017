@@ -56,6 +56,8 @@
 #define OBJECTEOBJ 5	// Objecte OBJ sense textures
 #define OBJECTEOBJT 6   // Objecte OBJ amb textures
 
+#define ROCKET1OBJ 1234
+
 // -------------- VGI: Definició dels valors del pla near i far del Volum de Visualització en Perspectiva
 const int p_near=1;
 const int p_far=50000;

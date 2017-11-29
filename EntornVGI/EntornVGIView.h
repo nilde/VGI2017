@@ -142,6 +142,7 @@ public:
 
 // Entorn VGI: Objecte OBJ:
 	COBJModel* ObOBJ;		// Variable d'objecte format OBJ (*.OBJ)
+	COBJModel* R0CKET1;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Paràmetre t pel Timer.

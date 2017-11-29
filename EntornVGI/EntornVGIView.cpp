@@ -260,6 +260,8 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Objecte OBJ
 	ObOBJ = NULL;
 
+	R0CKET1 = NULL;	
+
 // Entorn VGI: Variables del Timer
 	t = 0;			anima = false;
 
@@ -3685,21 +3687,7 @@ void CEntornVGIView::OnCoheteUno()
 {
 animaController.activeRocket = '1';
 
-	// TODO: Agregue aquí su código de controlador de comandos
-	//if (ObOBJ != NULL) delete ObOBJ;
-
-	objecte = OBJOBJ;
-
-	// Entorn VGI: Obrir diàleg de lectura de fitxer
-	/*
-	CFileDialog openOBJ(TRUE, NULL, NULL,
-		OFN_FILEMUSTEXIST | OFN_HIDEREADONLY,
-		_T("OBJ Files(*.obj)|*.obj|Error Files (*.err)|*err|All Files (*.*)|*.*||"));;
-
-	if (openOBJ.DoModal() != IDOK)	return;  // stay with old data file
-	else 
-	*/
-	nom = "./objects/cohete2.obj";
+	nom = "./objects/Falcon9.obj";
 
 	// Entorn VGI: Variable de tipus CString 'nom' conté el nom del fitxer seleccionat
 
@@ -3710,8 +3698,8 @@ animaController.activeRocket = '1';
 	// i carreguem
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 
-	if (ObOBJ == NULL) ObOBJ = new COBJModel;
-	ObOBJ->LoadModel(nomfitx, OBJECTEOBJ);
+	if (R0CKET1 == NULL) R0CKET1 = new COBJModel;
+	R0CKET1->LoadModel(nomfitx, ROCKET1OBJ);
 
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 
