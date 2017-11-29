@@ -18,8 +18,7 @@ Thumbs.db
 .vs/*
 
 
-**/bin/Debug
-**/bin/Release
+*.obj
 *.log
 *.exe
 *.ilk
