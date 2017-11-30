@@ -1,4 +1,4 @@
-# Compiled source #
+﻿# Compiled source #
 ###################
 *.exe
 
@@ -28,3 +28,12 @@ Thumbs.db
 Debug/
 
 Documentación/Controls ABP/~$ntrol-ABP_2.docx
+
+.vs/EntornGVI/v15/*
+
+Debug/*.exe
+Debug/*.exp
+Debug/*.lik
+Debug/*.pdb
+
+EntornVGI/Debug/EntornVGI.tlog/*.obj
