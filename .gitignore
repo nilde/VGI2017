@@ -36,4 +36,9 @@ Debug/*.exp
 Debug/*.lik
 Debug/*.pdb
 
+
 EntornVGI/Debug/EntornVGI.tlog/*.obj
+
+
+EntornVGI/Debug/EntornVGI.tlog/*.log
+EntornVGI/
