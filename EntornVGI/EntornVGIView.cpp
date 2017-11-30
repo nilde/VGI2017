@@ -35,6 +35,9 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+float last_R = 1;
+float INCRM = 1;
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CEntornVGIView
@@ -218,7 +221,7 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Variables de control del menú Iluminació		
 	ilumina = GOURAUD;			ifixe = false;
 	// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
-	sw_material[0] = true;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = true;
+	sw_material[0] = true;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = false;
 	sw_material_old[0] = false;		sw_material_old[1] = true;		sw_material_old[2] = true;		sw_material_old[3] = true;
 	textura = true;				t_textura = CAP;				textura_map = true;
 
@@ -277,6 +280,7 @@ CEntornVGIView::CEntornVGIView()
 	ilInit();					// Inicialitzar llibreria IL
 	iluInit();					// Inicialitzar llibreria ILU
 	ilutRenderer(ILUT_OPENGL);	// Inicialitzar llibreria ILUT per a OpenGL
+
 
 }
 
@@ -477,6 +481,9 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 // Permet la coexistencia d'altres contextes de generació
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
+
+	this->OnCoheteUno();
+	this->OnPlanetaTierra();
 
 	return true;
 }
@@ -2092,7 +2099,7 @@ void CEntornVGIView::OnMouseMove(UINT nFlags, CPoint point)
 		long int incr = zoomincr.cy / 1.0;
 
 //		zoom=zoom+incr;
-		OPV.R = OPV.R + incr;
+		OPV.R = OPV.R + incr * INCRM;
 		if (OPV.R<1) OPV.R = 1;
 		m_PosDAvall = point;
 		InvalidateRect(NULL, false);
@@ -2171,7 +2178,7 @@ BOOL CEntornVGIView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	// Funció de zoom quan està activada la funció pan o les T. Geomètriques
 	if ((zzoom) || (transX) || (transY) || (transZ))
 	{
-		OPV.R = OPV.R + zDelta / 4;
+		OPV.R = OPV.R + INCRM * zDelta / 4;
 		if (OPV.R<1) OPV.R = 1;
 		InvalidateRect(NULL, false);
 	}
@@ -3577,16 +3584,21 @@ void CEntornVGIView::setCenterWith(char object) {
 		center[0] = animaController.rocket.m_x;
 		center[1] = animaController.rocket.m_y;
 		center[2] = animaController.rocket.m_z;
+	
 
 	}
 	else if (object == PLANET) {
 		center[0] = animaController.planet.center[0];
 		center[1] = animaController.planet.center[1];
 		center[2] = animaController.planet.center[2];
+
+
 	}
 	n[0] = center[0];
 	n[1] = center[1];
 	n[2] = center[2];
+
+
 }
 
 
@@ -3612,6 +3624,9 @@ void CEntornVGIView::OnUpdateCameraEsf32864(CCmdUI *pCmdUI)
 void CEntornVGIView::OnMiraraRocket()
 {
 	animaController.lookat = ROCKET;
+	setCenterWith(ROCKET);
+	INCRM = 1;
+	OPV.R = animaController.planet.radius / 100;
 	InvalidateRect(NULL, false);
 }
 
@@ -3631,6 +3646,9 @@ void CEntornVGIView::OnMiraraPlanet()
 {
 	animaController.lookat = PLANET;
 	setCenterWith(PLANET);
+
+	OPV.R = animaController.planet.radius * 3;
+	INCRM = 990;
 	InvalidateRect(NULL, false);
 
 }
@@ -3654,6 +3672,8 @@ void CEntornVGIView::OnPlanetaTierra()
 
 	// Entorn VGI: Activació el contexte OpenGL
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
+
+	//loadIMA("./textures/tierra.jpg", 0);
 
 	loadIMA("./textures/earth_daymap.jpg", 0);
 
@@ -3685,26 +3705,20 @@ void CEntornVGIView::OnUpdatePlanetaTierra(CCmdUI *pCmdUI)
 
 void CEntornVGIView::OnCoheteUno()
 {
-animaController.activeRocket = '1';
 
+if (R0CKET1 == NULL) {
 	nom = "./objects/Falcon9.obj";
-
-	// Entorn VGI: Variable de tipus CString 'nom' conté el nom del fitxer seleccionat
-
-	// Entorn VGI: Conversió de la variable CString nom a la variable char *nomfitx, 
-	//		compatible amb  les funcions de càrrega de fitxers fractals
 	char *nomfitx = CString2Char(nom);
-
-	// i carreguem
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
-
 	if (R0CKET1 == NULL) R0CKET1 = new COBJModel;
 	R0CKET1->LoadModel(nomfitx, ROCKET1OBJ);
-
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+}
 
-												// Crida a OnPaint() per redibuixar l'escena
-	InvalidateRect(NULL, false);}
+	animaController.activeRocket = '1';
+	InvalidateRect(NULL, false);
+
+}
 
 
 void CEntornVGIView::OnUpdateCoheteUno(CCmdUI *pCmdUI)

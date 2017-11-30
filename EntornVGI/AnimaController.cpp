@@ -6,5 +6,5 @@
 AnimaController::AnimaController()
 {
 	rocket = Rocket();
-	planet = Planet(123);
+	planet = Planet(123456);
 }
