@@ -18,7 +18,7 @@ Thumbs.db
 .vs/*
 
 
-*.obj
+##*.obj
 *.log
 *.exe
 *.ilk
