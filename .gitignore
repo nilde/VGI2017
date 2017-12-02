@@ -48,3 +48,8 @@ EntornVGI/Debug/*.pch
 EntornVGI/Debug/*.res
 EntornVGI/Debug/*.pdb
 
+EntornVGI/Release/EntornVGI.tlog/rc.write.1.tlog
+EntornVGI/Debug/EntornVGI.tlog/CL.command.1.tlog
+EntornVGI/Debug/EntornVGI.tlog/CL.read.1.tlog
+EntornVGI/Debug/EntornVGI.tlog/CL.write.1.tlog
+*.lastbuildstate
