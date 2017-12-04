@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include "math.h"
 
+#include <iostream>
+using namespace std;
+
 #define PI 3.14159265
 
 
@@ -34,8 +37,9 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	float dz =  center[2] - m_z;
 
 
-	if (dy != 0) {
-		m_alpha = arcotangente(dz/dy);
+	if (vy != 0) {
+		m_alpha = arcotangente(vz/vy);
+		cout << m_alpha << vz << vy << endl;
 	}
 	else {
 		if (m_z > center[2]) {
@@ -72,7 +76,7 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
 
 void Rocket::Initialize() {
-	float angle = 90; // entre 0 y 90
+	float angle = 60; // entre 0 y 90
 	float impulse = 12;
 
 	xo = 0;
