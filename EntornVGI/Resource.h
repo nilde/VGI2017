@@ -52,6 +52,12 @@
 #define IDS_CLASS_VIEW                  156
 #define IDS_OUTPUT_WND                  157
 #define IDS_PROPERTIES_WND              158
+
+//MODIFICACIONES PROPIAS
+#define IDS_INFORMATION_WND				159
+#define ID_VIEW_INFORMATIONWND			160
+//FINAL MODIFICACIONES
+
 #define IDI_FILE_VIEW                   161
 #define IDI_FILE_VIEW_HC                162
 #define IDI_CLASS_VIEW                  163
@@ -76,6 +82,14 @@
 #define IDR_OUTPUT_POPUP                182
 #define IDR_PROPERTIES                  183
 #define IDB_PROPERTIES_HC               184
+
+//MODIFICACIONES PROPIAS
+#define IDR_INFORMATION                 185
+#define IDB_INFORMATION_HC              186
+#define IDI_INFORMATION_WND              188
+#define IDI_INFORMATION_WND_HC           189
+//FINAL MODIFICACIONES PROPIAS
+
 #define IDR_THEME_MENU                  200
 #define ID_SET_STYLE                    201
 #define ID_VIEW_APPLOOK_WIN_2000        205
@@ -94,6 +108,12 @@
 #define IDS_FIND_TAB                    302
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
+
+//MODIFICACIONES PROPIAS
+#define IDS_ROCKET_TAB					307
+#define IDS_PLANET_TAB					308
+//FINAL MODIFICACIONES PROPIAS
+
 #define ID_ARXIU_OBRIR_FRACTAL          32771
 #define ID_ARXIU_OBRIR_FITXER_OBJ       32772
 #define ID_ARXIU_OBRIR_FITXER_3DS       32773

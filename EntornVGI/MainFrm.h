@@ -7,6 +7,7 @@
 #include "ClassView.h"
 #include "OutputWnd.h"
 #include "PropertiesWnd.h"
+#include "InformationWnd.h"
 
 class CMainFrame : public CMDIFrameWndEx
 {
@@ -36,6 +37,10 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+
+	//MODIFICACIONES PROPIAS
+	CInformationWnd m_wndInformation;
+	//FINAL MODIFICACIONES PROPIAS
 
 protected:  // Miembros incrustados de la barra de control
 	CMFCMenuBar       m_wndMenuBar;

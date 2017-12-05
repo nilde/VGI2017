@@ -3506,7 +3506,12 @@ void CEntornVGIView::executeTrayectory() {
 	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center);
 	t += animaController.TSTEP;
 	iter++; 
-
+	
+	//MODIFICACIONES PROPIAS
+	if (int(t) % 10 == 0) {
+		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket);
+	}
+	// FINAL MODIFICACIONES PROPIAS
 
 	if (animaController.seguir) {
 		switch (animaController.lookat) {

@@ -134,6 +134,7 @@
     <ClInclude Include="escena.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="glut_geometry.h" />
+    <ClInclude Include="InformationWnd.h" />
     <ClInclude Include="Load3DS.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="material.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="escena.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="glut_geometry.cpp" />
+    <ClCompile Include="InformationWnd.cpp" />
     <ClCompile Include="Load3DS.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="material.cpp" />

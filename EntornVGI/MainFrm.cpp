@@ -150,6 +150,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndProperties.EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndProperties);
 
+	//MODIFICACIONES PROPIAS (MODIFICAR AQUI)
+	m_wndInformation.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_wndInformation);
+	//FINAL MODIFICACIONES PROPIAS
+
 	// establecer el administrador y el estilo visuales en función de un valor persistente
 	OnApplicationLook(theApp.m_nAppLook);
 
@@ -261,6 +266,17 @@ BOOL CMainFrame::CreateDockingWindows()
 		return FALSE; // no se pudo crear
 	}
 
+	//MODIFICACIONES PROPIAS
+	CString strInformationWnd;
+	bNameValid = strInformationWnd.LoadString(IDS_INFORMATION_WND);
+	ASSERT(bNameValid);
+	if (!m_wndInformation.Create(strInformationWnd, this, CRect(0, 0, 100, 100), TRUE, ID_VIEW_INFORMATIONWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_RIGHT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("No se pudo crear la ventana Información\n");
+		return FALSE; // no se pudo crear
+	}
+	//FINAL MODIFICACIONES PROPIAS
+
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
 	return TRUE;
 }
@@ -278,6 +294,12 @@ void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
 
 	HICON hPropertiesBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_PROPERTIES_WND_HC : IDI_PROPERTIES_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
 	m_wndProperties.SetIcon(hPropertiesBarIcon, FALSE);
+
+	//MODIFICACIONES PROPIAS
+	HICON hInformationBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_INFORMATION_WND_HC : IDI_INFORMATION_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndInformation.SetIcon(hInformationBarIcon, FALSE);
+	//FINAL MODIFICACIONES PROPIAS
+
 
 	UpdateMDITabbedBarsIcons();
 }
