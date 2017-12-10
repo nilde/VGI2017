@@ -351,6 +351,8 @@ public:
 	afx_msg void OnUpdateCobeteUno(CCmdUI *pCmdUI);
 	afx_msg void OnCoheteUno();
 	afx_msg void OnUpdateCoheteUno(CCmdUI *pCmdUI);
+	afx_msg void ShowFractal(char*fitxer);
+
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

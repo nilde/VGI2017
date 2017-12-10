@@ -8,7 +8,7 @@
 #include "material.h"
 #include "escena.h"
 #include "AnimaController.h"
-
+#include "fractals.h"
 
 
 
@@ -142,6 +142,14 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	gluEsfera(animaController.planet.radius, 1000, 10000);
 	glPopMatrix();
 
+	
+	char iluminacio = PLANA; //PLANA, ,FILFERROS
+	GLfloat mida = 10;
+	glPushMatrix();
+	glScalef(mida, mida, mida);
+	fract(iluminacio, true, animaController.step);
+	glPopMatrix();
+
 	switch (objecte)
 	{
 	// Dibuix del Truck
@@ -175,7 +183,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
-		glScalef(2, 2, 2);
+		glScalef(0.5, 0.5, 0.5);
 
 
 

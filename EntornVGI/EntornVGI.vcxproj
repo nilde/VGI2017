@@ -133,11 +133,13 @@
     <ClInclude Include="EntornVGIView.h" />
     <ClInclude Include="escena.h" />
     <ClInclude Include="FileView.h" />
+    <ClInclude Include="fractals.h" />
     <ClInclude Include="glut_geometry.h" />
     <ClInclude Include="InformationWnd.h" />
     <ClInclude Include="Load3DS.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="material.h" />
+    <ClInclude Include="normals.h" />
     <ClInclude Include="Obj3DS.h" />
     <ClInclude Include="objLoader.h" />
     <ClInclude Include="OutputWnd.h" />
@@ -147,6 +149,7 @@
     <ClInclude Include="rocket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="trajectories.h" />
     <ClInclude Include="ViewTree.h" />
     <ClInclude Include="visualitzacio.h" />
   </ItemGroup>
@@ -158,11 +161,13 @@
     <ClCompile Include="EntornVGIView.cpp" />
     <ClCompile Include="escena.cpp" />
     <ClCompile Include="FileView.cpp" />
+    <ClCompile Include="fractals.cpp" />
     <ClCompile Include="glut_geometry.cpp" />
     <ClCompile Include="InformationWnd.cpp" />
     <ClCompile Include="Load3DS.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="material.cpp" />
+    <ClCompile Include="normals.cpp" />
     <ClCompile Include="Obj3DS.cpp" />
     <ClCompile Include="objLoader.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
@@ -174,6 +179,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="trajectories.cpp" />
     <ClCompile Include="ViewTree.cpp" />
     <ClCompile Include="visualitzacio.cpp" />
   </ItemGroup>

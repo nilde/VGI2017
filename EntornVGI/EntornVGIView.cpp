@@ -31,6 +31,7 @@
 #include "EntornVGIView.h"
 #include "visualitzacio.h"	// Include funcions de projeció i il.luminació
 #include "escena.h"			// Include funcions d'objectes OpenGL
+#include "fractals.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -483,7 +484,9 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
 
 	this->OnCoheteUno();
+	this->OnMiraraRocket();
 	this->OnPlanetaTierra();
+	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 
 	return true;
 }
@@ -3631,7 +3634,7 @@ void CEntornVGIView::OnMiraraRocket()
 	animaController.lookat = ROCKET;
 	setCenterWith(ROCKET);
 	INCRM = 1;
-	OPV.R = animaController.planet.radius / 100;
+	OPV.R = animaController.planet.radius / 1000;
 	InvalidateRect(NULL, false);
 }
 
@@ -3734,4 +3737,14 @@ void CEntornVGIView::OnUpdateCoheteUno(CCmdUI *pCmdUI)
 	else {
 		pCmdUI->SetCheck(0);
 	}
+}
+
+void CEntornVGIView::ShowFractal(char*fitxer)
+{
+	// Ajustamos tamaño fractal
+	animaController.step = llegir_pts(fitxer);
+	itera_fractal(S_SENSE, animaController.step);//Soroll: S_SENSE, S_LINIAL, S_QUADRATIC, S_SQRT, S_DIFERENCIABLE
+
+	// Crida a OnPaint() per redibuixar l'escena
+	InvalidateRect(NULL, false);
 }

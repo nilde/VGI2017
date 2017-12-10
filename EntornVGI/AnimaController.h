@@ -18,6 +18,8 @@ public:
 
 	char lookat = ROCKET;
 
+	int step;
+
 	const float TSTEP = 0.1;
 	const float TIMER = 5; // milisegundos
 	
