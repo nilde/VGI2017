@@ -1,6 +1,6 @@
-//******** PRACTICA VISUALITZACIÓ GRÀFICA INTERACTIVA
-//******** Marc Vivet, Carme Julià, Débora Gil, Enric Martí (Setembre 2016)
-// fractals.cpp : Funcions de lectura i generació de fractals 
+//******** PRACTICA VISUALITZACIï¿½ GRï¿½FICA INTERACTIVA
+//******** Marc Vivet, Carme Juliï¿½, Dï¿½bora Gil, Enric Martï¿½ (Setembre 2016)
+// fractals.cpp : Funcions de lectura i generaciï¿½ de fractals 
 
 
 #include "stdafx.h"
@@ -17,29 +17,29 @@
 using namespace std;
 
 // -------------- Entorn VGI: VARIABLES utilitzades en els fractals
-// FMAX: Index màxim de la matriu d'alçades. Definida a fractals.h (valor:512)
+// FMAX: Index mï¿½xim de la matriu d'alï¿½ades. Definida a fractals.h (valor:512)
 double zz[FMAX+1][FMAX+1];
 double normalsC[FMAX+1][FMAX+1][3];
 double normalsV[FMAX+1][FMAX+1][3];
-int colorPalette = 0; // Inicialización a  Paleta mediterrani
+int colorPalette = 0; // Inicializaciï¿½n a  Paleta mediterrani
 
-// -------------- Entorn VGI: Valors màxim i mínim de Z necessaris per interpolar
-//                            correctament la paleta de colors (iluminació suau del fractal)
+// -------------- Entorn VGI: Valors mï¿½xim i mï¿½nim de Z necessaris per interpolar
+//                            correctament la paleta de colors (iluminaciï¿½ suau del fractal)
 double zmax = -999999;
 double zmin = 999999;
 
 // -------------- Entorn VGI: Variables pics
-double cx[6],cy[6],radi[6],hmax[6]; // Centres, radis i alçades de les muntanyes
+double cx[6],cy[6],radi[6],hmax[6]; // Centres, radis i alï¿½ades de les muntanyes
 double a=1.0*FMAX*(0.65);			// Parametre lemniscata
 
-// -------------- Entorn VGI: Número de pics
+// -------------- Entorn VGI: Nï¿½mero de pics
 int npics=0;
 
 double r;
 
-// -------------- Entorn VGI: DEFINICIÓ DE LES FUNCIONS
+// -------------- Entorn VGI: DEFINICIï¿½ DE LES FUNCIONS
 
-// llegir_pts: Funció de lectura d'un fitxer fractal amb pics.
+// llegir_pts: Funciï¿½ de lectura d'un fitxer fractal amb pics.
 // Variables:	- nomf: Nom del fitxer a llegir.
 int llegir_pts(char *nomf)
 {	
@@ -78,8 +78,8 @@ int llegir_pts(char *nomf)
 	int in = 0;
 	if (file.good())
 	{
-		file >> Qx; // Tamany de la quadrícula en punts
-		file >> Qy; // Tamany de la quadrícula en punts
+		file >> Qx; // Tamany de la quadrï¿½cula en punts
+		file >> Qy; // Tamany de la quadrï¿½cula en punts
 		Qx -= 1;
 		Qy -= 1;
 		in = FMAX / Qx;
@@ -100,8 +100,8 @@ int llegir_pts(char *nomf)
 			}
 		}
 		
-	// 4. LLEGIR EL NOMBRE DE PICS I ELS VALORS (CENTRE,RADI,I ALÇADA MÀXIMA).
-		file >> npics; // Nombre de pics significatius de l’escena
+	// 4. LLEGIR EL NOMBRE DE PICS I ELS VALORS (CENTRE,RADI,I ALï¿½ADA Mï¿½XIMA).
+		file >> npics; // Nombre de pics significatius de lï¿½escena
 		if (npics > 0)
 		{
 			for (int pic = 0; pic < npics; pic++)
@@ -114,14 +114,14 @@ int llegir_pts(char *nomf)
 		}
 	}
 
-	// 5. INICIALITZAR LA VARIABLE ALEATÒRIA
+	// 5. INICIALITZAR LA VARIABLE ALEATï¿½RIA
 	srand((unsigned) time(NULL));
 	r=(double) rand()/RAND_MAX;
 
-	// 6. CALCUL DEL MAXIM I MINIM DE LES ALÇADES INICIALS
+	// 6. CALCUL DEL MAXIM I MINIM DE LES ALï¿½ADES INICIALS
 
-	// Funció retorna el pas entre alçades a la variable step, 
-	// calculat en funció del nombre d'alçades inicials i del
+	// Funciï¿½ retorna el pas entre alï¿½ades a la variable step, 
+	// calculat en funciï¿½ del nombre d'alï¿½ades inicials i del
 	// tamany de la matriu.
 
 	step = in;
@@ -129,10 +129,10 @@ int llegir_pts(char *nomf)
 
 }
 
-// escriure_pts: Funció d'escriptura en un fitxer de les alçades i pics 
-//               d'un fractal segons la resolució actual.
+// escriure_pts: Funciï¿½ d'escriptura en un fitxer de les alï¿½ades i pics 
+//               d'un fractal segons la resoluciï¿½ actual.
 // Variables:	- nomf: Nom del fitxer a escriure.
-//				- paso: Resolució del fractal a escriure.
+//				- paso: Resoluciï¿½ del fractal a escriure.
 bool escriure_pts(char *nomf,int paso)
 {	int i,j;
 	FILE *fd;
@@ -140,7 +140,7 @@ bool escriure_pts(char *nomf,int paso)
 // 1. OBRIR FITXER
     ofstream file(nomf);
 
-// 2. ESCRIURE ALÇADES
+// 2. ESCRIURE ALï¿½ADES
 	file << dimension;
 	file << " ";
 	file << dimension;
@@ -169,22 +169,22 @@ bool escriure_pts(char *nomf,int paso)
 	}
 
 
-// 2.1 Capçalera n n segons la variable paso
+// 2.1 Capï¿½alera n n segons la variable paso
 
-// 2.2 Alçades Z (una per línia)
+// 2.2 Alï¿½ades Z (una per lï¿½nia)
 
 // 3. ESCRIURE PICS
-// 3.1 Escriure número de pics <cr>
-// 3.2 Escriure centre cx,cy, radi i alçada dels pics (un pic per línia).
+// 3.1 Escriure nï¿½mero de pics <cr>
+// 3.2 Escriure centre cx,cy, radi i alï¿½ada dels pics (un pic per lï¿½nia).
 
-// retorna true si escritura s'ha realitzat amb èxit.
+// retorna true si escritura s'ha realitzat amb ï¿½xit.
 	return true;
 
 }
 
-// itera_fractal: Càlcul de les alçades intermitges.
-// Variables: - bruit: Tipus de soroll (Linial,Quadràtic,SQRT o diferenciable)
-//            - paso: Pas d'iteració del fractal.
+// itera_fractal: Cï¿½lcul de les alï¿½ades intermitges.
+// Variables: - bruit: Tipus de soroll (Linial,Quadrï¿½tic,SQRT o diferenciable)
+//            - paso: Pas d'iteraciï¿½ del fractal.
 void itera_fractal(char bruit,  int paso)
 {
 	int aux = 0;
@@ -207,20 +207,20 @@ void itera_fractal(char bruit,  int paso)
 }
 
 
-//soroll: Calcul del soroll en les alsades segons la distància
+//soroll: Calcul del soroll en les alsades segons la distï¿½ncia
 //        als picsdistancia.
-// Variables: - i,j: Posició de l'alçada a calcular el soroll..
-// 			  - alf: Màxim valor permès. En el nostre cas, el valor del
-//                   de la variable pas que ens dóna la resolució del fractal.
-//            - noise: Tipus de soroll (linial, quadràtic,sqrt o diferenciable).
+// Variables: - i,j: Posiciï¿½ de l'alï¿½ada a calcular el soroll..
+// 			  - alf: Mï¿½xim valor permï¿½s. En el nostre cas, el valor del
+//                   de la variable pas que ens dï¿½na la resoluciï¿½ del fractal.
+//            - noise: Tipus de soroll (linial, quadrï¿½tic,sqrt o diferenciable).
 double soroll(int i,int j,double alf,char noise)
 {
 	double ff,s,r;
 
-// Càlcul de la variable aleatòria entre (0,1).
+// Cï¿½lcul de la variable aleatï¿½ria entre (0,1).
 	r=(double) rand()/RAND_MAX;
 
-// Càlcul del soroll segons el tipus.
+// Cï¿½lcul del soroll segons el tipus.
 	switch(noise)
 	{
 	case S_LINIAL:
@@ -245,7 +245,7 @@ double soroll(int i,int j,double alf,char noise)
 }
 
 // TRIANGULACIO DEL TERRENY. Dibuix de la muntanya fractal
-// Variables: - Iluminació: Defineix el tipus d'iluminació (filferros, plana o suau).
+// Variables: - Iluminaciï¿½: Defineix el tipus d'iluminaciï¿½ (filferros, plana o suau).
 //            - step: Pas de dibuix del fractal.
 void fract(char iluminacio,bool paletaColor,int step)
 {
@@ -296,9 +296,9 @@ void fract(char iluminacio,bool paletaColor,int step)
 // 1. CENTRAR EL FRACTAL EN EL (0,0,0).
 	glColor3f(255, 255, 255);
 	glTranslatef(-FMAX / 8.0, -FMAX / 2.0, 0);
-// 2. DIBUIXAR ELS VÈRTEXS DELS TRIANGLES SEGONS EL PAS (step)
-//    I DEFINIR ELS VECTORS NORMALS DE CADA VÈRTEX EN FUNCIÖ DE
-//	  LA ILUMINACIÖ (iluminacio)
+// 2. DIBUIXAR ELS Vï¿½RTEXS DELS TRIANGLES SEGONS EL PAS (step)
+//    I DEFINIR ELS VECTORS NORMALS DE CADA Vï¿½RTEX EN FUNCIï¿½ DE
+//	  LA ILUMINACIï¿½ (iluminacio)
 
 
 	switch (iluminacio)
@@ -405,16 +405,28 @@ void fract(char iluminacio,bool paletaColor,int step)
 		break;
 	}
 
+<<<<<<<
 	glPopMatrix();
 
 
+=======
+	/*glPopMatrix();
+//  3. DIBUIX DEL MAR A L'ALï¿½ADA Z=0.
+	glPushMatrix();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glColor4f(0.2f,0.75f,0.9f,0.5f);
+		glRectf(-FMAX/2,-FMAX/2,FMAX/2,FMAX/2);
+		glDisable(GL_BLEND);
+	glPopMatrix();*/
+>>>>>>>
 	
 }
 
 
 //------------------ CALCUL DELS SOROLLS  --------------------/
 
-// Càlcul del soroll linial segons la posició del punt (x,y)
+// Cï¿½lcul del soroll linial segons la posiciï¿½ del punt (x,y)
 double soroll_lin(int x, int y)
 { 
 	double aux_sl = 0;
@@ -428,7 +440,7 @@ double soroll_lin(int x, int y)
 	return aux_sl;
 }
 
-// Càlcul del soroll quadràtic segons la posició del punt (x,y)
+// Cï¿½lcul del soroll quadrï¿½tic segons la posiciï¿½ del punt (x,y)
 double soroll_quad(int x,int y)
 { 
 	double aux_sq = 0;
@@ -444,7 +456,7 @@ double soroll_quad(int x,int y)
 	return aux_sq;
 }
 
-// Càlcul del soroll arrel quadrada segons la posició del punt (x,y)
+// Cï¿½lcul del soroll arrel quadrada segons la posiciï¿½ del punt (x,y)
 double soroll_sq(int x,int y)
 { 
 	double aux_sq = 0;
@@ -460,7 +472,7 @@ double soroll_sq(int x,int y)
 	return aux_sq;
 }
 
-// Càlcul del soroll diferenciable segons la posició del punt (x,y)
+// Cï¿½lcul del soroll diferenciable segons la posiciï¿½ del punt (x,y)
 double soroll_dif(int x,int y)
 { 
 	double aux_sd = 0;
@@ -476,7 +488,7 @@ double soroll_dif(int x,int y)
 	return aux_sd;
 }
 
-// Obtenció de la paleta de colors actual
+// Obtenciï¿½ de la paleta de colors actual
 int getColorPalette()
 {
 	return colorPalette;
