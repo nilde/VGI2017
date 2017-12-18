@@ -3511,7 +3511,8 @@ void CEntornVGIView::executeTrayectory() {
 	iter++; 
 	
 	//MODIFICACIONES PROPIAS
-	if (int(t) % 10 == 0) {
+	//evils line
+	if (true) {
 		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket);
 	}
 	// FINAL MODIFICACIONES PROPIAS
