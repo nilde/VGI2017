@@ -10,10 +10,7 @@ public:
 	Rocket rocket;
 	Planet planet;
 
-	Particula particula1;
-	Particula particula2;
-
-	void DrawHumo();
+	Particles particles;
 
 	char activePlanet = CAP;
 	char activeRocket = '1';

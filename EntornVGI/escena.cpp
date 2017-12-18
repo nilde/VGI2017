@@ -131,9 +131,13 @@ void gluEsfera(GLdouble radius, GLint slices, GLint stacks)
 GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 // dibuixa_EscenaGL: Dibuix de l'escena amb comandes GL
-void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController animaController)
+void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
+
+
+
+
 	
 
 	
@@ -175,7 +179,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
-		glScalef(0.01, 0.01, 0.01);
+		glScalef(0.5,0.5,0.5);
 
 
 
@@ -184,7 +188,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		{
 
 			glCallList(ROCKET1OBJ);
-
+			animaController.particles.draw();
 
 			break;
 		}

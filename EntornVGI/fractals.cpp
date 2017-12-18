@@ -405,11 +405,10 @@ void fract(char iluminacio,bool paletaColor,int step)
 		break;
 	}
 
-<<<<<<<
+
 	glPopMatrix();
 
 
-=======
 	/*glPopMatrix();
 //  3. DIBUIX DEL MAR A L'AL�ADA Z=0.
 	glPushMatrix();
@@ -419,8 +418,6 @@ void fract(char iluminacio,bool paletaColor,int step)
 		glRectf(-FMAX/2,-FMAX/2,FMAX/2,FMAX/2);
 		glDisable(GL_BLEND);
 	glPopMatrix();*/
->>>>>>>
-	
 }
 
 

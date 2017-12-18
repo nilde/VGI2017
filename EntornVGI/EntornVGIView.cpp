@@ -2213,6 +2213,9 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
 		executeTrayectory();
+		
+		//animaController.particles.draw();
+
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
 
@@ -3505,6 +3508,9 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 
 void CEntornVGIView::executeTrayectory() {
+
+
+
 	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center);
 	t += animaController.TSTEP;
 	iter++; 
@@ -3634,7 +3640,7 @@ void CEntornVGIView::OnMiraraRocket()
 	animaController.lookat = ROCKET;
 	setCenterWith(ROCKET);
 	INCRM = 0.2;
-	OPV.R = animaController.planet.radius / 1000;
+	OPV.R = 100;
 	InvalidateRect(NULL, false);
 }
 
@@ -3716,6 +3722,7 @@ void CEntornVGIView::OnCoheteUno()
 
 if (R0CKET1 == NULL) {
 	nom = "./objects/Falcon9.obj";
+	//nom = "./objects/citi/table-mountain.obj";
 	char *nomfitx = CString2Char(nom);
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 	if (R0CKET1 == NULL) R0CKET1 = new COBJModel;

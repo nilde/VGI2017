@@ -9,7 +9,4 @@ AnimaController::AnimaController()
 	planet = Planet(6371);
 }
 
-void AnimaController::DrawHumo()
-{
-		particula1.draw();
-}
+
