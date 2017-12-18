@@ -134,7 +134,9 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController animaController)
 {
 	float altfar = 0;
+	
 
+	
 	SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 	glPushMatrix();
 	glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
@@ -143,47 +145,37 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	glPopMatrix();
 
 	
-	char iluminacio = PLANA; //PLANA, ,FILFERROS
-	GLfloat mida = 10;
+	char iluminacio = GOURAUD; //PLANA, ,FILFERROS
+	GLfloat mida = 0.55;
 	glPushMatrix();
+	glTranslatef(70,-90,6366);
 	glScalef(mida, mida, mida);
 	fract(iluminacio, true, animaController.step);
 	glPopMatrix();
+	
+	/*
+	glColor3f(1.0, 1.0, 1.0);
+	glPushMatrix();
+	glTranslatef(-100, 0, 6375);
+	glScalef(550.0f, 550.0f, 0.005f);
+	glutSolidCube(1.0);
+	glPopMatrix();
+	*
+	
 
-	switch (objecte)
-	{
-	// Dibuix del Truck
-	case TRUCK:
-		glDisable(GL_TEXTURE_2D);
-		sea();
-		truck(textur, texturID);
-		break;
+	// animaController.DrawHumo();
+	*/
 
-	// Dibuix de l'objecte 3DS
-	case OBJ3DS:
-		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material.
-		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
-		// Dibuix de l'objecte 3DS amb textures (OBJECTE3DST) o sense textures (OBJECTE3DS)
-		if (textur) glCallList(OBJECTE3DST);
-		else glCallList(OBJECTE3DS);
-		break;
 
-	// Dibuix de l'objecte OBJ
-	case OBJOBJ:
-		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material.
-		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
-		// Objecte OBJ: Dibuix de l'objecte OBJ
-		glCallList(OBJECTEOBJ);
-		break;
 
-	case ROCKET:
-	{
 		/////////// COHETE!!
+	glColor3f(1.0,1.0,1.0);
+
 		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
-		glScalef(0.5, 0.5, 0.5);
+		glScalef(0.01, 0.01, 0.01);
 
 
 
@@ -202,16 +194,6 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 
 		glPopMatrix();
-
-		break;
-	}
-	// Dibuix de la resta d'objectes
-	default:
-		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material.
-		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
-		dibuixa(objecte);
-		break;
-	}
 
 
 	// Enviar les comandes gràfiques a pantalla

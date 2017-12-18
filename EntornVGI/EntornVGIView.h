@@ -42,7 +42,7 @@ public:
 
 	float dist = 10;
 
-	AnimaController animaController; 
+	AnimaController animaController;
 
 	CEntornVGIDoc* GetDocument() const;
 

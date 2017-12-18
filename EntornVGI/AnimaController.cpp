@@ -6,5 +6,10 @@
 AnimaController::AnimaController()
 {
 	rocket = Rocket();
-	planet = Planet(123456);
+	planet = Planet(6371);
+}
+
+void AnimaController::DrawHumo()
+{
+		particula1.draw();
 }

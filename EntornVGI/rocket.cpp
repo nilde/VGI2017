@@ -29,9 +29,14 @@ float arcotangente(float x) {
 
 void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
-	if (iteracion == 1800) {
+	if (iteracion == 400) {
 		az = ax = ay = 0;
 	}
+	if (iteracion == 200) {
+		az = ax = 0;
+		ay = 10;
+	}
+
 
 	float dy =  center[1] - m_y;
 	float dz =  center[2] - m_z;
@@ -76,12 +81,12 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
 
 void Rocket::Initialize() {
-	float angle = 60; // entre 0 y 90
-	float impulse = 12;
+	float angle = 90; // entre 0 y 90
+	float impulse = 14;
 
-	xo = 0;
-	yo = 500;
-	zo = 100;
+	xo = 70;
+	yo = -90;
+	zo = 6376;
 
 	m_x = xo;
 	m_y = yo;
