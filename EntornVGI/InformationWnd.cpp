@@ -198,6 +198,8 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	m_wndInformationRocket.AddString(str);
 	str.Format(_T("Posición en el eje Z: %.1d "), rocket.m_z);
 	m_wndInformationRocket.AddString(str);
+	str.Format(_T("Angulo alpha: %.1d "), rocket.m_alpha);
+	m_wndInformationRocket.AddString(str);
 	str.Format(_T("Velocidad en el eje X: %.3f "), rocket.vx);
 	m_wndInformationRocket.AddString(str);
 	str.Format(_T("Velocidad en el eje Y: %.3f "), rocket.vy);
