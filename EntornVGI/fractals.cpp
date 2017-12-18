@@ -290,10 +290,12 @@ void fract(char iluminacio,bool paletaColor,int step)
 
 	int k = 23; // De 23 a 0 --> 24
 
+
 	glPushMatrix();
+
 // 1. CENTRAR EL FRACTAL EN EL (0,0,0).
 	glColor3f(255, 255, 255);
-	glTranslatef(-FMAX / 8.0, -FMAX / 2.0, 0.0);
+	glTranslatef(-FMAX / 8.0, -FMAX / 2.0, 0);
 // 2. DIBUIXAR ELS VÈRTEXS DELS TRIANGLES SEGONS EL PAS (step)
 //    I DEFINIR ELS VECTORS NORMALS DE CADA VÈRTEX EN FUNCIÖ DE
 //	  LA ILUMINACIÖ (iluminacio)
@@ -404,14 +406,8 @@ void fract(char iluminacio,bool paletaColor,int step)
 	}
 
 	glPopMatrix();
-//  3. DIBUIX DEL MAR A L'ALÇADA Z=0.
-	glPushMatrix();
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(0.2f,0.75f,0.9f,0.5f);
-		glRectf(-FMAX/2,-FMAX/2,FMAX/2,FMAX/2);
-		glDisable(GL_BLEND);
-	glPopMatrix();
+
+
 	
 }
 

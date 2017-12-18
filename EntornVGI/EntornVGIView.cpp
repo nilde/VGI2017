@@ -180,7 +180,6 @@ CEntornVGIView::CEntornVGIView()
 	center[1] = 0;
 	center[2] = 0;
 
-	AnimaController animaController;
 
 // TODO: agregar aquí el código de construcción
 //	int i = 0;
@@ -3511,7 +3510,7 @@ void CEntornVGIView::executeTrayectory() {
 	iter++; 
 	
 	//MODIFICACIONES PROPIAS
-	if (int(t) % 10 == 0) {
+	if (true) {
 		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket);
 	}
 	// FINAL MODIFICACIONES PROPIAS
@@ -3633,7 +3632,7 @@ void CEntornVGIView::OnMiraraRocket()
 {
 	animaController.lookat = ROCKET;
 	setCenterWith(ROCKET);
-	INCRM = 1;
+	INCRM = 0.2;
 	OPV.R = animaController.planet.radius / 1000;
 	InvalidateRect(NULL, false);
 }

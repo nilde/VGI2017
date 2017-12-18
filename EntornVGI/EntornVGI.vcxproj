@@ -143,6 +143,8 @@
     <ClInclude Include="Obj3DS.h" />
     <ClInclude Include="objLoader.h" />
     <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="Particles.h" />
+    <ClInclude Include="Particula.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="PropertiesWnd.h" />
     <ClInclude Include="Resource.h" />
@@ -171,6 +173,8 @@
     <ClCompile Include="Obj3DS.cpp" />
     <ClCompile Include="objLoader.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="Particles.cpp" />
+    <ClCompile Include="Particula.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="PropertiesWnd.cpp" />
     <ClCompile Include="rocket.cpp" />

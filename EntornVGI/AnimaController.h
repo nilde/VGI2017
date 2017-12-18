@@ -1,6 +1,7 @@
 #pragma once
 #include "rocket.h"
 #include "Planet.h"
+#include "Particles.h"
 
 class AnimaController {
 public:
@@ -8,6 +9,11 @@ public:
 
 	Rocket rocket;
 	Planet planet;
+
+	Particula particula1;
+	Particula particula2;
+
+	void DrawHumo();
 
 	char activePlanet = CAP;
 	char activeRocket = '1';
@@ -21,7 +27,7 @@ public:
 	int step;
 
 	const float TSTEP = 0.1;
-	const float TIMER = 5; // milisegundos
+	const float TIMER = 100; // milisegundos
 	
 };
 
