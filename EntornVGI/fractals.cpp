@@ -247,7 +247,7 @@ double soroll(int i,int j,double alf,char noise)
 // TRIANGULACIO DEL TERRENY. Dibuix de la muntanya fractal
 // Variables: - Iluminaciï¿½: Defineix el tipus d'iluminaciï¿½ (filferros, plana o suau).
 //            - step: Pas de dibuix del fractal.
-void fract(char iluminacio,bool paletaColor,int step)
+void fract(char iluminacio, bool paletaColor, int step)
 {
 	if (colorPalette != -1) // Se ha asignado alguna paleta
 	{
@@ -291,19 +291,13 @@ void fract(char iluminacio,bool paletaColor,int step)
 	int k = 23; // De 23 a 0 --> 24
 
 	glPushMatrix();
-// 1. CENTRAR EL FRACTAL EN EL (0,0,0).
+	// 1. CENTRAR EL FRACTAL EN EL (0,0,0).
 	glColor3f(255, 255, 255);
-<<<<<<< HEAD
-	glTranslatef(-FMAX / 8.0, -FMAX / 2.0, 0);
-// 2. DIBUIXAR ELS Vï¿½RTEXS DELS TRIANGLES SEGONS EL PAS (step)
-//    I DEFINIR ELS VECTORS NORMALS DE CADA Vï¿½RTEX EN FUNCIï¿½ DE
-//	  LA ILUMINACIï¿½ (iluminacio)
-=======
+
 	glTranslatef(-FMAX / 8.0, -FMAX / 2.0, -0.0);
-// 2. DIBUIXAR ELS VÈRTEXS DELS TRIANGLES SEGONS EL PAS (step)
-//    I DEFINIR ELS VECTORS NORMALS DE CADA VÈRTEX EN FUNCIÖ DE
-//	  LA ILUMINACIÖ (iluminacio)
->>>>>>> master
+	// 2. DIBUIXAR ELS VÈRTEXS DELS TRIANGLES SEGONS EL PAS (step)
+	//    I DEFINIR ELS VECTORS NORMALS DE CADA VÈRTEX EN FUNCIÖ DE
+	//	  LA ILUMINACIÖ (iluminacio)
 
 
 	switch (iluminacio)
@@ -312,124 +306,106 @@ void fract(char iluminacio,bool paletaColor,int step)
 		for (int i = 0; i < FMAX; i = i + step)
 		{
 			for (int j = 0; j < FMAX; j = j + step)
-			//for (int j = FMAX - step; j >= 0; j = j - step)
+				//for (int j = FMAX - step; j >= 0; j = j - step)
 			{
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glScalef(1, 1, 1);
-					glVertex3f(i, j, zz[i][j]); //v1                   
-					glVertex3f(i + step, j, zz[i + step][j]); //v2      
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glScalef(1, 1, 1);
+				glVertex3f(i, j, zz[i][j]); //v1                   
+				glVertex3f(i + step, j, zz[i + step][j]); //v2      
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3
 				glEnd();
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glVertex3f(i, j, zz[i][j]); //v1            
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3 
-					glVertex3f(i, j + step, zz[i][j + step]); //v4
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glVertex3f(i, j, zz[i][j]); //v1            
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3 
+				glVertex3f(i, j + step, zz[i][j + step]); //v4
 				glEnd();
-				
+
 			}
 		}
 		break;
 	case PLANA:
 		normalcara(step);
-		for (int i = 0; i<(FMAX); i += step) {
-			for (int j = 0; j<(FMAX); j += step) {
+		for (int i = 0; i < (FMAX); i += step) {
+			for (int j = 0; j < (FMAX); j += step) {
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glNormal3f(normalsC[i][j][0], normalsC[i][j][1], normalsC[i][j][2]); // VNorm.
-					glVertex3f(i, j, zz[i][j]); //v1                   
-					glVertex3f(i + step, j, zz[i + step][j]); //v2      
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glNormal3f(normalsC[i][j][0], normalsC[i][j][1], normalsC[i][j][2]); // VNorm.
+				glVertex3f(i, j, zz[i][j]); //v1                   
+				glVertex3f(i + step, j, zz[i + step][j]); //v2      
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3
 				glEnd();
 
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // VNorm.
-					glVertex3f(i, j, zz[i][j]); //v1            
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3 
-					glVertex3f(i, j + step, zz[i][j + step]); //v4
-				glEnd();				
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // VNorm.
+				glVertex3f(i, j, zz[i][j]); //v1            
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); //v3 
+				glVertex3f(i, j + step, zz[i][j + step]); //v4
+				glEnd();
 			}
 		}
 		break;
 	case GOURAUD:
 		normalvertex(step);
-		for (int i = 0; i<(FMAX); i += step) {
-			for (int j = 0; j<(FMAX); j += step) {
+		for (int i = 0; i < (FMAX); i += step) {
+			for (int j = 0; j < (FMAX); j += step) {
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // Normal a V1
-					glVertex3f(i, j, zz[i][j]); // V1
-					glNormal3f(normalsV[i + step][j][0], normalsV[i + step][j][1], normalsV[i + step][j][2]); // Normal a V2
-					glVertex3f(i + step, j, zz[i + step][j]); // V2
-					glNormal3f(normalsV[i + step][j + step][0], normalsV[i + step][j + step][1], normalsV[i + step][j + step][2]); // Normal a V3 
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); // V3
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i + step][j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // Normal a V1
+				glVertex3f(i, j, zz[i][j]); // V1
+				glNormal3f(normalsV[i + step][j][0], normalsV[i + step][j][1], normalsV[i + step][j][2]); // Normal a V2
+				glVertex3f(i + step, j, zz[i + step][j]); // V2
+				glNormal3f(normalsV[i + step][j + step][0], normalsV[i + step][j + step][1], normalsV[i + step][j + step][2]); // Normal a V3 
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); // V3
 				glEnd();
 				glBegin(GL_TRIANGLES);
-					if (colorPalette != -1)
-					{
-						k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
-						k /= ((abs(zmax) + abs(zmin)) / 24);
-						glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
-					}
-					glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // Normal a V1
-					glVertex3f(i, j, zz[i][j]); // V1
-					glNormal3f(normalsV[i + step][j + step][0], normalsV[i + step][j + step][1], normalsV[i + step][j + step][2]); // Normal a V3
-					glVertex3f(i + step, j + step, zz[i + step][j + step]); // V3
-					glNormal3f(normalsV[i][j + step][0], normalsV[i][j + step][1], normalsV[i][j + step][2]); // Normal a V4
-					glVertex3f(i, j + step, zz[i][j + step]); // V4
+				if (colorPalette != -1)
+				{
+					k = abs(zmin) + (zz[i][j] + zz[i][step + j] + zz[i + step][j + step]) / 3;
+					k /= ((abs(zmax) + abs(zmin)) / 24);
+					glColor3f(paletteColorR[k], paletteColorG[k], paletteColorB[k]);
+				}
+				glNormal3f(normalsV[i][j][0], normalsV[i][j][1], normalsV[i][j][2]); // Normal a V1
+				glVertex3f(i, j, zz[i][j]); // V1
+				glNormal3f(normalsV[i + step][j + step][0], normalsV[i + step][j + step][1], normalsV[i + step][j + step][2]); // Normal a V3
+				glVertex3f(i + step, j + step, zz[i + step][j + step]); // V3
+				glNormal3f(normalsV[i][j + step][0], normalsV[i][j + step][1], normalsV[i][j + step][2]); // Normal a V4
+				glVertex3f(i, j + step, zz[i][j + step]); // V4
 				glEnd();
 			}
 		}
 		break;
 	}
 
-<<<<<<< HEAD
 
 	glPopMatrix();
-
-
-=======
->>>>>>> master
-	/*glPopMatrix();
-//  3. DIBUIX DEL MAR A L'ALï¿½ADA Z=0.
-	glPushMatrix();
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(0.2f,0.75f,0.9f,0.5f);
-		glRectf(-FMAX/2,-FMAX/2,FMAX/2,FMAX/2);
-		glDisable(GL_BLEND);
-	glPopMatrix();*/
-<<<<<<< HEAD
-=======
-	
->>>>>>> master
 }
 
 
