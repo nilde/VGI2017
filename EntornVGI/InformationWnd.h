@@ -37,8 +37,8 @@ public:
 	// Atributos
 protected:
 	CMFCTabCtrl	m_wndTabs;
-	CInformationList m_wndInformationRocket;
-	CInformationList m_wndInformationPlanet;
+	CInformationList m_wndInformationDebug;
+	CInformationList m_wndInformationReal;
 
 protected:
 	

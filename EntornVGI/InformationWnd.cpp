@@ -45,8 +45,8 @@ int CInformationWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Crear paneles de resultados:
 	const DWORD dwStyle = LBS_NOINTEGRALHEIGHT | WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL;
 
-	if (!m_wndInformationRocket.Create(dwStyle, rectDummy, &m_wndTabs, 2) ||
-		!m_wndInformationPlanet.Create(dwStyle, rectDummy, &m_wndTabs, 3))
+	if (!m_wndInformationDebug.Create(dwStyle, rectDummy, &m_wndTabs, 3) ||
+		!m_wndInformationReal.Create(dwStyle, rectDummy, &m_wndTabs, 2))
 	{
 		TRACE0("No se pudieron crear las ventanas de salida\n");
 		return -1;      // no se pudo crear
@@ -58,12 +58,12 @@ int CInformationWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	BOOL bNameValid;
 
 	// Adjuntar ventanas de lista a la pestaña:
-	bNameValid = strTabName.LoadString(IDS_ROCKET_TAB);
+	bNameValid = strTabName.LoadString(IDS_DEBUGR_TAB);
 	ASSERT(bNameValid);
-	m_wndTabs.AddTab(&m_wndInformationRocket, strTabName, (UINT)0);
-	bNameValid = strTabName.LoadString(IDS_PLANET_TAB);
+	m_wndTabs.AddTab(&m_wndInformationDebug, strTabName, (UINT)0);
+	bNameValid = strTabName.LoadString(IDS_REAL_TAB);
 	ASSERT(bNameValid);
-	m_wndTabs.AddTab(&m_wndInformationPlanet, strTabName, (UINT)1);
+	m_wndTabs.AddTab(&m_wndInformationReal, strTabName, (UINT)1);
 
 	// Rellenar pestañas de resultados con texto ficticio (nada especial)
 	FillExampleWindow();
@@ -101,16 +101,16 @@ void CInformationWnd::AdjustHorzScroll(CListBox& wndListBox)
 
 void CInformationWnd::FillExampleWindow()
 {
-	m_wndInformationRocket.AddString(_T("Inicia la simulación para ver los datos del cohete."));
-	m_wndInformationPlanet.AddString(_T("Inicia la simulación para ver los datos del planeta."));
+	m_wndInformationDebug.AddString(_T("Inicia la simulación para ver los datos del cohete."));
+	m_wndInformationReal.AddString(_T("Inicia la simulación para ver los datos del planeta."));
 
 }
 
 
 void CInformationWnd::UpdateFonts()
 {
-	m_wndInformationRocket.SetFont(&afxGlobalData.fontRegular);
-	m_wndInformationPlanet.SetFont(&afxGlobalData.fontRegular);
+	m_wndInformationDebug.SetFont(&afxGlobalData.fontRegular);
+	m_wndInformationReal.SetFont(&afxGlobalData.fontRegular);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,28 +182,28 @@ void CInformationList::OnViewOutput()
 }
 void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	CString str;
-	for (int i = m_wndInformationRocket.GetCount() - 1; i >= 0; i--) {
-		m_wndInformationRocket.DeleteString(i);
+	for (int i = m_wndInformationDebug.GetCount() - 1; i >= 0; i--) {
+		m_wndInformationDebug.DeleteString(i);
 	}
 	//ax,ay,az,m_alpha,m_x,m_y,m_z,vx,vy,vz
 	str.Format(_T("Aceleración en el eje X: %.3f "),rocket.ax);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Aceleración en el eje Y: %.3f "), rocket.ay);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Aceleración en el eje Z: %.3f "), rocket.az);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Posición en el eje X: %.1d "), rocket.m_x);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Posición en el eje Y: %.1d "), rocket.m_y);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Posición en el eje Z: %.1d "), rocket.m_z);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Angulo alpha: %.1d "), rocket.m_alpha);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Velocidad en el eje X: %.3f "), rocket.vx);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Velocidad en el eje Y: %.3f "), rocket.vy);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Velocidad en el eje Z: %.3f "), rocket.vz);
-	m_wndInformationRocket.AddString(str);
+	m_wndInformationDebug.AddString(str);
 }
