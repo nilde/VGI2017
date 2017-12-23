@@ -143,6 +143,9 @@ public:
 // Entorn VGI: Objecte OBJ:
 	COBJModel* ObOBJ;		// Variable d'objecte format OBJ (*.OBJ)
 	COBJModel* R0CKET1;
+	COBJModel* R0CKET2;
+	COBJModel* R0CKET3;
+	COBJModel* R0CKET4;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Paràmetre t pel Timer.
@@ -353,6 +356,12 @@ public:
 	afx_msg void OnUpdateCoheteUno(CCmdUI *pCmdUI);
 	afx_msg void ShowFractal(char*fitxer);
 
+	afx_msg void OnCoheteLanzadera();
+	afx_msg void OnUpdateCoheteLanzadera(CCmdUI *pCmdUI);
+	afx_msg void OnCoheteTres();
+	afx_msg void OnUpdateCoheteTres(CCmdUI *pCmdUI);
+	afx_msg void OnCoheteQuatre();
+	afx_msg void OnUpdateCoheteQuatre(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

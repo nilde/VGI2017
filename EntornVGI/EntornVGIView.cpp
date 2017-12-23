@@ -168,6 +168,12 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_UPDATE_COMMAND_UI(ID_PLANETA_TIERRA, &CEntornVGIView::OnUpdatePlanetaTierra)
 		ON_COMMAND(ID_COHETE_UNO, &CEntornVGIView::OnCoheteUno)
 		ON_UPDATE_COMMAND_UI(ID_COHETE_UNO, &CEntornVGIView::OnUpdateCoheteUno)
+		ON_COMMAND(ID_COHETE_LANZADERA, &CEntornVGIView::OnCoheteLanzadera)
+		ON_UPDATE_COMMAND_UI(ID_COHETE_LANZADERA, &CEntornVGIView::OnUpdateCoheteLanzadera)
+		ON_COMMAND(ID_COHETE_TRES, &CEntornVGIView::OnCoheteTres)
+		ON_UPDATE_COMMAND_UI(ID_COHETE_TRES, &CEntornVGIView::OnUpdateCoheteTres)
+		ON_COMMAND(ID_COHETE_QUATRE, &CEntornVGIView::OnCoheteQuatre)
+		ON_UPDATE_COMMAND_UI(ID_COHETE_QUATRE, &CEntornVGIView::OnUpdateCoheteQuatre)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -264,7 +270,10 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Objecte OBJ
 	ObOBJ = NULL;
 
-	R0CKET1 = NULL;	
+	R0CKET1 = NULL;
+	R0CKET2 = NULL;
+	R0CKET3 = NULL;
+	R0CKET4 = NULL;
 
 // Entorn VGI: Variables del Timer
 	t = 0;			anima = false;
@@ -3754,4 +3763,87 @@ void CEntornVGIView::ShowFractal(char*fitxer)
 
 	// Crida a OnPaint() per redibuixar l'escena
 	InvalidateRect(NULL, false);
+}
+
+void CEntornVGIView::OnCoheteLanzadera()
+{
+	if (R0CKET2 == NULL) {
+		nom = "./objects/Lanzadera.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (R0CKET2 == NULL) R0CKET2 = new COBJModel;
+		R0CKET2->LoadModel(nomfitx, ROCKET2OBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+
+	animaController.activeRocket = '2';
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdateCoheteLanzadera(CCmdUI *pCmdUI)
+{
+	if (animaController.activeRocket == '2') {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+void CEntornVGIView::OnCoheteTres()
+{
+	if (R0CKET3 == NULL) {
+		nom = "./objects/Falcon9.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (R0CKET3 == NULL) R0CKET3 = new COBJModel;
+		R0CKET3->LoadModel(nomfitx, ROCKET3OBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+
+	animaController.activeRocket = '3';
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdateCoheteTres(CCmdUI *pCmdUI)
+{
+	if (animaController.activeRocket == '3') {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+void CEntornVGIView::OnCoheteQuatre()
+{
+	if (R0CKET4 == NULL) {
+		nom = "./objects/Falcon9.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (R0CKET4 == NULL) R0CKET4 = new COBJModel;
+		R0CKET4->LoadModel(nomfitx, ROCKET4OBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+
+	animaController.activeRocket = '4';
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdateCoheteQuatre(CCmdUI *pCmdUI)
+{
+	if (animaController.activeRocket == '4') {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
 }

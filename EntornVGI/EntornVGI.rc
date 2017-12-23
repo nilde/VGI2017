@@ -92,11 +92,9 @@ IDI_PROPERTIES_WND      ICON                    "res\\properties_wnd.ico"
 
 IDI_PROPERTIES_WND_HC   ICON                    "res\\properties_wnd_hc.ico"
 
-//MODIFICACIONES PROPIAS
-IDI_INFORMATION_WND      ICON                    "res\\properties_wnd.ico"
+IDI_INFORMATION_WND     ICON                    "res\\properties_wnd.ico"
 
-IDI_INFORMATION_WND_HC   ICON                    "res\\properties_wnd_hc.ico"
-//FINAL MODIFICACIONES PROPIAS
+IDI_INFORMATION_WND_HC  ICON                    "res\\properties_wnd_hc.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -132,13 +130,9 @@ IDR_PROPERTIES          BITMAP                  "res\\properties.bmp"
 
 IDB_PROPERTIES_HC       BITMAP                  "res\\properties_hc.bmp"
 
-//MODIFICACIONES PROPIAS
-IDR_INFORMATION          BITMAP                  "res\\properties.bmp"
+IDR_INFORMATION         BITMAP                  "res\\properties.bmp"
 
-IDB_INFORMATION_HC       BITMAP                  "res\\properties_hc.bmp"
-
-//FINAL MODIFICACIONES PROPIAS
-
+IDB_INFORMATION_HC      BITMAP                  "res\\properties_hc.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -429,6 +423,9 @@ BEGIN
     POPUP "cohete"
     BEGIN
         MENUITEM "uno",                         ID_COHETE_UNO
+        MENUITEM "Lanzadera",                   ID_COHETE_LANZADERA
+        MENUITEM "tres",                        ID_COHETE_TRES
+        MENUITEM "quatre",                      ID_COHETE_QUATRE
     END
 END
 
@@ -753,17 +750,15 @@ BEGIN
     IDS_CLASS_VIEW          "Vista de clases"
     IDS_OUTPUT_WND          "Resultados"
     IDS_PROPERTIES_WND      "Propiedades"
-
-	//MODIFICACIONES PROPIAS
-	IDS_INFORMATION_WND	"Telemetria"
-	//FINAL MODIFICACIONES PROPIAS
-
+    IDS_INFORMATION_WND     "Telemetria"
 END
 
 STRINGTABLE
 BEGIN
     IDS_EXPLORER            "Explorador"
     IDS_EDIT_MENU           "Editar"
+    IDS_DEBUGR_TAB          "Debug"
+    IDS_REAL_TAB            "Datos Reales"
 END
 
 STRINGTABLE
@@ -771,12 +766,6 @@ BEGIN
     IDS_BUILD_TAB           "Compilar"
     IDS_DEBUG_TAB           "Depurar"
     IDS_FIND_TAB            "Buscar"
-
-	//MODIFICACIONES PROPIAS
-	IDS_DEBUGR_TAB			"Debug"
-	IDS_REAL_TAB			"Datos Reales"
-	//FINAL MODIFICACIONES PROPIAS
-
 END
 
 #endif    // Spanish (Spain, International Sort) resources

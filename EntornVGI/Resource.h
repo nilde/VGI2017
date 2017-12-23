@@ -52,12 +52,8 @@
 #define IDS_CLASS_VIEW                  156
 #define IDS_OUTPUT_WND                  157
 #define IDS_PROPERTIES_WND              158
-
-//MODIFICACIONES PROPIAS
-#define IDS_INFORMATION_WND				159
-#define ID_VIEW_INFORMATIONWND			160
-//FINAL MODIFICACIONES
-
+#define IDS_INFORMATION_WND             159
+#define ID_VIEW_INFORMATIONWND          160
 #define IDI_FILE_VIEW                   161
 #define IDI_FILE_VIEW_HC                162
 #define IDI_CLASS_VIEW                  163
@@ -82,14 +78,10 @@
 #define IDR_OUTPUT_POPUP                182
 #define IDR_PROPERTIES                  183
 #define IDB_PROPERTIES_HC               184
-
-//MODIFICACIONES PROPIAS
 #define IDR_INFORMATION                 185
 #define IDB_INFORMATION_HC              186
-#define IDI_INFORMATION_WND              188
-#define IDI_INFORMATION_WND_HC           189
-//FINAL MODIFICACIONES PROPIAS
-
+#define IDI_INFORMATION_WND             188
+#define IDI_INFORMATION_WND_HC          189
 #define IDR_THEME_MENU                  200
 #define ID_SET_STYLE                    201
 #define ID_VIEW_APPLOOK_WIN_2000        205
@@ -108,12 +100,8 @@
 #define IDS_FIND_TAB                    302
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
-
-//MODIFICACIONES PROPIAS
-#define IDS_DEBUGR_TAB					307
-#define IDS_REAL_TAB					308
-//FINAL MODIFICACIONES PROPIAS
-
+#define IDS_DEBUGR_TAB                  307
+#define IDS_REAL_TAB                    308
 #define ID_ARXIU_OBRIR_FRACTAL          32771
 #define ID_ARXIU_OBRIR_FITXER_OBJ       32772
 #define ID_ARXIU_OBRIR_FITXER_3DS       32773
@@ -213,13 +201,16 @@
 #define ID_COBETE_DOS                   32870
 #define ID_COBETE_TRES                  32871
 #define ID_COHETE_UNO                   32872
+#define ID_COHETE_LANZADERA             32873
+#define ID_COHETE_TRES                  32874
+#define ID_COHETE_QUATRE                32875
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32873
+#define _APS_NEXT_COMMAND_VALUE         32876
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

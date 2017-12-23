@@ -192,6 +192,30 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 			break;
 		}
+		case '2':
+		{
+
+			glCallList(ROCKET2OBJ);
+			animaController.particles.draw();
+
+			break;
+		}
+		case '3':
+		{
+
+			glCallList(ROCKET3OBJ);
+			animaController.particles.draw();
+
+			break;
+		}
+		case '4':
+		{
+
+			glCallList(ROCKET4OBJ);
+			animaController.particles.draw();
+
+			break;
+		}
 		default:
 			break;
 
