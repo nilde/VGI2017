@@ -3730,7 +3730,7 @@ void CEntornVGIView::OnCoheteUno()
 {
 
 if (R0CKET1 == NULL) {
-	nom = "./objects/Falcon9.obj";
+	nom = "./objects/Falcon_9_entero/Falcon9.obj";
 	//nom = "./objects/citi/table-mountain.obj";
 	char *nomfitx = CString2Char(nom);
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
@@ -3796,7 +3796,7 @@ void CEntornVGIView::OnUpdateCoheteLanzadera(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteTres()
 {
 	if (R0CKET3 == NULL) {
-		nom = "./objects/Falcon9.obj";
+		nom = "./objects/Falcon_9_entero/Falcon9.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
@@ -3824,7 +3824,7 @@ void CEntornVGIView::OnUpdateCoheteTres(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteQuatre()
 {
 	if (R0CKET4 == NULL) {
-		nom = "./objects/Falcon9.obj";
+		nom = "./objects/Falcon_9_entero/Falcon9.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
