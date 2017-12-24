@@ -1,0 +1,60 @@
+# Blender MTL File: 'None'
+# Material Count: 6
+
+newmtl Color_B05
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.197647 0.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Metal_Steel_Textured
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\Metal_Steel_Textured.jpg
+
+newmtl __Metal_Steel_Textured_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\\__Metal_Steel_Textured_1.jpg
+
+newmtl __Metal_Steel_Textured_1___Metal_Steel_Textured_1.jpg
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\__Metal_Steel_Textured_1.jpg
+
+newmtl material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\__Metal_Steel_Textured_1.jpg
+
+newmtl material_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2

@@ -1,0 +1,69 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl Color_M09
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Metal_Steel_Textured
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Transbordador\Metal_Steel_Textured.jpg
+
+newmtl Translucent_Glass_Tinted
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Transbordador\Translucent_Glass_Tinted.jpg
+
+newmtl Translucent_Resin_Crush_Gray
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Transbordador\Translucent_Resin_Crush_Gray.jpg
+
+newmtl material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.514510 0.558431 0.586667
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl material_0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl material_Metal_Steel_Textured.jpg
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.514510 0.558431 0.586667
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Transbordador\Metal_Steel_Textured.jpg
