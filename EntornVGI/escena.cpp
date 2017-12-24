@@ -154,6 +154,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	
 	
 		/////////// COHETE!!
+
+	glPushMatrix();
+	glTranslatef(0,0,7000);
+	glScalef(0.5, 0.5, 0.5);
+	generateRandomClouds(animaController);
+	glPopMatrix();
+
+
+
 	glColor3f(1.0,1.0,1.0);
 
 		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
@@ -162,7 +171,6 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
 		glScalef(0.5,0.5,0.5);
 
-		generateRandomClouds(animaController);
 		
 
 		switch (animaController.activeRocket) {

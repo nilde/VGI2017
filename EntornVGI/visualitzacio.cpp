@@ -26,7 +26,7 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 	GLfloat angv,angh;
 
 // Configuració de la font de llum LIGHT0
-	GLfloat position[]={0.0,0.0,200.0,1.0};
+	GLfloat position[]={0.0,0.0,8000,1.0};
 	GLfloat especular[]={0.0,0.0,0.0,1.0};
     GLfloat ambientg[]={.5,.5,.5,1.0};
 

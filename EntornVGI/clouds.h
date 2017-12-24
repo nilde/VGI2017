@@ -1,9 +1,9 @@
 #ifndef _CLOUDS
 #define _CLOUDS
 
-const int numClouds = 100; //1D
-const int numProf = 5;	//2D
-const int numRows = 15;	//3D
+const int numClouds = 20; //1D
+const int numProf = 35;	//2D
+const int numRows = 35;	//3D
 const int numCols = 35;	//4D
 const int numDimensions = 3; //5D
 
@@ -34,7 +34,7 @@ public:
 	const int maxOffsetBetweenCloudsZ = 500; //Distancia maxima entre nubes
 	
 	const float posXFirstCloud = 0;
-	const float posYFirstCloud = 3000;
+	const float posYFirstCloud = 0;
 	const float posZFirstCloud = 0;
 	
 	int numCloudsR = numClouds;
