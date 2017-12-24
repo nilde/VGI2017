@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "constants.h"
 #include "AnimaController.h"
 #include "escena.h"			// Include funcions d'objectes OpenGL
 

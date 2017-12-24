@@ -29,12 +29,14 @@ float arcotangente(float x) {
 
 void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
-	if (iteracion == 400) {
+	
+
+	if (iteracion == 500) {
 		az = ax = ay = 0;
 	}
-	if (iteracion == 200) {
+	if (iteracion == 300) {
 		az = ax = 0;
-		ay = 10;
+		ay = 14;
 	}
 
 
@@ -44,27 +46,47 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
 	if (vy != 0) {
 		m_alpha = arcotangente(vz/vy);
-		cout << m_alpha << vz << vy << endl;
+		if ( vz < 0 ){
+			if( vy < 0 ){
+				m_alpha = -m_alpha;
+			}
+		}
+		
+	}
+
+	float betta;
+
+	if (m_y != 0) {
+		betta = arcotangente(float(abs(m_z)) / float(abs(m_y)));
 	}
 	else {
-		if (m_z > center[2]) {
-			m_alpha = 90;
-		}
-		else if(m_z < center[2]){
-			m_alpha = 270;
-		}
-		else {
-			m_alpha = 0;
-		}
+		betta = 90;
 	}
 
 	float distancia = sqrt(dy*dy + dz*dz);
 
-	float real_az = az - 9.8 * seno(m_alpha);
-	float real_ay = ay - 9.8 * coseno(m_alpha);
+	float real_az = 0;
+	float real_ay = 0;
+	if (m_z >= 0) {
+		real_az = az - 9.8 * seno(betta);
+	}
+	else {
+		real_az = az + 9.8 * seno(betta);
+	}
+	if (m_y >= 0) {
+		if (iteracion > 200 ) {
+			real_ay = ay - 9.8 * coseno(betta);
+		}
+		
+	}
+	else {
+		if (iteracion > 200) {
+			real_ay = ay + 9.8 * coseno(betta);
+		}
+	}
 
 
-
+	
 	vx = vx + ax * step;
 	vy = vy + real_ay * step;
 	vz = vz + real_az * step;

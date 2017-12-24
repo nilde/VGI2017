@@ -175,4 +175,9 @@ struct LLUM
 	GLfloat exponent;		// Exponent que indica l'atenuació de la font del centre de l'eix a l'exterior, segons model de Warn.
 };
 
+//Constants del Planeta
+const double Terra_Massa = 5.974 * pow(10, 24);
+//const double 
+
 #endif
+

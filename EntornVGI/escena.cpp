@@ -134,13 +134,6 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
-
-
-
-
-	
-
-	
 	SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 	glPushMatrix();
 	glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
