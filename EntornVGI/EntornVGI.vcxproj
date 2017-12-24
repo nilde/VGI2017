@@ -127,6 +127,7 @@
     <ClInclude Include="AnimaController.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
+    <ClInclude Include="clouds.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="EntornVGI.h" />
     <ClInclude Include="EntornVGIDoc.h" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
+    <ClCompile Include="clouds.cpp" />
     <ClCompile Include="EntornVGI.cpp" />
     <ClCompile Include="EntornVGIDoc.cpp" />
     <ClCompile Include="EntornVGIView.cpp" />

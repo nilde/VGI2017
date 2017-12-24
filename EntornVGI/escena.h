@@ -4,6 +4,7 @@
 // escena.h : interface de escena.cpp
 //
 
+
 #include "AnimaController.h"
 
 #ifndef GLSOURCE_H
@@ -23,6 +24,5 @@ void truck(bool textu,GLuint VTextu[NUM_MAX_TEXTURES]);
 void neumatic(bool textur, GLuint VTextur[NUM_MAX_TEXTURES]);
 void llanta(bool textur, GLuint VTextur[NUM_MAX_TEXTURES]);
 void sea(void);
-
-
+void generateRandomClouds(AnimaController &modifyCLouds);
 #endif

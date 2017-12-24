@@ -1,6 +1,9 @@
 #ifndef _ROCKET
 #define _ROCKET
 
+//SOME GENERAL CONSTANTS
+
+
 //SOME CONSTANTS FOR F9 IN LEO ORBITS
 const int MAX_DYNAMIC_PRESSURE_LEO = 82;
 const int MAIN_ENGINE_CUTOFF_LEO = 170;
@@ -42,7 +45,12 @@ const float F9_FT_SPECIFIC_IMPULSE_SS_VA = 348; //seconds (second stage)
 const float F9_FT_PROPELLANT_MASS_SS = 92670;//kgs
 const float F9_FT_INERT_MASS_SS = 3900;//kgs
 
-//REMEMBER TO UPDATE THE WEIGHTS
+
+//NEED TO FIND THE REAL VALUES FOR THAT CONSTANTS
+const float CONSUME_PER_SECOND_FS=0;
+const float CONSUME_PER_SECOND_SS=0;
+
+//REMEMBER TO UPDATE THE WEIGHTS AT EACH STAGE
 
 
 
@@ -74,21 +82,28 @@ public:
 
 	//Constructor
 	Rocket();
+	
+	//Overwrite of the constructor with some parameters
+	//Rocket(some params)
 
-	float DespZ(float t);
-
-	float DespX(float t);
-
-	float DespY(float t);
-
-		void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
+	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
 
 	void Restart();
 
 	void Initialize();
 
+	//No implementada
 	float Rocket::angleGenerated(float previousX, float previousY, float actualX, float actualY);
+	
+	//implementation soon
+	void calcTelemetry();
 private:
+	float time;
+	float thurst;
+	float stageNumber;
+	float weight;
+	float height;
+	float utilCharge;
 
 };
 

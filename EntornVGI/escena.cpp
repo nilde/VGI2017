@@ -112,21 +112,6 @@ void gluEsfera(GLdouble radius, GLint slices, GLint stacks)
 }
 
 
-
-///////////////////////////////////////77
-
-
-
-
-
-
-
-
-
-
-
-
-
 // TEXTURES: Vector de noms de textura
 GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -135,18 +120,14 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 {
 	float altfar = 0;
 
-
-
-
-	
-
-	
 	SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
 	glPushMatrix();
 	glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
 	glRotatef(312, 155, 1, 1);
 	gluEsfera(animaController.planet.radius, 1000, 10000);
 	glPopMatrix();
+
+	
 
 	
 	char iluminacio = GOURAUD; //PLANA, ,FILFERROS
@@ -169,9 +150,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 	// animaController.DrawHumo();
 	*/
-
-
-
+	//animaController.cloud.draw(20, 0);
+	
+	
 		/////////// COHETE!!
 	glColor3f(1.0,1.0,1.0);
 
@@ -181,14 +162,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
 		glScalef(0.5,0.5,0.5);
 
-
+		generateRandomClouds(animaController);
+		
 
 		switch (animaController.activeRocket) {
 		case '1':
 		{
 
 			glCallList(ROCKET1OBJ);
-			animaController.particles.draw();
+			animaController.particles.draw(animaController.particles.random("size"),1);
 
 			break;
 		}
@@ -1067,4 +1049,31 @@ void sea(void)
 		it1++;
 	}
 
+}
+
+void generateRandomClouds(AnimaController &animaController) {
+	//Print all the data of the blocks
+	for (int cloud = 0; cloud < animaController.clouds.numCloudsR; cloud++) {
+		for(int prof=0;prof < animaController.clouds.numProfR;prof++){
+			for (int row = 0; row < animaController.clouds.numRowsR; ++row) {
+				for (int col = 0; col < animaController.clouds.numColsR; ++col) {
+					if (animaController.clouds.cloudContentActive[cloud][prof][row][col] ==true) {
+						glEnable(GL_BLEND);
+						glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+						glColor4f(1.0,1.0,1.0,0.5);
+						glPointSize(float(animaController.clouds.sizeOfBox));
+						glBegin(GL_POINTS);
+						glVertex3f(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);
+						glEnd();
+					}
+				}
+			}
+		}
+	}
+
+
+
+
+
+	
 }

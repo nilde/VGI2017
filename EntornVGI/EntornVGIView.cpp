@@ -180,7 +180,8 @@ CEntornVGIView::CEntornVGIView()
 	center[1] = 0;
 	center[2] = 0;
 
-	AnimaController animaController;
+
+	
 
 // TODO: agregar aqu� el c�digo de construcci�n
 //	int i = 0;
@@ -282,11 +283,12 @@ CEntornVGIView::CEntornVGIView()
 	iluInit();					// Inicialitzar llibreria ILU
 	ilutRenderer(ILUT_OPENGL);	// Inicialitzar llibreria ILUT per a OpenGL
 
-
+	
 }
 
 CEntornVGIView::~CEntornVGIView()
 {
+	
 }
 
 BOOL CEntornVGIView::PreCreateWindow(CREATESTRUCT& cs)
@@ -2215,7 +2217,6 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
 		executeTrayectory();
 		
-		//animaController.particles.draw();
 
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);

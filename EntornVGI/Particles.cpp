@@ -2,7 +2,7 @@
 #include "Particles.h"
 using namespace std;
 
-
+//Make random the values of a parameter
 int Particles::random(string valueToRandomize) {
 	int output = 0;
 	int max = 1;
@@ -51,9 +51,9 @@ void Particles::create(int i) {
 // NextPosition = CurrentPosition + (Speed * UpdateSpeed) 
 void Particles::evolve(int i) {
 
+
 	particle[i].age = particle[i].age - AGE_DECREMENT;
 
-	//Desactivado temporalmente la actualización para encontrar el error
 	particle[i].x = particle[i].x + (particle[i].sx * UPDATE_VEL_X);
 	particle[i].y = particle[i].y + (particle[i].sy * UPDATE_VEL_Y);
 	particle[i].z = particle[i].z + (particle[i].sz * UPDATE_VEL_Z);
@@ -66,33 +66,70 @@ void Particles::evolve(int i) {
 //Bucle para dibujar en pantalla los diferentes puntos que componen
 //el sistema de partículas. Para ello crea los puntos y los va
 //evolucionando para que pueda existir un movimiento
-void Particles::draw() {
+void Particles::draw(int size,int typeOfParticle) {
 
-	for (int i = 0; i < MAX_PARTICLES; i++) {
-		if (particle[i].age < 0) {
-			create(i);
+	if (typeOfParticle==1) {
+		for (int i = 0; i < MAX_PARTICLES; i++) {
+			if (particle[i].age < 0) {
+				create(i);
+			}
+			else {
+				glPointSize(size);
+				glBegin(GL_POINTS);
+				glVertex3f(particle[i].x, particle[i].y, particle[i].z);
+				glEnd();
+			}
+			evolve(i);
 		}
-		else {
-			glPointSize(random("size"));
-			glBegin(GL_POINTS);
-			glVertex3f(particle[i].x,particle[i].y, particle[i].z);
-			glEnd();
-		}
-		evolve(i);
+		
 	}
+	else {
+		for (int i = 0; i < MAX_PARTICLES; i++) {
+			if (initial) {
+				create(i);
+			}
+			glPointSize(size);
+			glBegin(GL_POINTS);
+			glVertex3f(200, 200,7000);
+			glEnd();
+			//evolveClouds(i);
+		}
+		initial = false;
+		
+	}
+
+		
 }
 
-void Particles::initialize() {
+void Particles::initialize(int typeOfParticles) {
 	//MAX_PARTICLES = 1000; Se edita en el .h
-	ORIGIN_X = 0;
-	ORIGIN_Y = 0;
-	ORIGIN_Z = 0;
+	switch (typeOfParticles)
+	{
+	case 0://particles de cloud
 
-	AGE_DECREMENT = 2;
-	VEL_DECREMENT = 2;
-	UPDATE_VEL_X = 2;
-	UPDATE_VEL_Y = 2;
-	UPDATE_VEL_Z = 2;
+		ORIGIN_X = 0;
+		ORIGIN_Y = 100;
+		ORIGIN_Z = 100;
+
+		AGE_DECREMENT = 0;
+		VEL_DECREMENT = 0;
+		UPDATE_VEL_X = 0;
+		UPDATE_VEL_Y = 0;
+		UPDATE_VEL_Z = 0;
+		break;
+	case 1:
+
+		ORIGIN_X = 0;
+		ORIGIN_Y = 0;
+		ORIGIN_Z = 0;
+
+		AGE_DECREMENT = 2;
+		VEL_DECREMENT = 2;
+		UPDATE_VEL_X = 2;
+		UPDATE_VEL_Y = 2;
+		UPDATE_VEL_Z = 2;
+		break;
+	}
 
 
 
@@ -100,9 +137,22 @@ void Particles::initialize() {
 
 Particles::Particles()
 {
-	initialize();
+	initialize(1);
 }
 
+Particles::Particles(int typeOfParticles)
+{
+	initialize(typeOfParticles);
+}
+
+void Particles::evolveClouds(int i) {
+	particle[i].age = 3;
+
+	particle[i].x = ORIGIN_X;
+	particle[i].y = ORIGIN_Y;
+	particle[i].z = ORIGIN_Z;
+
+}
 
 
 /*

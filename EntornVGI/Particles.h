@@ -5,6 +5,17 @@
 #include <stdlib.h>
 
 
+//Se define un struct con todas las propiedades de cada partícula
+//x, y, z corresponden a la posición
+//sz, sy, sz corresponden a la velocidad
+//age para controlar el recorrido en el sistema
+struct PARTICLE {
+	float x, y, z;
+	float sx, sy, sz;
+	float age;
+};
+
+
 
 class Particles {
 public:
@@ -18,26 +29,22 @@ public:
 	int UPDATE_VEL_X;
 	int UPDATE_VEL_Y;
 	int UPDATE_VEL_Z;
-
-	//Se define un struct con todas las propiedades de cada partícula
-	//x, y, z corresponden a la posición
-	//sz, sy, sz corresponden a la velocidad
-	//age para controlar el recorrido en el sistema
-	struct PARTICLE {
-		float x, y, z;
-		float sx, sy, sz;
-		float age;
-	} particle[MAX_PARTICLES];
-
+	bool initial=true;
+	
 
 	//Constructor
 	Particles();
+	Particles(int typeOfParticles);
 
-	void initialize();
+	void initialize(int typeOfParticles);
 	int random(std::string valueToRandomize);
 	void create(int i);
 	void evolve(int i);
-	void draw();
+	void evolveClouds(int i);
+
+	void draw(int size,int typeOfParticles);
+private:
+	PARTICLE particle[MAX_PARTICLES];
 
 };
 
