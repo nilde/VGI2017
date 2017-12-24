@@ -1066,13 +1066,18 @@ void generateRandomClouds(AnimaController &animaController) {
 			for (int row = 0; row < animaController.clouds.numRowsR; ++row) {
 				for (int col = 0; col < animaController.clouds.numColsR; ++col) {
 					if (animaController.clouds.cloudContentActive[cloud][prof][row][col] ==true) {
-						glEnable(GL_BLEND);
+						/*glEnable(GL_BLEND);
 						glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 						glColor4f(1.0,1.0,1.0,0.5);
 						glPointSize(float(animaController.clouds.sizeOfBox));
 						glBegin(GL_POINTS);
 						glVertex3f(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);
-						glEnd();
+						glEnd();*/
+						glPushMatrix();
+						glTranslatef(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);
+						glScalef(float(animaController.clouds.sizeOfBox), float(animaController.clouds.sizeOfBox), float(animaController.clouds.sizeOfBox));
+						glutSolidSphere(1.0, 5, 5);
+						glPopMatrix();
 					}
 				}
 			}
