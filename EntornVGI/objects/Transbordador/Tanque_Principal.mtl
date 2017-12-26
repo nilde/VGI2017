@@ -1,5 +1,5 @@
 # Blender MTL File: 'None'
-# Material Count: 6
+# Material Count: 8
 
 newmtl Color_B05
 Ns 96.078431
@@ -9,6 +9,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd Tanque_Principal\material_1.png
 
 newmtl Metal_Steel_Textured
 Ns 96.078431
@@ -50,7 +51,27 @@ d 1.000000
 illum 2
 map_Kd Tanque_Principal\__Metal_Steel_Textured_1.jpg
 
-newmtl material_NONE
+newmtl material_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\material_1.png
+
+newmtl material_1_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Tanque_Principal\\material_1.png
+
+newmtl material_material_1.png
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.800000 0.800000 0.800000
@@ -58,3 +79,4 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd Tanque_Principal\material_1.png
