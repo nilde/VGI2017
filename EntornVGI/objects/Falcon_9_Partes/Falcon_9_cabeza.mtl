@@ -1,0 +1,40 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl Metal_Silver
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Falcon_9_cabeza\Metal_Silver.jpg
+
+newmtl __Metal_Steel_Textured_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Falcon_9_cabeza\__Metal_Steel_Textured_1.jpg
+
+newmtl material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl material_0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.514510 0.558431 0.586667
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
