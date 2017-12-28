@@ -7,27 +7,39 @@ int Particles::random(string valueToRandomize) {
 	int output = 0;
 	int max = 1;
 	int min = 0;
+	if (valueToRandomize == "r") {
+		min = 80;
+		max = 100;
+	}
+	if (valueToRandomize == "g") {
+		min = 0;
+		max = 100;
+	}
+	if (valueToRandomize == "b") {
+		min = 0;
+		max = 10;
+	}
 
 	if (valueToRandomize == "age") {
 		min = 1;
 		max = 50;
 	}
 	else if (valueToRandomize == "speedX") {
-		min = -3;
-		max = 1;
+		min = -50;
+		max = 50;
 	}
 	else if (valueToRandomize == "speedY") {
-		min = -1;
-		max = 1;
+		min = -300;
+		max = -100;
 	}
 
 	else if (valueToRandomize == "speedZ") {
-		min = -1;
-		max = 1;
+		min = -50;
+		max = 50;
 	}
 	else if (valueToRandomize == "size") {
-		min = 0.0001;
-		max = 1.0;
+		min = 1;
+		max = 10;
 	}
 
 	return output = min + (rand() % static_cast<int>(max - min + 1));
@@ -58,9 +70,10 @@ void Particles::evolve(int i) {
 	particle[i].y = particle[i].y + (particle[i].sy * UPDATE_VEL_Y);
 	particle[i].z = particle[i].z + (particle[i].sz * UPDATE_VEL_Z);
 
-	particle[i].sx = particle[i].sx - VEL_DECREMENT;
-	particle[i].sy = particle[i].sy - VEL_DECREMENT;
-	particle[i].sz = particle[i].sz - VEL_DECREMENT;
+	//particle[i].sx = particle[i].sx * VEL_DECREMENT;
+	//particle[i].sy = particle[i].sy * VEL_DECREMENT;
+	//particle[i].sz = particle[i].sz * VEL_DECREMENT;
+
 }
 
 //Bucle para dibujar en pantalla los diferentes puntos que componen
@@ -73,8 +86,14 @@ void Particles::draw() {
 			create(i);
 		}
 		else {
+			glEnable(GL_BLEND);
 			glPointSize(random("size"));
 			glBegin(GL_POINTS);
+			float r, g, b;
+			r = 0.01 * random("r");
+			g = 0.01 * random("g");
+			b = 0.01 * random("b");
+			glColor4f(r, g, b, 0.9);
 			glVertex3f(particle[i].x,particle[i].y, particle[i].z);
 			glEnd();
 		}
@@ -89,10 +108,10 @@ void Particles::initialize() {
 	ORIGIN_Z = 0;
 
 	AGE_DECREMENT = 2;
-	VEL_DECREMENT = 2;
-	UPDATE_VEL_X = 2;
-	UPDATE_VEL_Y = 2;
-	UPDATE_VEL_Z = 2;
+	VEL_DECREMENT = 0.90;
+	UPDATE_VEL_X = 1;
+	UPDATE_VEL_Y = 1;
+	UPDATE_VEL_Z = 1;
 
 
 

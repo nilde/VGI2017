@@ -5,6 +5,9 @@
 
 class AnimaController {
 public:
+
+	int count = 0;
+
 	AnimaController();
 
 	Rocket rocket;

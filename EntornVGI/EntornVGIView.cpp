@@ -3650,7 +3650,7 @@ void CEntornVGIView::OnMiraraRocket()
 	animaController.lookat = ROCKET;
 	setCenterWith(ROCKET);
 	INCRM = 0.2;
-	OPV.R = 100;
+	OPV.R = 10;
 }
 
 

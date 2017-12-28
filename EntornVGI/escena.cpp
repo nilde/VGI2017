@@ -134,7 +134,7 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
-
+	
 		glColor3f(1.0, 1.0, 1.0);
 		glBindTexture(GL_TEXTURE_2D, texturID[6]);
 
@@ -149,7 +149,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		gluEsfera(animaController.planet.radius, 1000, 10000);
 		glPopMatrix();
 
-
+		
 		char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 		GLfloat mida = 0.55;
 		glPushMatrix();
@@ -165,13 +165,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		gluEsfera(8000, 1000, 10000);
 		glPopMatrix();
 		//glDisable(GL_TEXTURE_2D);
-
+		
 		// animaController.DrawHumo();
 
 
 
 		/////////// COHETE!!
-		glColor3f(1.0, 0, 1.0);
+		//glColor3f(1.0, 0, 1.0);
 
 		//SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
 		glPushMatrix();
@@ -184,38 +184,42 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		{
 
 			glCallList(ROCKET1OBJ);
-			animaController.particles.draw();
-
 			break;
 		}
 		case '2':
 		{
 
 			glCallList(ROCKET2OBJ);
-			animaController.particles.draw();
-
 			break;
 		}
 		case '3':
 		{
 
 			glCallList(ROCKET3OBJ);
-			animaController.particles.draw();
-
 			break;
 		}
 		case '4':
 		{
 
 			glCallList(ROCKET4OBJ);
-			animaController.particles.draw();
-
 			break;
 		}
 		default:
 			break;
 
 		}
+		glScalef(0.005, 0.005, 0.005);
+		glTranslatef(0,0,-2);
+
+		if (animaController.count % 500 == 0) {
+			glBindTexture(GL_TEXTURE_2D, texturID[0]);
+			glEnable(GL_TEXTURE_2D);
+			animaController.particles.draw();
+		}
+		if (animaController.count == 32760) {
+			animaController.count = 0;
+		}
+		
 
 		glPopMatrix();
 
