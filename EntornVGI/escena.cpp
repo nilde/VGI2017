@@ -177,7 +177,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
-		glScalef(0.5, 0.5, 0.5);
+		glScalef(0.05, 0.05, 0.05);
 
 		switch (animaController.activeRocket) {
 		case '1':

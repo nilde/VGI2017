@@ -107,8 +107,8 @@ void Rocket::Initialize() {
 	float impulse = 14;
 
 	xo = 70;
-	yo = -90;
-	zo = 6376;
+	yo = -60;
+	zo = 6371;
 	//zo = yo = xo = 0;
 
 	m_x = xo;
