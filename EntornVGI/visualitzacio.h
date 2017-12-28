@@ -62,4 +62,7 @@ static void __gluMakeIdentityf(GLfloat m[16]);
 static void __gluMakeIdentityd(GLdouble m[16]);
 static void normalize(float v[3]);
 static void cross(float v1[3], float v2[3], float result[3]);
+
+
+void Init_Textures_Terra();
 #endif

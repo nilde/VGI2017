@@ -126,22 +126,27 @@ void glutWireCube( GLdouble dSize )
  */
 void glutSolidCube( GLdouble dSize )
 {
-    double size = dSize * 0.5;
+	double size = dSize * 0.5;
 
-//    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutSolidCube" );
+	//    FREEGLUT_EXIT_IF_NOT_INITIALISED ( "glutSolidCube" );
 
 #   define V(a,b,c) glVertex3d( a size, b size, c size );
 #   define N(a,b,c) glNormal3d( a, b, c );
 
-    /* PWO: Again, I dared to convert the code to use macros... */
-    glBegin( GL_QUADS );
-        N( 1.0, 0.0, 0.0); V(+,-,+); V(+,-,-); V(+,+,-); V(+,+,+);
-        N( 0.0, 1.0, 0.0); V(+,+,+); V(+,+,-); V(-,+,-); V(-,+,+);
-        N( 0.0, 0.0, 1.0); V(+,+,+); V(-,+,+); V(-,-,+); V(+,-,+);
-        N(-1.0, 0.0, 0.0); V(-,-,+); V(-,+,+); V(-,+,-); V(-,-,-);
-        N( 0.0,-1.0, 0.0); V(-,-,+); V(-,-,-); V(+,-,-); V(+,-,+);
-        N( 0.0, 0.0,-1.0); V(-,-,-); V(-,+,-); V(+,+,-); V(+,-,-);
-    glEnd();
+	/* PWO: Again, I dared to convert the code to use macros... */
+	glBegin(GL_QUADS);
+	/*N( 1.0, 0.0, 0.0); V(+,-,+); V(+,-,-); V(+,+,-); V(+,+,+);
+	N( 0.0, 1.0, 0.0); V(+,+,+); V(+,+,-); V(-,+,-); V(-,+,+);
+	N( 0.0, 0.0, 1.0); V(+,+,+); V(-,+,+); V(-,-,+); V(+,-,+);
+	N(-1.0, 0.0, 0.0); V(-,-,+); V(-,+,+); V(-,+,-); V(-,-,-);
+	N( 0.0,-1.0, 0.0); V(-,-,+); V(-,-,-); V(+,-,-); V(+,-,+);
+	N( 0.0, 0.0,-1.0); V(-,-,-); V(-,+,-); V(+,+,-); V(+,-,-);*/
+
+	// Cub AMB Textura incrustada glTexCoord2f() a la cara superior
+	N(0.0, 0.0, 1.0);
+	glTexCoord2f(0.0, 1.0); V(+, +, +); glTexCoord2f(0.0, 0.0); V(-, +, +); glTexCoord2f(1.0, 0.0); V(-, -, +); glTexCoord2f(1.0, 1.0); V(+, -, +);
+
+	glEnd();
 
 #   undef V
 #   undef N

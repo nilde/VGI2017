@@ -134,47 +134,50 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
-	SeleccionaMaterialiColor(MAT_METALL_OBSCUR, sw_mat, ref_mat, col_object);
-	glPushMatrix();
-	glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
-	glRotatef(312, 155, 1, 1);
-	gluEsfera(animaController.planet.radius, 1000, 10000);
-	glPopMatrix();
 
-	
-	char iluminacio = GOURAUD; //PLANA, ,FILFERROS
-	GLfloat mida = 0.55;
-	glPushMatrix();
-	glTranslatef(70,-90,6366);
-	glScalef(mida, mida, mida);
-	fract(iluminacio, true, animaController.step);
-	glPopMatrix();
-	
-	/*
-	glColor3f(1.0, 1.0, 1.0);
-	glPushMatrix();
-	glTranslatef(-100, 0, 6375);
-	glScalef(550.0f, 550.0f, 0.005f);
-	glutSolidCube(1.0);
-	glPopMatrix();
-	*
-	
+		glColor3f(1.0, 1.0, 1.0);
+		glBindTexture(GL_TEXTURE_2D, texturID[6]);
 
-	// animaController.DrawHumo();
-	*/
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		glEnable(GL_TEXTURE_2D);
+		glPushMatrix();
+		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
+		glRotatef(312, 155, 1, 1);
+		gluEsfera(animaController.planet.radius, 1000, 10000);
+		glPopMatrix();
+
+
+		char iluminacio = GOURAUD; //PLANA, ,FILFERROS
+		GLfloat mida = 0.55;
+		glPushMatrix();
+		glTranslatef(70, -90, 6366);
+		glScalef(mida, mida, mida);
+		fract(iluminacio, true, animaController.step);
+		glPopMatrix();
+
+		glBindTexture(GL_TEXTURE_2D, texturID[2]);
+		glEnable(GL_TEXTURE_2D);
+		glColor3f(1.0, 1.0, 1.0);
+		glPushMatrix();
+		gluEsfera(8000, 1000, 10000);
+		glPopMatrix();
+		//glDisable(GL_TEXTURE_2D);
+
+		// animaController.DrawHumo();
 
 
 
 		/////////// COHETE!!
-	glColor3f(1.0,1.0,1.0);
+		glColor3f(1.0, 0, 1.0);
 
-		SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
+		//SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
-		glScalef(0.5,0.5,0.5);
-
-
+		glScalef(0.5, 0.5, 0.5);
 
 		switch (animaController.activeRocket) {
 		case '1':

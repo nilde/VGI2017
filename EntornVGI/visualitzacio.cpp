@@ -688,3 +688,22 @@ static void cross(float v1[3], float v2[3], float result[3])
 	result[2] = v1[0] * v2[1] - v1[1] * v2[0];
 }
 
+
+void Init_Textures_Terra()
+{
+	loadIMA("./textures/earth_daymap.jpg", textures[1]);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+
+
+
+	loadIMA("./textures/cielo.png", textures[2]);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+}
+

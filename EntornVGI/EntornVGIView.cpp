@@ -3691,20 +3691,14 @@ void CEntornVGIView::OnUpdateMiraraPlanet(CCmdUI *pCmdUI)
 
 void CEntornVGIView::OnPlanetaTierra()
 {
-	animaController.activePlanet = TIERRA; 
+	animaController.activePlanet = TIERRA;
 
 	// Entorn VGI: Activaci� el contexte OpenGL
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
 
 	//loadIMA("./textures/tierra.jpg", 0);
 
-	loadIMA("./textures/earth_daymap.jpg", 0);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	Init_Textures_Terra();
 
 	// Desactivaci� contexte OpenGL: Permet la coexistencia d'altres contextes de generaci�
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
