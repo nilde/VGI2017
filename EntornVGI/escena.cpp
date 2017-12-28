@@ -158,7 +158,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		fract(iluminacio, true, animaController.step);
 		glPopMatrix();
 
-		glBindTexture(GL_TEXTURE_2D, texturID[2]);
+		glBindTexture(GL_TEXTURE_2D, texturID[7]);
 		glEnable(GL_TEXTURE_2D);
 		glColor3f(1.0, 1.0, 1.0);
 		glPushMatrix();
