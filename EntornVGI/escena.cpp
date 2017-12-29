@@ -179,10 +179,10 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 		glBindTexture(GL_TEXTURE_2D, texturID[8]);
 		glEnable(GL_TEXTURE_2D);
-		glColor4f(1, 1, 1, 0.8);
+		glColor4f(1, 1, 1, 0.15);
 		glPushMatrix();
 		glRotatef(312, 155, 1, 1);
-		gluEsfera(1500, 1000, 10000);
+		gluEsfera(10000, 1000, 10000);
 		glPopMatrix();
 		//glDisable(GL_TEXTURE_2D);
 	
