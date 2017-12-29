@@ -28,23 +28,23 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 	GLfloat angv,angh;
 
 // Configuració de la font de llum LIGHT0
-	GLfloat position[]={90000,90000.0,9000.0,0.0};
+	GLfloat position[]={0,0,7371,0.0};
 	GLfloat especular[]={0.0,0.0,0.0,1.0};
-    GLfloat ambientg[]={.4,.4,.6,1.0};
+    GLfloat ambientg[]={0.1,0.1,0.2,1.0};
 	
 // Definició de llum ambient segons booleana ll_amb
 	if (ll_amb) glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambientg);
 		else glLightModelfv(GL_LIGHT_MODEL_AMBIENT,especular);
-
+		/*
 	if (lumin.encesa) {	if (!ifix) glLightfv(GL_LIGHT0,GL_POSITION,position);
 							else {	// Conversió angles graus -> radians
 									angv=lumin.posicio.alfa*pi/180;
 									angh=lumin.posicio.beta*pi/180;
 		
 									// Conversió Coord. esfèriques -> Coord. cartesianes
-									position[0]=lumin.posicio.R*cos(angh)*cos(angv);	
-									position[1]=lumin.posicio.R*sin(angh)*cos(angv);	
-									position[2]=lumin.posicio.R*sin(angv);
+									position[0] = 0;
+									position[1] = 0;
+									position[2] = 700000;
 									position[3]=1.0;
 									glLightfv(GL_LIGHT0,GL_POSITION,position);			
 								}
@@ -63,14 +63,13 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 						glEnable(GL_LIGHT0);
 					}
 		else glDisable(GL_LIGHT0);
-
+		*/
 		
 
-	glDisable(GL_LIGHT0);
-
-		GLfloat position2[] = { 90000,90000.0,9000.0,0.0 };
+		
+		GLfloat position2[] = { 0,0,7371,0.0 };
 		GLfloat especular2[] = { 0.0,0.0,0.0,1.0 };
-		GLfloat ambientg2[] = { 0.6,0.6,0,1};
+		GLfloat ambientg2[] = { 0.8,0.8,0,1};
 
 		//if (ll_amb) glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientg2);
 		//else glLightModelfv(GL_LIGHT_MODEL_AMBIENT, especular2);
@@ -82,6 +81,10 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 				angh = lumin.posicio.beta*pi / 180;
 
 				// Conversió Coord. esfèriques -> Coord. cartesianes
+				//position2[0] = lumin.posicio.R*cos(angh)*cos(angv);
+				//position2[1] = lumin.posicio.R*sin(angh)*cos(angv);
+				//position2[2] = lumin.posicio.R*sin(angv);
+				//position2[3] = 1.0;
 				position2[0] = lumin.posicio.R*cos(angh)*cos(angv);
 				position2[1] = lumin.posicio.R*sin(angh)*cos(angv);
 				position2[2] = lumin.posicio.R*sin(angv);
@@ -92,9 +95,9 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 			glLightfv(GL_LIGHT1, GL_SPECULAR, lumin.especular);
 
 			// Coeficients factor atenuació f_att=1/(ad2+bd+c)
-			glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, lumin.atenuacio.c);
-			glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, lumin.atenuacio.b);
-			glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, lumin.atenuacio.a);
+			glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.8*lumin.atenuacio.c);
+			glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.8*lumin.atenuacio.b);
+			glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.8*lumin.atenuacio.a);
 			if (lumin.restringida) {
 				glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, lumin.spotdirection);
 				glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, lumin.cutoff);

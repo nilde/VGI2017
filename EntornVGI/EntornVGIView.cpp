@@ -226,7 +226,7 @@ CEntornVGIView::CEntornVGIView()
 
 
 // Entorn VGI: Variables de control del men� Iluminaci�		
-	ilumina = GOURAUD;			ifixe = false;
+	ilumina = GOURAUD;			ifixe = true;
 	// Reflexions actives: Ambient [1], Difusa [2] i Especular [3]. No actives: Emission [0]. 
 	sw_material[0] = true;			sw_material[1] = true;			sw_material[2] = true;			sw_material[3] = false;
 	sw_material_old[0] = false;		sw_material_old[1] = true;		sw_material_old[2] = true;		sw_material_old[3] = true;
@@ -235,10 +235,10 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Variables de control del men� Llums
 	llum_ambient = true;
 	llumGL.encesa = true;
-	llumGL.difusa[0] = 1.0f;		llumGL.difusa[1] = 1.0f;		llumGL.difusa[2] = 1.0f;		llumGL.difusa[3] = 1.0f;
+	llumGL.difusa[0] = 0.7f;		llumGL.difusa[1] = 0.7f;		llumGL.difusa[2] = 0.7f;		llumGL.difusa[3] = 1.0f;
 	llumGL.especular[0] = 1.0f;		llumGL.especular[1] = 1.0f;		llumGL.especular[2] = 1.0f;		llumGL.especular[3] = 1.0f;
 
-	llumGL.posicio.R = 75.0;		llumGL.posicio.alfa = 90.0;		llumGL.posicio.beta = 0.0;		// Posici� llum (x,y,z)=(0,0,75)
+	llumGL.posicio.R = 40000;		llumGL.posicio.alfa = 90.0;		llumGL.posicio.beta = 0.0;		// Posici� llum (x,y,z)=(0,0,75)
 	llumGL.atenuacio.a = 0.0;		llumGL.atenuacio.b = 0.0;		llumGL.atenuacio.c = 1.0;		// Llum sense atenuaci� per dist�ncia (a,b,c)=(0,0,1)
 	llumGL.restringida = false;
 	llumGL.spotdirection[0] = 0.0;	llumGL.spotdirection[1] = 0.0;	llumGL.spotdirection[2] = 0.0;
