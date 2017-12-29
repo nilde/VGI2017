@@ -156,7 +156,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		/////////// COHETE!!
 
 	glPushMatrix();
-	glTranslatef(0,0,7000);
+	glTranslatef(75,-80,6420);
 	glScalef(0.5, 0.5, 0.5);
 	generateRandomClouds(animaController);
 	glPopMatrix();
@@ -1076,7 +1076,7 @@ void generateRandomClouds(AnimaController &animaController) {
 						glPushMatrix();
 						glTranslatef(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);
 						glScalef(float(animaController.clouds.sizeOfBox), float(animaController.clouds.sizeOfBox), float(animaController.clouds.sizeOfBox));
-						glutSolidSphere(1.0, 5, 5);
+						glutSolidSphere(1.0, 4, 4);
 						glPopMatrix();
 					}
 				}

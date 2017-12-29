@@ -98,6 +98,10 @@ void Clouds::initProbabilitiesClouds() {
 
 }
 void Clouds::calcTrueActiveBlocks() {
+	for (int i = 0; i < numClouds;i++) {
+		probabilitiesClouds[i] = rand()%(8)+1;
+
+	}
 	float randomValue = 0;
 	//Generation of the pos for the cloud
 	for (int cloud = 0; cloud < numClouds; cloud++) {
@@ -115,6 +119,20 @@ void Clouds::calcTrueActiveBlocks() {
 			}
 		}
 	}
+	int randomValueCloud = 0;
+	for (int cloud = 0; cloud < numClouds; cloud++) {
+		for (int prof = 0; prof < numProf; prof++) {
+			for (int row = 0; row < numRows; row++) {
+				for (int col = 0; col < numCols; col++) {
+					randomValueCloud =rand()%(8);
+					if (randomValueCloud < probabilitiesClouds[cloud]) {
+						cloudContentActive[cloud][prof][row][col] = 0;
+					}
+				}
+			}
+		}
+	}
+	
 }
 
 
@@ -127,18 +145,18 @@ void Clouds::calcPositions() {
 	
 		for (int prof = 0; prof < numProf; prof++) {
 			if (prof == 0 && cloud > 0) { 
-				actualOffsetX = cloudContentOffset[cloud - 1][0][numRows - 1][0][0] + minOffsetBetweenCloudsX + rand()%(maxOffsetBetweenCloudsX - minOffsetBetweenCloudsX);
-				actualOffsetY = cloudContentOffset[cloud - 1][0][numRows - 1][0][1] + minOffsetBetweenCloudsY + rand()%(maxOffsetBetweenCloudsY - minOffsetBetweenCloudsY);
-				actualOffsetZ = cloudContentOffset[cloud - 1][0][numRows - 1][0][2] + minOffsetBetweenCloudsZ + rand()%(maxOffsetBetweenCloudsZ - minOffsetBetweenCloudsZ);
+				actualOffsetX =  minOffsetBetweenCloudsX + rand()%(maxOffsetBetweenCloudsX - minOffsetBetweenCloudsX);
+				actualOffsetY = minOffsetBetweenCloudsY + rand() % (maxOffsetBetweenCloudsY - minOffsetBetweenCloudsY);
+				actualOffsetZ = minOffsetBetweenCloudsZ + rand() % (maxOffsetBetweenCloudsZ - minOffsetBetweenCloudsZ);
 			}
 			for (int row = 0; row < numRows; row++) {
 
 				for (int col = 0; col < numCols; col++) {
 
 					 // 0 X; 1 Y, 2 Z
-					cloudContentOffset[cloud][prof][row][col][0] = actualOffsetX + sizeOfBox*row + rand()%((sizeOfBox / 4 )- (sizeOfBox / 2))+sizeOfBox/2;
-					cloudContentOffset[cloud][prof][row][col][1] = actualOffsetY + sizeOfBox*col + rand() % ((sizeOfBox / 4) - (sizeOfBox / 2)) + sizeOfBox / 2;
-					cloudContentOffset[cloud][prof][row][col][2] = actualOffsetZ + sizeOfBox*prof + rand() % ((sizeOfBox / 4) - (sizeOfBox / 2)) + sizeOfBox / 2;
+					cloudContentOffset[cloud][prof][row][col][0] = actualOffsetX + sizeOfBox*row*((rand()%(8-3)+3) / 10.0);
+					cloudContentOffset[cloud][prof][row][col][1] = actualOffsetY + sizeOfBox*col*((rand() % (8 - 3) + 3) / 10.0);
+					cloudContentOffset[cloud][prof][row][col][2] = actualOffsetZ + sizeOfBox*prof*((rand() % (8 - 3) + 3) / 10.0);
 					
 				}
 			}
