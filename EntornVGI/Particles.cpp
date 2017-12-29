@@ -87,13 +87,14 @@ void Particles::draw() {
 		}
 		else {
 			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glPointSize(random("size"));
 			glBegin(GL_POINTS);
 			float r, g, b;
 			r = 0.01 * random("r");
 			g = 0.01 * random("g");
 			b = 0.01 * random("b");
-			glColor4f(r, g, b, 0.2);
+			glColor4f(r, g, b, alpha);
 			glVertex3f(particle[i].x,particle[i].y, particle[i].z);
 			glEnd();
 		}

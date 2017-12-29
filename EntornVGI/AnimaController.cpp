@@ -18,7 +18,7 @@ AnimaController::AnimaController()
 	humo.blue_min = 90;
 	humo.blue_max = 100;
 	humo.age_min = 200;
-	humo.age_max = 800;
+	humo.age_max = 700;
 	humo.sx_min = -30;
 	humo.sx_max = 30;
 	humo.sy_min = -200;
@@ -27,7 +27,7 @@ AnimaController::AnimaController()
 	humo.sz_max = 30;
 	humo.size_min = 20;
 	humo.size_max = 30;
-	humo.alpha = 0.3;
+	humo.alpha = 0.45;
 
 
 }
