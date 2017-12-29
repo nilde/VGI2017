@@ -157,16 +157,37 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glScalef(mida, mida, mida);
 		fract(iluminacio, true, animaController.step);
 		glPopMatrix();
-/*
-		glBindTexture(GL_TEXTURE_2D, texturID[7]);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+
+		for (int i = 0; i < 8; i++) {
+			glBindTexture(GL_TEXTURE_2D, texturID[7]);
+			glEnable(GL_TEXTURE_2D);
+			glColor4f(0.5, 0.8, 1, 0.13-0.005*i);
+			glPushMatrix();
+			glRotatef(300+50*i, 50*i, 90*i+10*i, 1);
+			gluEsfera(6100+80*i, 100, 100);
+			glPopMatrix();
+		}
+
+	
+
+
+		
+
+		glBindTexture(GL_TEXTURE_2D, texturID[8]);
 		glEnable(GL_TEXTURE_2D);
-		glColor3f(1.0, 1.0, 1.0);
+		glColor4f(1, 1, 1, 0.8);
 		glPushMatrix();
-		gluEsfera(8000, 1000, 10000);
+		glRotatef(312, 155, 1, 1);
+		gluEsfera(1500, 1000, 10000);
 		glPopMatrix();
 		//glDisable(GL_TEXTURE_2D);
-	*/	
+	
 		// animaController.DrawHumo();
+		glColor4f(1, 1, 1, 1);
 
 
 

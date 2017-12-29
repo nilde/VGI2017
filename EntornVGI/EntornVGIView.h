@@ -130,6 +130,7 @@ public:
 	char Vis_Polar;			// Variable que controla orientació dels eixos en Visualització Interactiva (POLARZ,POLARY,POLARX)
 	GLfloat center[3];   // Punt cap on mira.
 
+	float cfr, cfg, cfb;
 
 // Entorn VGI: Color de fons i de l'objecte
 	bool fonsR, fonsG, fonsB;	// Booleanes per controlar variació de color per teclat.

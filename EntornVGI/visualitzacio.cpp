@@ -28,7 +28,7 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 	GLfloat angv,angh;
 
 // Configuració de la font de llum LIGHT0
-	GLfloat position[]={0,0,7371,0.0};
+	GLfloat position[]{333,3333,7371,0.0};
 	GLfloat especular[]={0.0,0.0,0.0,1.0};
     GLfloat ambientg[]={0.1,0.1,0.2,1.0};
 	
@@ -738,7 +738,7 @@ static void cross(float v1[3], float v2[3], float result[3])
 
 void Init_Textures_Terra()
 {
-	loadIMA("./textures/earth_daymap.jpg", textures[1]);
+	loadIMA("./textures/tierra.jpg", textures[1]);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -749,6 +749,10 @@ void Init_Textures_Terra()
 
 	loadIMA("./textures/cielo.png", textures[2]);
 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	loadIMA("./textures/estrellas.jpg", textures[3]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 

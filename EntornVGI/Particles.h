@@ -31,8 +31,8 @@ public:
 	int green_max = 50;
 	int blue_min = 1;
 	int blue_max = 3;
-	int age_min = 1;
-	int age_max = 50;
+	int age_min = 30;
+	int age_max = 80;
 	int sx_min = -50;
 	int sx_max = 50;
 	int sy_min = -200;
