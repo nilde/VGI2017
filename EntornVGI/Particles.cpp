@@ -8,38 +8,38 @@ int Particles::random(string valueToRandomize) {
 	int max = 1;
 	int min = 0;
 	if (valueToRandomize == "r") {
-		min = 80;
-		max = 100;
+		min = red_min;
+		max = red_max;
 	}
 	if (valueToRandomize == "g") {
-		min = 0;
-		max = 100;
+		min = green_min;
+		max = green_max;
 	}
 	if (valueToRandomize == "b") {
-		min = 0;
-		max = 10;
+		min = blue_min;
+		max = blue_max;
 	}
 
 	if (valueToRandomize == "age") {
-		min = 1;
-		max = 50;
+		min = age_min;
+		max = age_max;
 	}
 	else if (valueToRandomize == "speedX") {
-		min = -50;
-		max = 50;
+		min = sx_min;
+		max = sx_max;
 	}
 	else if (valueToRandomize == "speedY") {
-		min = -300;
-		max = -100;
+		min = sy_min;
+		max = sy_max;
 	}
 
 	else if (valueToRandomize == "speedZ") {
-		min = -50;
-		max = 50;
+		min = sz_min;
+		max = sz_max;
 	}
 	else if (valueToRandomize == "size") {
-		min = 1;
-		max = 10;
+		min = size_min;
+		max = size_max;
 	}
 
 	return output = min + (rand() % static_cast<int>(max - min + 1));
@@ -93,7 +93,7 @@ void Particles::draw() {
 			r = 0.01 * random("r");
 			g = 0.01 * random("g");
 			b = 0.01 * random("b");
-			glColor4f(r, g, b, 0.9);
+			glColor4f(r, g, b, 0.2);
 			glVertex3f(particle[i].x,particle[i].y, particle[i].z);
 			glEnd();
 		}
@@ -113,14 +113,13 @@ void Particles::initialize() {
 	UPDATE_VEL_Y = 1;
 	UPDATE_VEL_Z = 1;
 
-
-
 }
 
 Particles::Particles()
 {
 	initialize();
 }
+
 
 
 

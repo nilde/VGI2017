@@ -214,7 +214,8 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		if (animaController.count % 500 == 0) {
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
-			animaController.particles.draw();
+			animaController.fuego.draw();
+			animaController.humo.draw();
 		}
 		if (animaController.count == 32760) {
 			animaController.count = 0;

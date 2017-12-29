@@ -13,7 +13,8 @@ public:
 	Rocket rocket;
 	Planet planet;
 
-	Particles particles;
+	Particles fuego;
+	Particles humo;
 
 	char activePlanet = CAP;
 	char activeRocket = '1';
