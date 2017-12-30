@@ -29,6 +29,8 @@ public:
 
 	bool esferica = true;
 
+	bool multiView = false;
+
 	char lookat = ROCKET;
 
 	int step;

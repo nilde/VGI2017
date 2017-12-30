@@ -759,3 +759,14 @@ void Init_Textures_Terra()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
+void oneView(int minx, int miny, GLsizei w, GLsizei h, float zoom)
+{
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(minx, miny, w - 1, h - 1); // Definicio del retall de pantalla
+	glViewport(minx, miny, w, h); // Definició del Viewport
+	glMatrixMode(GL_PROJECTION); // Activació de la matriu GL_PROJECTION
+	glLoadIdentity(); // Inicialització de GL_PROJECTION
+
+	gluPerspective(60.0, 1.0*w / h, p_near, p_far); // Matriu de projecció i Volum de Visualització
+}
+

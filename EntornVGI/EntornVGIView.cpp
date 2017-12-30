@@ -174,6 +174,8 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_UPDATE_COMMAND_UI(ID_COHETE_TRES, &CEntornVGIView::OnUpdateCoheteTres)
 		ON_COMMAND(ID_COHETE_QUATRE, &CEntornVGIView::OnCoheteQuatre)
 		ON_UPDATE_COMMAND_UI(ID_COHETE_QUATRE, &CEntornVGIView::OnUpdateCoheteQuatre)
+		ON_COMMAND(ID_CAMERA_MULTIVIEW, &CEntornVGIView::OnCameraMultiview)
+		ON_UPDATE_COMMAND_UI(ID_CAMERA_MULTIVIEW, &CEntornVGIView::OnUpdateCameraMultiview)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -754,7 +756,7 @@ void CEntornVGIView::OnPaint()
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
 
-	case PERSPECT:
+	case MULTI_VIEW:
 // PROJECCI� PERSPECTIVA
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Set Perspective Calculations To Most Accurate
 		glDisable(GL_SCISSOR_TEST);		// Desactivaci� del retall de pantalla
@@ -777,6 +779,101 @@ void CEntornVGIView::OnPaint()
 		glPopMatrix();
 
 // Intercanvia l'escena al front de la pantalla
+		SwapBuffers(m_pDC->GetSafeHdc());
+		break;
+	case PERSPECT:
+				  // Activaci� del retall de pantalla
+		glEnable(GL_SCISSOR_TEST);
+
+		// Retall
+		glScissor(0, 0, w, h);
+		glViewport(0, 0, w, h);
+
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Set Perspective Calculations To Most Accurate
+
+														   //CAMARA 1
+		oneView(0, h / 2, w / 2, h / 2, OPV.R);
+
+		if (firstIter)
+		{
+			opvNStatic1.x = animaController.rocket.m_x;
+			opvNStatic1.y = animaController.rocket.m_y - 4;
+			opvNStatic1.z = animaController.rocket.m_z + 0.2;
+			firstIter = false;
+		}
+
+		n[0] = animaController.rocket.m_x;
+		n[1] = animaController.rocket.m_y;
+		n[2] = animaController.rocket.m_z + 0.5;
+
+		Vista_Navega(opvNStatic1, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
+			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
+
+
+		// Dibuix de l'Objecte o l'Escena
+		glPushMatrix();
+		configura_Escena();     // Aplicar Transformacions Geometriques segons persiana Transformacio i configurar objectes.
+		dibuixa_Escena();		// Dibuix geometria de l'escena amb comandes GL.
+		glPopMatrix();
+
+		//CAMARA 2
+		// Definici� de Viewport, Projecci� i C�mara
+		oneView(w / 2, h / 2, w / 2, h / 2, OPV.R);
+
+		opvN.x = animaController.rocket.m_x;
+		opvN.y = animaController.rocket.m_y;
+		opvN.z = animaController.rocket.m_z + 4;
+
+		n[0] = 0;// animaController.rocket.m_x;
+		n[1] = 0;// animaController.rocket.m_y;
+		n[2] = 0;// animaController.rocket.m_z;
+
+		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
+			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
+
+		// Dibuix de l'Objecte o l'Escena
+		glPushMatrix();
+		configura_Escena();     // Aplicar Transformacions Geometriques segons persiana Transformacio i configurar objectes.
+		dibuixa_Escena();		// Dibuix geometria de l'escena amb comandes GL.
+		glPopMatrix();
+
+		//CAMARA3
+		oneView(0, 0, w / 2, h / 2, OPV.R);
+
+		opvN.x = animaController.rocket.m_x;
+		opvN.y = animaController.rocket.m_y - 4;
+		opvN.z = animaController.rocket.m_z + 0.2;
+
+		n[0] = animaController.rocket.m_x;
+		n[1] = animaController.rocket.m_y;
+		n[2] = animaController.rocket.m_z + 0.5;
+
+		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
+			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
+
+		// Dibuix de l'Objecte o l'Escena
+		glPushMatrix();
+		configura_Escena();     // Aplicar Transformacions Geometriques segons persiana Transformacio i configurar objectes.
+		dibuixa_Escena();		// Dibuix geometria de l'escena amb comandes GL.
+		glPopMatrix();
+
+
+
+		//CAMARA 4
+		oneView(w / 2, 0, w / 2, h / 2, OPV.R);
+		
+		n[0] = 0;		n[1] = 0;		n[2] = 0;
+		Vista_Esferica(OPV, Vis_Polar, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, mida, pas,
+			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura,
+			textura_map, ifixe, eixos, center);
+
+		// Dibuix de l'Objecte o l'Escena
+		glPushMatrix();
+		configura_Escena();     // Aplicar Transformacions Geometriques segons persiana Transformacio i configurar objectes.
+		dibuixa_Escena();		// Dibuix geometria de l'escena amb comandes GL.
+		glPopMatrix();
+
+		// Intercanvia l'escena al front de la pantalla
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
 
@@ -3562,6 +3659,7 @@ void CEntornVGIView::executeTrayectory() {
 void CEntornVGIView::OnLaunch()
 {
 	anima = true;
+	
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 
@@ -3848,6 +3946,34 @@ void CEntornVGIView::OnCoheteQuatre()
 void CEntornVGIView::OnUpdateCoheteQuatre(CCmdUI *pCmdUI)
 {
 	if (animaController.activeRocket == '4') {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+void CEntornVGIView::OnCameraMultiview()
+{
+	animaController.multiView = !animaController.multiView;
+
+	if (animaController.multiView)
+	{
+		projeccio = MULTI_VIEW;
+		firstIter = true;
+	}
+	else
+	{
+		projeccio = PERSPECT;
+	}
+
+	InvalidateRect(NULL, false);
+}
+
+
+void CEntornVGIView::OnUpdateCameraMultiview(CCmdUI *pCmdUI)
+{
+	if (animaController.multiView) {
 		pCmdUI->SetCheck(1);
 	}
 	else {

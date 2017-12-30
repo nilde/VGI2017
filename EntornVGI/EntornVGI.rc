@@ -415,6 +415,7 @@ BEGIN
             MENUITEM "Rocket",                      ID_MIRARA_ROCKET
             MENUITEM "planet",                      ID_MIRARA_PLANET
         END
+        MENUITEM "MultiView",                   ID_CAMERA_MULTIVIEW
     END
     POPUP "Planeta"
     BEGIN

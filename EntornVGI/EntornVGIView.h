@@ -38,6 +38,7 @@ protected: // Crear sólo a partir de serialización
 
 // Atributos
 public:
+	bool firstIter = true;
 
 	int iter = 0;
 
@@ -70,6 +71,7 @@ public:
 // Entorn VGI: Variables de control de l'opció Vista->Navega?
 	GLfloat n[3];   // Punt cap on mira.
 	CPunt3D opvN;   // Definició Orígen Punt de Vista (en coordenades món)
+	CPunt3D opvNStatic1;
 	float angleZ;   // angle de rotació de la trajectòria.
 
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
@@ -357,6 +359,8 @@ public:
 	afx_msg void OnUpdateCoheteTres(CCmdUI *pCmdUI);
 	afx_msg void OnCoheteQuatre();
 	afx_msg void OnUpdateCoheteQuatre(CCmdUI *pCmdUI);
+	afx_msg void OnCameraMultiview();
+	afx_msg void OnUpdateCameraMultiview(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

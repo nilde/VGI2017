@@ -204,13 +204,14 @@
 #define ID_COHETE_LANZADERA             32873
 #define ID_COHETE_TRES                  32874
 #define ID_COHETE_QUATRE                32875
+#define ID_CAMERA_MULTIVIEW             32878
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
-#define _APS_NEXT_COMMAND_VALUE         32876
+#define _APS_NEXT_COMMAND_VALUE         32879
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

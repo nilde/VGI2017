@@ -65,4 +65,5 @@ static void cross(float v1[3], float v2[3], float result[3]);
 
 
 void Init_Textures_Terra();
+void oneView(int minx, int miny, GLsizei w, GLsizei h, float zoom);
 #endif

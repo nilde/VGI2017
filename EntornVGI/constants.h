@@ -16,6 +16,7 @@
 #define PERSPECT 'P'
 #define IMA_PICK 3
 #define PASSEIG_V 4
+#define MULTI_VIEW 'M'
 
 
 //--------------- VGI: Tipus de Polars (per la Visualització Interactiva)
