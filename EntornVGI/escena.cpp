@@ -137,12 +137,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		
 		char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 		GLfloat mida = 0.55;
-		glPushMatrix();
-		glTranslatef(70, -90, 6366);
-		glScalef(mida, mida, mida);
-		fract(iluminacio, true, animaController.step);
-		glPopMatrix();
-
+		if (animaController.clouds.deleteCatalunya == false) {
+			glPushMatrix();
+			glTranslatef(70, -90, 6366);
+			glScalef(mida, mida, mida);
+			fract(iluminacio, true, animaController.step);
+			glPopMatrix();
+		}
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
@@ -153,7 +154,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glColor4f(0.5, 0.8, 1, 0.13-0.005*i);
 			glPushMatrix();
 			glRotatef(300+50*i, 50*i, 90*i+10*i, 1);
-			gluEsfera(6300+200*i, 100, 100);
+			gluEsfera(6300+500*i, 100, 100);
 			glPopMatrix();
 		}
 
@@ -230,12 +231,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPopMatrix();
 
 		glPushMatrix();
-		glTranslatef(0,0,6490);
+		glTranslatef(150,50,6400);
 		glRotatef(90, 1, 0, 0);
 		//glScalef(1,1,1);
 		glBindTexture(GL_TEXTURE_2D, texturID[0]);
 		glEnable(GL_TEXTURE_2D);
 		glScalef(0.05, 0.05, 0.05);
+		//if(animaController.rocket)
 		generateRandomClouds(animaController);
 		glPopMatrix();
 	// Enviar les comandes gr�fiques a pantalla
@@ -1108,15 +1110,30 @@ void sea(void)
 }
 
 void generateRandomClouds(AnimaController &animaController) {
+	float alpha=0;
+	
 	//Print all the data of the blocks
-	for (int cloud = 0; cloud < animaController.clouds.numCloudsR; cloud++) {
-		for(int prof=0;prof < animaController.clouds.numProfR;prof++){
+	if (animaController.rocket.m_z+300 > animaController.clouds.maxHighCloud)
+		animaController.clouds.rocketOverClouds = true;
+	if (animaController.clouds.rocketOverClouds)
+		alpha = (animaController.rocket.m_z+400 - animaController.clouds.maxHighCloud)/5.0;
+	if (alpha >= 0.3) {
+		animaController.clouds.numStepsBeforeDelete--;
+		if (animaController.clouds.numStepsBeforeDelete==0)
+			animaController.clouds.deleteCatalunya = true;
+	}
+	if (alpha >= 0.3) {
+		alpha = 0.3;
+	}
+
+	for (int cloud = 0; cloud < animaController.clouds.numCloudsR; ++cloud) {
+		for(int prof=0;prof < animaController.clouds.numProfR;++prof){
 			for (int row = 0; row < animaController.clouds.numRowsR; ++row) {
 				for (int col = 0; col < animaController.clouds.numColsR; ++col) {
 					if (animaController.clouds.cloudContentActive[cloud][prof][row][col] ==true) {
 						glEnable(GL_BLEND);
 						glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-						glColor4f(0.97,0.95,0.92,0.15);
+						glColor4f(0.97,0.95,0.92,0.1+alpha);
 						glPointSize(float(animaController.clouds.sizeOfBox));
 						glBegin(GL_POINTS);
 						glVertex3f(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);

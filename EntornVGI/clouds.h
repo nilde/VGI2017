@@ -1,10 +1,10 @@
 #ifndef _CLOUDS
 #define _CLOUDS
 
-const int numClouds = 400; //1D
-const int numProf = 7;	//2D
-const int numRows = 8;	//3D
-const int numCols = 5;	//4D
+const int numClouds = 120; //1D
+const int numProf = 5;	//2D
+const int numRows = 14;	//3D
+const int numCols = 17;	//4D
 const int numDimensions = 3; //5D
 
 class Clouds {
@@ -17,16 +17,17 @@ public:
 	void initProbabilitiesClouds();
 	void calcTrueActiveBlocks();
 	void calcPositions();
+	void maxPrune();
 
 	//Variables
-	const float sizeOfBox =110; //Tamano de los cubos que van a aparecer
+	const float sizeOfBox =70; //Tamano de los cubos que van a aparecer
 
 
-	const int minOffsetBetweenCloudsX = -6100; //Distancia minima entre nubes
-	const int maxOffsetBetweenCloudsX = 1010; //Distancia maxima entre nubes
-	const int minOffsetBetweenCloudsY = 0; //Distancia minima entre nubes
-	const int maxOffsetBetweenCloudsY = 300; //Distancia maxima entre nubes
-	const int minOffsetBetweenCloudsZ = -7000; //Distancia minima entre nubes
+	const int minOffsetBetweenCloudsX = -4100; //Distancia minima entre nubes
+	const int maxOffsetBetweenCloudsX = 4010; //Distancia maxima entre nubes
+	const int minOffsetBetweenCloudsY = -3000; //Distancia minima entre nubes
+	const int maxOffsetBetweenCloudsY = 3000; //Distancia maxima entre nubes
+	const int minOffsetBetweenCloudsZ = 0; //Distancia minima entre nubes
 	const int maxOffsetBetweenCloudsZ = 7000; //Distancia maxima entre nubes
 	
 	const float posXFirstCloud = 0;
@@ -38,6 +39,10 @@ public:
 	int numRowsR = numRows;	//3D
 	int numColsR = numCols;	//4D
 	int numDimensionsR = numDimensions; //5D
+	int maxHighCloud = 0;
+	bool rocketOverClouds=false;
+	int numStepsBeforeDelete = 20;
+	bool deleteCatalunya = false;
 
 
 	int OffsetsBetweenClouds[numClouds][numDimensions];

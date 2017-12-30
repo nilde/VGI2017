@@ -22,7 +22,7 @@ Clouds::Clouds()
 
 	calcTrueActiveBlocks();
 	calcPositions();
-
+	maxPrune();
 
 	
 
@@ -157,10 +157,31 @@ void Clouds::calcPositions() {
 					cloudContentOffset[cloud][prof][row][col][0] = actualOffsetX + sizeOfBox*row*((rand()%(8-3)+3) / 10.0);
 					cloudContentOffset[cloud][prof][row][col][1] = actualOffsetY + sizeOfBox*col*((rand() % (8 - 3) + 3) / 10.0);
 					cloudContentOffset[cloud][prof][row][col][2] = actualOffsetZ + sizeOfBox*prof*((rand() % (8 - 3) + 3) / 10.0);
-					
+					if (maxHighCloud < cloudContentOffset[cloud][prof][row][col][2])
+						maxHighCloud = cloudContentOffset[cloud][prof][row][col][2]-100;
 				}
 			}
 		}
 	}
 
+}
+void Clouds::maxPrune() {
+	int numPrunesForCloud = (numCols*numRows*numProf)/2;
+	int numPrunesClouds = numClouds / 3;
+
+	int randomIndexCloud = 0;
+	int randomPositionSelected = 0;
+	int randomProf = 0;
+	int randomCol = 0;
+	int randomRow = 0;
+
+	for (int actualCloud = 0; actualCloud < numPrunesClouds; ++actualCloud) {
+		randomIndexCloud = rand() % (numClouds - 1);
+		for (int actualPrune = 0; actualPrune < numPrunesForCloud; ++actualPrune) {
+			randomProf = rand() % (numProf - 1);
+			randomRow = rand() % (numRows - 1);
+			randomCol = rand() % (numCols - 1);
+			cloudContentActive[randomIndexCloud][randomProf][randomRow][randomCol] = 0;
+		}
+	}
 }
