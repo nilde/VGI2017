@@ -46,7 +46,7 @@ int Particles::random(string valueToRandomize) {
 }
 
 
-//Inicializa las partículas en el punto (0,0,0) y da una velocidad
+//Inicializa las partï¿½culas en el punto (0,0,0) y da una velocidad
 //diferente y un tiempo de vida diferente a cada una
 void Particles::create(int i) {
 
@@ -59,13 +59,13 @@ void Particles::create(int i) {
 	particle[i].sz = random("speedZ");
 }
 
-//Se calcula la evolución de las partículas teniendo en cuenta la fórmula
+//Se calcula la evoluciï¿½n de las partï¿½culas teniendo en cuenta la fï¿½rmula
 // NextPosition = CurrentPosition + (Speed * UpdateSpeed) 
 void Particles::evolve(int i) {
 
 	particle[i].age = particle[i].age - AGE_DECREMENT;
 
-	//Desactivado temporalmente la actualización para encontrar el error
+	//Desactivado temporalmente la actualizaciï¿½n para encontrar el error
 	particle[i].x = particle[i].x + (particle[i].sx * UPDATE_VEL_X);
 	particle[i].y = particle[i].y + (particle[i].sy * UPDATE_VEL_Y);
 	particle[i].z = particle[i].z + (particle[i].sz * UPDATE_VEL_Z);
@@ -77,7 +77,7 @@ void Particles::evolve(int i) {
 }
 
 //Bucle para dibujar en pantalla los diferentes puntos que componen
-//el sistema de partículas. Para ello crea los puntos y los va
+//el sistema de partï¿½culas. Para ello crea los puntos y los va
 //evolucionando para que pueda existir un movimiento
 void Particles::draw() {
 
@@ -95,7 +95,7 @@ void Particles::draw() {
 			g = 0.01 * random("g");
 			b = 0.01 * random("b");
 			glColor4f(r, g, b, alpha);
-			glVertex3f(particle[i].x,particle[i].y, particle[i].z);
+			glVertex3f(particle[i].x, particle[i].y, particle[i].z);
 			glEnd();
 		}
 		evolve(i);
@@ -127,15 +127,15 @@ Particles::Particles()
 /*
 int main(int argc, char** argv)
 {
-//Inicializa la librería GLUT i se configura la visualización en pantalla
+//Inicializa la librerï¿½a GLUT i se configura la visualizaciï¿½n en pantalla
 glutInit(&argc, argv);
 glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 glutInitWindowPosition(WINDOW_X, WINDOW_Y);
 glutInitWindowSize(SIZE_X, SIZE_Y);
 glutCreateWindow("Particle System");
 
-//Define el timer de la aplicación
-//El 4 es el valor en ms de la actualización
+//Define el timer de la aplicaciï¿½n
+//El 4 es el valor en ms de la actualizaciï¿½n
 glutDisplayFunc(draw);
 glutTimerFunc(4, timerCallBack, 1);
 //trabaja en conjunto con glutPostRedisplay()

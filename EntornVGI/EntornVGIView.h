@@ -29,6 +29,7 @@
 #include "AnimaController.h"
 
 
+
 class CEntornVGIView : public CView
 {
 protected: // Crear sólo a partir de serialización
@@ -165,7 +166,6 @@ public:
 	CString nom;	// Nom de fitxer.
 	CString buffer; // Buffer que magatzema string caracters corresponent a variables float a printar en Status Bar (funció Barra_Estat).
 //-------------- Entorn VGI: Fi De Variables globals de CEntornVGIView
-
 
 // Reemplazos
 public:
@@ -334,10 +334,6 @@ public:
 	void OnLaunch();
 	afx_msg void OnTrayectoriaStop();
 	afx_msg void OnTrayectoriaRestart();
-	afx_msg void OnCameraCam1();
-	afx_msg void OnCameraCam2();
-	afx_msg void OnCameraCam3();
-	afx_msg void OnCameraCam4();
 	afx_msg void OnCameraSeguir();
 	afx_msg void OnUpdateCameraSeguir(CCmdUI *pCmdUI);
 	void Navega();
@@ -351,8 +347,6 @@ public:
 	afx_msg void OnUpdateMiraraPlanet(CCmdUI *pCmdUI);
 	afx_msg void OnPlanetaTierra();
 	afx_msg void OnUpdatePlanetaTierra(CCmdUI *pCmdUI);
-	afx_msg void OnCobeteUno();
-	afx_msg void OnUpdateCobeteUno(CCmdUI *pCmdUI);
 	afx_msg void OnCoheteUno();
 	afx_msg void OnUpdateCoheteUno(CCmdUI *pCmdUI);
 	afx_msg void ShowFractal(char*fitxer);

@@ -2,6 +2,9 @@
 #include "rocket.h"
 #include "Planet.h"
 #include "Particles.h"
+#include "clouds.h"
+
+
 
 class AnimaController {
 public:
@@ -9,9 +12,12 @@ public:
 	int count = 0;
 
 	AnimaController();
+	//~AnimaController();
 
+	void generateStructuresForClouds();
 	Rocket rocket;
 	Planet planet;
+	Clouds clouds;
 
 	Particles fuego;
 	Particles humo;
@@ -29,6 +35,6 @@ public:
 
 	const float TSTEP = 0.1;
 	const float TIMER = 100; // milisegundos
-	
+
 };
 

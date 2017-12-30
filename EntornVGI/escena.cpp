@@ -1,6 +1,6 @@
-//******** PRACTICA VISUALITZACIÓ GRÀFICA INTERACTIVA (Escola Enginyeria - UAB)
-//******** Entorn bàsic VS2013 MULTIFINESTRA amb OpenGL, interfície MFC i Status Bar
-//******** Ferran Poveda, Marc Vivet, Carme Julià, Débora Gil, Enric Martí (Setembre 2017)
+//******** PRACTICA VISUALITZACIï¿½ GRï¿½FICA INTERACTIVA (Escola Enginyeria - UAB)
+//******** Entorn bï¿½sic VS2013 MULTIFINESTRA amb OpenGL, interfï¿½cie MFC i Status Bar
+//******** Ferran Poveda, Marc Vivet, Carme Juliï¿½, Dï¿½bora Gil, Enric Martï¿½ (Setembre 2017)
 // escena.cpp : Aqui es on ha d'anar el codi de les funcions que 
 //              dibuixin les escenes.
 
@@ -112,21 +112,6 @@ void gluEsfera(GLdouble radius, GLint slices, GLint stacks)
 }
 
 
-
-///////////////////////////////////////77
-
-
-
-
-
-
-
-
-
-
-
-
-
 // TEXTURES: Vector de noms de textura
 GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -162,13 +147,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 4; i++) {
 			glBindTexture(GL_TEXTURE_2D, texturID[7]);
 			glEnable(GL_TEXTURE_2D);
 			glColor4f(0.5, 0.8, 1, 0.13-0.005*i);
 			glPushMatrix();
 			glRotatef(300+50*i, 50*i, 90*i+10*i, 1);
-			gluEsfera(6100+80*i, 100, 100);
+			gluEsfera(6300+200*i, 100, 100);
 			glPopMatrix();
 		}
 
@@ -187,10 +172,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		//glDisable(GL_TEXTURE_2D);
 	
 		// animaController.DrawHumo();
-		glColor4f(1, 1, 1, 1);
+		
 
-
-
+		
 		/////////// COHETE!!
 		//glColor3f(1.0, 0, 1.0);
 
@@ -230,29 +214,37 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 		}
 		glScalef(0.005, 0.005, 0.005);
-		glTranslatef(0,0,-2);
+		glTranslatef(0, 0, -2);
 
 		if (animaController.count % 500 == 0) {
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
 			animaController.fuego.draw();
 			animaController.humo.draw();
+
 		}
 		if (animaController.count == 32760) {
 			animaController.count = 0;
 		}
-		
-
+	
 		glPopMatrix();
 
-
-	// Enviar les comandes gràfiques a pantalla
+		glPushMatrix();
+		glTranslatef(0,0,6490);
+		glRotatef(90, 1, 0, 0);
+		//glScalef(1,1,1);
+		glBindTexture(GL_TEXTURE_2D, texturID[0]);
+		glEnable(GL_TEXTURE_2D);
+		glScalef(0.05, 0.05, 0.05);
+		generateRandomClouds(animaController);
+		glPopMatrix();
+	// Enviar les comandes grï¿½fiques a pantalla
 	glFlush();
 
 }
 
 
-// dibuixa: Funció que dibuixa objectes simples de la llibreria GLUT segons obj
+// dibuixa: Funciï¿½ que dibuixa objectes simples de la llibreria GLUT segons obj
 void dibuixa(char obj)
 {
 	switch(obj)
@@ -294,8 +286,8 @@ void dibuixa(char obj)
 
 }
 
-// OBJECTE Truck amb imatges textura si són actives
-// Truck: Paràmetres:
+// OBJECTE Truck amb imatges textura si sï¿½n actives
+// Truck: Parï¿½metres:
 //    - textu: Flag de textures activades o no.
 //    - VTextu: Vector d'imatges textura.
 void truck(bool textu,GLuint VTextu[NUM_MAX_TEXTURES])
@@ -424,7 +416,7 @@ glPushMatrix();
 // Color proteccions roda sense textura
 	glColor4f(0.5f,0.7f,1.0f,0.5f);
 
-// Protecció de roda esquerra
+// Protecciï¿½ de roda esquerra
 	glPushMatrix();		
 		glTranslatef(10.0f, 0.0f, 3.0f);
 		glBegin(GL_QUADS);
@@ -462,7 +454,7 @@ glPushMatrix();
 		glEnd();
 	glPopMatrix();
 
-// Protecció de roda dreta
+// Protecciï¿½ de roda dreta
 	glPushMatrix();		
 		glTranslatef(-16.0f, 0.0f, 3.0f);
 		glBegin(GL_QUADS);
@@ -639,7 +631,7 @@ glPushMatrix();
 	if (textu) glDisable(GL_TEXTURE_2D);
 
 // VIDRE CABINA (SENSE TEXTURA)
-// Activar transparència
+// Activar transparï¿½ncia
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 
@@ -676,7 +668,7 @@ glPushMatrix();
 	  glEnd();
 	glPopMatrix();
 
-// Desactivar transparència
+// Desactivar transparï¿½ncia
 	glDisable(GL_BLEND);
 
 // TUBS D'ESCAPAMENT (SENSE TEXTURA)
@@ -728,7 +720,7 @@ glPushMatrix();
 
 // Conjunt eixos i rodes eix mig
 	glPushMatrix();
-// Desplaçament Eix Mig
+// Desplaï¿½ament Eix Mig
 	  glTranslatef(0.0f,72.0f,0.0f);
 
 // Color eix sense textura
@@ -757,7 +749,7 @@ glPushMatrix();
 // Desactivar textura
 	if (textu) glDisable(GL_TEXTURE_2D);
 
-// Desplaçament entre dos eixos
+// Desplaï¿½ament entre dos eixos
 	  glTranslatef(0.0f,25.0f,0.0f);
 
 // Color eix sense textura
@@ -890,7 +882,7 @@ glPushMatrix();
 // Conjunt eixos i rodes eix darrera
 	glPushMatrix();
 
-// Desplaçament Eix Darrera
+// Desplaï¿½ament Eix Darrera
 	  glTranslatef(0.0f,162.0f,0.0f);
 
 // Color eix sense textura
@@ -919,7 +911,7 @@ glPushMatrix();
 // Desactivar textura
 	if (textu) glDisable(GL_TEXTURE_2D);
 
-// Desplaçament entre dos eixos
+// Desplaï¿½ament entre dos eixos
 	  glTranslatef(0.0f,25.0f,0.0f);
 
 // Color eix sense textura
@@ -961,15 +953,15 @@ if (textu)
 
 
 // Dibuix de roda
-// neumatic: Paràmetres:
+// neumatic: Parï¿½metres:
 //    - textur: Flag de textures activades o no.
 //    - VTextur: Vector d'imatges textura.
 void neumatic(bool textur, GLuint VTextur[NUM_MAX_TEXTURES])
 {
-// Textura neumàtic
+// Textura neumï¿½tic
 	if (textur)  
 		{	
-// Activar textura neumàtic
+// Activar textura neumï¿½tic
 			glBindTexture(GL_TEXTURE_2D,VTextur[1]) ;
 			
 			glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
@@ -977,34 +969,34 @@ void neumatic(bool textur, GLuint VTextur[NUM_MAX_TEXTURES])
 			glEnable(GL_TEXTURE_2D);
 		}
 
-// Color neumàtic sense textura
+// Color neumï¿½tic sense textura
 	glColor4f(0.2f,0.2f,0.2f,0.5f);	
 
 	glPushMatrix();
-// Tapa inferior neumàtic
+// Tapa inferior neumï¿½tic
 	  glRotatef(90.0f,0.0f,1.0f,0.0f);
 	  gluDisc(5.0f, 10.0f, RESOLUCIO_RODA, 1);
 
 // Dibuix de la llanta
 	  llanta(textur,VTextur);
 
-// Textura neumàtic
+// Textura neumï¿½tic
 	  if (textur)  
 		{	
-// Activar textura neumàtic
+// Activar textura neumï¿½tic
 			glBindTexture(GL_TEXTURE_2D,VTextur[1]) ;	
 			glTexGeni(GL_S,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
 			glTexGeni(GL_T,GL_TEXTURE_GEN_MODE,GL_OBJECT_LINEAR);
 			glEnable(GL_TEXTURE_2D);
 		}
 
-// Color neumàtic sense textura
+// Color neumï¿½tic sense textura
 	glColor4f(0.2f,0.2f,0.2f,0.5f);	
 
-// Gruix del neumàtic
+// Gruix del neumï¿½tic
 	  glTranslatef(0.0f,0.0f,-6.0f);
 	  gluCilindre(10, 10, 6.0f, RESOLUCIO_RODA, 1);
-// Tapa superior neumàtic
+// Tapa superior neumï¿½tic
 	  glRotatef(180.0f,0.0f,1.0f,0.0f);
 	  gluDisc(5.0f, 10.0f, RESOLUCIO_RODA, 1);
 // Dibuix de la llanta
@@ -1017,7 +1009,7 @@ void neumatic(bool textur, GLuint VTextur[NUM_MAX_TEXTURES])
 }
 
 // Dibuix de la llanta de la roda
-// llanta: Paràmetres:
+// llanta: Parï¿½metres:
 //    - textur: Flag de textures activades o no.
 //    - VTextur: Vector d'imatges textura.
 void llanta(bool textur, GLuint VTextur[NUM_MAX_TEXTURES])
@@ -1113,4 +1105,31 @@ void sea(void)
 		it1++;
 	}
 
+}
+
+void generateRandomClouds(AnimaController &animaController) {
+	//Print all the data of the blocks
+	for (int cloud = 0; cloud < animaController.clouds.numCloudsR; cloud++) {
+		for(int prof=0;prof < animaController.clouds.numProfR;prof++){
+			for (int row = 0; row < animaController.clouds.numRowsR; ++row) {
+				for (int col = 0; col < animaController.clouds.numColsR; ++col) {
+					if (animaController.clouds.cloudContentActive[cloud][prof][row][col] ==true) {
+						glEnable(GL_BLEND);
+						glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+						glColor4f(0.97,0.95,0.92,0.15);
+						glPointSize(float(animaController.clouds.sizeOfBox));
+						glBegin(GL_POINTS);
+						glVertex3f(animaController.clouds.cloudContentOffset[cloud][prof][row][col][0], animaController.clouds.cloudContentOffset[cloud][prof][row][col][1], animaController.clouds.cloudContentOffset[cloud][prof][row][col][2]);
+						glEnd();
+					}
+				}
+			}
+		}
+	}
+
+
+
+
+
+	
 }

@@ -186,7 +186,8 @@ CEntornVGIView::CEntornVGIView()
 	center[1] = 0;
 	center[2] = 0;
 
-	AnimaController animaController;
+
+	
 
 // TODO: agregar aqu� el c�digo de construcci�n
 //	int i = 0;
@@ -297,11 +298,12 @@ CEntornVGIView::CEntornVGIView()
 	iluInit();					// Inicialitzar llibreria ILU
 	ilutRenderer(ILUT_OPENGL);	// Inicialitzar llibreria ILUT per a OpenGL
 
-
+	
 }
 
 CEntornVGIView::~CEntornVGIView()
 {
+	
 }
 
 BOOL CEntornVGIView::PreCreateWindow(CREATESTRUCT& cs)
@@ -2231,12 +2233,11 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		executeTrayectory();
 
 
-		c_fons.r = cfr - 0.0009*(animaController.rocket.m_z - 6371);
-		c_fons.g = cfg - 0.00099*(animaController.rocket.m_z - 6371) ;
-		c_fons.b = cfb - 0.00078*(animaController.rocket.m_z - 6371) ;
+		c_fons.r = cfr - 0.0008*(animaController.rocket.m_z - 6371);
+		c_fons.g = cfg - 0.00079*(animaController.rocket.m_z - 6371) ;
+		c_fons.b = cfb - 0.00068*(animaController.rocket.m_z - 6371) ;
 
 		
-		//animaController.particles.draw();
 
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);

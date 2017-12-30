@@ -9,7 +9,7 @@ AnimaController::AnimaController()
 	rocket = Rocket();
 	planet = Planet(6371);
 
-	// modificamos los parámetros de las partículas de humo
+	// modificamos los parï¿½metros de las partï¿½culas de humo
 
 	humo.red_min = 90;
 	humo.red_max = 100;
@@ -32,4 +32,36 @@ AnimaController::AnimaController()
 
 }
 
+//AnimaController::~AnimaController() {
+	//some mine code
+	//Delete of dynamic matrix
+	/*
+	for (int i = 0; i < numRows; ++i) {
+		delete cloudProbability[i];
+	}
+	delete[] cloudProbability;
 
+	for (int i = 0; i < numClouds; ++i) {
+		for (int j = 0; j < numClouds; ++j) {
+			cloudContentOffsetZ[i][j];
+		}
+		delete cloudContentOffsetZ[i];
+	}
+	delete[] cloudContentOffsetZ;
+
+	for (int i = 0; i < numClouds; ++i) {
+		for (int j = 0; j < numClouds; ++j) {
+			cloudContentOffsetY[i][j];
+		}
+		delete cloudContentOffsetY[i];
+	}
+	delete[] cloudContentOffsetY;
+
+	delete[] OffsetsX;
+	delete[] OffsetsY;
+	delete[] OffsetsZ;*/
+//}
+void AnimaController::generateStructuresForClouds() {
+
+
+}

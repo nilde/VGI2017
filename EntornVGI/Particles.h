@@ -44,8 +44,8 @@ public:
 
 
 
-	//Se define un struct con todas las propiedades de cada partícula
-	//x, y, z corresponden a la posición
+	//Se define un struct con todas las propiedades de cada partï¿½cula
+	//x, y, z corresponden a la posiciï¿½n
 	//sz, sy, sz corresponden a la velocidad
 	//age para controlar el recorrido en el sistema
 	struct PARTICLE {
