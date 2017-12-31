@@ -3575,6 +3575,7 @@ void CEntornVGIView::OnTrayectoriaStop()
 void CEntornVGIView::OnTrayectoriaRestart()
 {
 	animaController.rocket.Restart();
+	animaController.clouds.deleteCatalunya = false;
 	t = 0;
 	iter = 0;
 	this->setCenterWith(ROCKET);
