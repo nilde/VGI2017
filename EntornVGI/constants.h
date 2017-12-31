@@ -61,6 +61,7 @@
 #define ROCKET2OBJ 1235
 #define ROCKET3OBJ 1236
 #define ROCKET4OBJ 1237
+#define PLATAFORMAOBJ 1238
 
 // -------------- VGI: Definició dels valors del pla near i far del Volum de Visualització en Perspectiva
 const int p_near=1;

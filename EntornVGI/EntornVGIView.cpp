@@ -283,6 +283,7 @@ CEntornVGIView::CEntornVGIView()
 	R0CKET2 = NULL;
 	R0CKET3 = NULL;
 	R0CKET4 = NULL;
+	PLATAFORMA = NULL;
 
 // Entorn VGI: Variables del Timer
 	t = 0;			anima = false;
@@ -506,6 +507,7 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->OnMiraraRocket();
 	this->OnPlanetaTierra();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
+	this->insertPlataforma();
 
 	return true;
 }
@@ -3869,6 +3871,19 @@ void CEntornVGIView::ShowFractal(char*fitxer)
 	// Crida a OnPaint() per redibuixar l'escena
 	InvalidateRect(NULL, false);
 }
+void CEntornVGIView::insertPlataforma()
+{
+	if (PLATAFORMA == NULL) {
+		nom = "./objects/Plataforma_lanzamiento/Plataforma_lanzamiento.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (PLATAFORMA == NULL) PLATAFORMA = new COBJModel;
+		PLATAFORMA->LoadModel(nomfitx, PLATAFORMAOBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+}
+
 
 void CEntornVGIView::OnCoheteLanzadera()
 {

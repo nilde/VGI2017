@@ -173,6 +173,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	
 		// animaController.DrawHumo();
 		
+		//Plataforma de llençament
+		glPushMatrix();
+		glTranslatef(70, -59, 6371);
+		glRotatef(90, 1, 0, 0);
+		glScalef(0.5, 0.5, 0.7);
+		glCallList(PLATAFORMAOBJ);
+		glPopMatrix();
 
 		
 		/////////// COHETE!!

@@ -106,9 +106,9 @@ void Rocket::Initialize() {
 	float angle = 90; // entre 0 y 90
 	float impulse = 14;
 
-	xo = 70;
-	yo = -60;
-	zo = 6371;
+	xo = 71;
+	yo = -59.5;
+	zo = 6372;
 	//zo = yo = xo = 0;
 
 	m_x = xo;

@@ -150,6 +150,7 @@ public:
 	COBJModel* R0CKET2;
 	COBJModel* R0CKET3;
 	COBJModel* R0CKET4;
+	COBJModel* PLATAFORMA;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Paràmetre t pel Timer.
@@ -352,6 +353,7 @@ public:
 	afx_msg void OnCoheteUno();
 	afx_msg void OnUpdateCoheteUno(CCmdUI *pCmdUI);
 	afx_msg void ShowFractal(char*fitxer);
+	void insertPlataforma();
 
 	afx_msg void OnCoheteLanzadera();
 	afx_msg void OnUpdateCoheteLanzadera(CCmdUI *pCmdUI);
