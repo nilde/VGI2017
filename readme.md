@@ -18,12 +18,12 @@ Para añadir una textura nueva se tiene que hacer en el visualització.cpp en la f
 
 Luego para aplicar la textura, se tiene que hacer antes de crear el objeto en escena.cpp. Se tiene un ejemplo de la TIERRA y de el CIELO, tal como se puede ver a continuación:
 
-glBindTexture(GL_TEXTURE_2D, texturID[7]);
-glEnable(GL_TEXTURE_2D);
-glColor3f(1.0, 1.0, 1.0);
-glPushMatrix();
-gluEsfera(8000, 1000, 10000);
-glPopMatrix();
+				glBindTexture(GL_TEXTURE_2D, texturID[7]);
+				glEnable(GL_TEXTURE_2D);
+				glColor3f(1.0, 1.0, 1.0);
+				glPushMatrix();
+				gluEsfera(8000, 1000, 10000);
+				glPopMatrix();
 
 el valor de texturID[7], no es random, se tiene que depurar poniendo un breack point en el momento que se hace el loadIMA(".//",[i]) y entrar dentro de esta función. Y ir pasoa  paso hasta al final que se mete en una variable de textura. Una vez se haya ejecutado esa línea, se tiene que ver que valor se ha metido en la posición i, en este caso un 7.
 
