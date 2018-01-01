@@ -28,9 +28,6 @@ float arcotangente(float x) {
 
 
 void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
-
-	
-
 	if (iteracion == 500) {
 		az = ax = ay = 0;
 	}
@@ -46,12 +43,9 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 
 	if (vy != 0) {
 		m_alpha = arcotangente(vz/vy);
-		if ( vz < 0 ){
-			if( vy < 0 ){
-				m_alpha = -m_alpha;
-			}
+		if ( vy < 0 ){
+			m_alpha = m_alpha + 180;
 		}
-		
 	}
 
 	float betta;
@@ -84,9 +78,6 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 			real_ay = ay + 9.8 * coseno(betta);
 		}
 	}
-
-
-	
 	vx = vx + ax * step;
 	vy = vy + real_ay * step;
 	vz = vz + real_az * step;
@@ -94,11 +85,6 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	m_z = m_z + vz*step;
 	m_x = m_x + vx*step;
 	m_y = m_y + vy*step;
-
-	
-
-
-
 }
 
 
