@@ -195,7 +195,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		case '1':
 		{
 
-			glCallList(ROCKET1OBJ);
+			//glCallList(ROCKET1OBJ);
 			break;
 		}
 		case '2':
@@ -225,8 +225,8 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		if (animaController.count % 500 == 0) {
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
-			animaController.fuego.draw();
-			animaController.humo.draw();
+			//animaController.fuego.draw();
+			//animaController.humo.draw();
 
 		}
 		if (animaController.count == 32760) {

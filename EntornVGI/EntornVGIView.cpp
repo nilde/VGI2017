@@ -3784,7 +3784,7 @@ void CEntornVGIView::OnMiraraPlanet()
 	setCenterWith(PLANET);
 
 	OPV.R = animaController.planet.radius * 3;
-	INCRM = 990;
+	INCRM = 130;
 	InvalidateRect(NULL, false);
 
 }
@@ -3888,7 +3888,7 @@ void CEntornVGIView::insertPlataforma()
 void CEntornVGIView::OnCoheteLanzadera()
 {
 	if (R0CKET2 == NULL) {
-		nom = "./objects/Lanzadera.obj";
+		nom = "./objects/Transbordador/Transbordador.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
