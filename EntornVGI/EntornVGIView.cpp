@@ -241,7 +241,7 @@ CEntornVGIView::CEntornVGIView()
 	llumGL.difusa[0] = 0.7f;		llumGL.difusa[1] = 0.7f;		llumGL.difusa[2] = 0.7f;		llumGL.difusa[3] = 1.0f;
 	llumGL.especular[0] = 1.0f;		llumGL.especular[1] = 1.0f;		llumGL.especular[2] = 1.0f;		llumGL.especular[3] = 1.0f;
 
-	llumGL.posicio.R = 40000;		llumGL.posicio.alfa = 60.0;		llumGL.posicio.beta = 0.0;		// Posici� llum (x,y,z)=(0,0,75)
+	llumGL.posicio.R = 40000;		llumGL.posicio.alfa = 40.0;		llumGL.posicio.beta = 130 .0;		// Posici� llum (x,y,z)=(0,0,75)
 	llumGL.atenuacio.a = 0.0;		llumGL.atenuacio.b = 0.0;		llumGL.atenuacio.c = 1.0;		// Llum sense atenuaci� per dist�ncia (a,b,c)=(0,0,1)
 	llumGL.restringida = false;
 	llumGL.spotdirection[0] = 0.0;	llumGL.spotdirection[1] = 0.0;	llumGL.spotdirection[2] = 0.0;

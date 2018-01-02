@@ -175,9 +175,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		
 		//Plataforma de llençament
 		glPushMatrix();
-		glTranslatef(65, -60, 6369);
+		glTranslatef(67, -60, 6370);
 		glRotatef(90, 1, 0, 0);
-		glScalef(2, 2, 2);
+		glScalef(1.5, 0.6, 1.5);
 		glCallList(PLATAFORMAOBJ);
 		glPopMatrix();
 
@@ -212,7 +212,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		case '4':
 		{
 
-			glCallList(ROCKET4OBJ);
+			//glCallList(ROCKET4OBJ);
 			break;
 		}
 		default:
@@ -225,6 +225,8 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		if (animaController.count % 500 == 0) {
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
+			glDisable(GL_LIGHTING);
+
 			animaController.fuego.draw();
 			animaController.humo.draw();
 
@@ -234,7 +236,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 	
 		glPopMatrix();
-		glDisable(GL_LIGHTING);
+		//glDisable(GL_LIGHTING);
 		glPushMatrix();
 		glTranslatef(0,0,6490);
 		glRotatef(90, 1, 0, 0);
