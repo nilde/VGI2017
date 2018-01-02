@@ -174,6 +174,8 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_UPDATE_COMMAND_UI(ID_COHETE_TRES, &CEntornVGIView::OnUpdateCoheteTres)
 		ON_COMMAND(ID_COHETE_QUATRE, &CEntornVGIView::OnCoheteQuatre)
 		ON_UPDATE_COMMAND_UI(ID_COHETE_QUATRE, &CEntornVGIView::OnUpdateCoheteQuatre)
+		ON_COMMAND(ID_BUILDING, &CEntornVGIView::buildingCreation)
+		ON_UPDATE_COMMAND_UI(ID_BUILDING, &CEntornVGIView::OnUpdateBuildingCreation)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -281,6 +283,7 @@ CEntornVGIView::CEntornVGIView()
 	R0CKET2 = NULL;
 	R0CKET3 = NULL;
 	R0CKET4 = NULL;
+	BUILDING = NULL;
 
 // Entorn VGI: Variables del Timer
 	t = 0;			anima = false;
@@ -501,6 +504,7 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
 
 	this->OnCoheteUno();
+	this->buildingCreation();
 	this->OnMiraraRocket();
 	this->OnPlanetaTierra();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
@@ -3768,7 +3772,6 @@ void CEntornVGIView::ShowFractal(char*fitxer)
 	// Ajustamos tama�o fractal
 	animaController.step = llegir_pts(fitxer);
 	itera_fractal(S_SENSE, animaController.step);//Soroll: S_SENSE, S_LINIAL, S_QUADRATIC, S_SQRT, S_DIFERENCIABLE
-
 	// Crida a OnPaint() per redibuixar l'escena
 	InvalidateRect(NULL, false);
 }
@@ -3854,4 +3857,22 @@ void CEntornVGIView::OnUpdateCoheteQuatre(CCmdUI *pCmdUI)
 	else {
 		pCmdUI->SetCheck(0);
 	}
+}
+void CEntornVGIView::buildingCreation()
+{
+	if (BUILDING == NULL) {
+		nom = "./objects/cities/building.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (BUILDING == NULL) BUILDING = new COBJModel;
+		BUILDING->LoadModel(nomfitx, BUILDINGOBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+	InvalidateRect(NULL, false);
+
+}
+void CEntornVGIView::OnUpdateBuildingCreation(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(1);
+	
 }

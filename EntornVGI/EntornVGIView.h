@@ -148,6 +148,7 @@ public:
 	COBJModel* R0CKET2;
 	COBJModel* R0CKET3;
 	COBJModel* R0CKET4;
+	COBJModel* BUILDING;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Paràmetre t pel Timer.
@@ -357,6 +358,10 @@ public:
 	afx_msg void OnUpdateCoheteTres(CCmdUI *pCmdUI);
 	afx_msg void OnCoheteQuatre();
 	afx_msg void OnUpdateCoheteQuatre(CCmdUI *pCmdUI);
+
+
+	afx_msg void buildingCreation();
+	afx_msg void OnUpdateBuildingCreation(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

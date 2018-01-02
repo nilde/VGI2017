@@ -18,6 +18,7 @@ public:
 	void calcTrueActiveBlocks();
 	void calcPositions();
 	void maxPrune();
+	void optimizedVersionOfClouds();
 
 	//Variables
 	const float sizeOfBox =70; //Tamano de los cubos que van a aparecer
@@ -44,12 +45,15 @@ public:
 	int numStepsBeforeDelete = 20;
 	bool deleteCatalunya = false;
 
+	//optimization
+	int numOfActivePoints = 0;
 
 	int OffsetsBetweenClouds[numClouds][numDimensions];
 	float cloudProbability[numClouds][numProf][numRows][numCols];
 	int cloudContentOffset[numClouds][numProf][numRows][numClouds][numDimensions];
 	bool cloudContentActive[numClouds][numProf][numRows][numCols] = {0};
 	int probabilitiesClouds[numClouds];
+	int **optimizationForClouds;
 
 };
 

@@ -204,6 +204,7 @@
 #define ID_COHETE_LANZADERA             32873
 #define ID_COHETE_TRES                  32874
 #define ID_COHETE_QUATRE                32875
+#define ID_BUILDING						32876
 
 // Next default values for new objects
 // 

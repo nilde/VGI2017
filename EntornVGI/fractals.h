@@ -82,7 +82,7 @@ double soroll_sq(int x,int y);
 double soroll_dif(int x,int y);
 
 // -------------- Entorn VGI: Dibuix i triangulació del terreny
-void fract(char iluminacio,bool paletaColor,int step);
+void  fract(char iluminacio,bool paletaColor,int step,double matrix[FMAX+1][FMAX + 1],bool needToCopy);
 int getColorPalette();
 void setColorPalette(int colorPaletteValue);
 

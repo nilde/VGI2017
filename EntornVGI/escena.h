@@ -20,9 +20,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 void dibuixa(char obj);
 
 // Entorn VGI: Truck
-void truck(bool textu,GLuint VTextu[NUM_MAX_TEXTURES]);
-void neumatic(bool textur, GLuint VTextur[NUM_MAX_TEXTURES]);
-void llanta(bool textur, GLuint VTextur[NUM_MAX_TEXTURES]);
-void sea(void);
+void generateActivePoints();
 void generateRandomClouds(AnimaController &modifyCLouds);
+void generateRandomCities(AnimaController &modifyCities);
 #endif
