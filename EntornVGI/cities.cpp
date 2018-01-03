@@ -52,10 +52,24 @@ void Cities::activateSpecificBlocks() {
 	int iter = 0;
 	while (counter >= 0) {
 		randomBlockIndex = Randomize();
-		if (randomBlockIndex < 111250) {
+		if (randomBlockIndex < 111250 && numActiveBuildings>=0) {
 			validPositionsActive[iter] = randomBlockIndex;
+			validPositionsActiveContent[iter] = 0;
 			iter++;
 			counter--;
+			numActiveBuildings--;
 		}
+		else {
+			if (randomBlockIndex < 111250 && numActiveTrees >= 0) {
+				validPositionsActive[iter] = randomBlockIndex;
+				validPositionsActiveContent[iter] = 1;
+				iter++;
+				counter--;
+				numActiveTrees--;
+			}
+		}
+		if (iter==numTrees+numBuildings)
+			counter = -1;
 	}
+	
 }

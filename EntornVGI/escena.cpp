@@ -315,15 +315,22 @@ void generateRandomClouds(AnimaController &animaController) {
 }
 void generateRandomCities(AnimaController &animaController) {
 	int accessIndex = 0;
-
+	int cont = 0;
 	for (int i = 0; i < animaController.cities.numOfBlocks; i++) {
-		accessIndex = animaController.cities.validPositionsActive[i];
-		glPushMatrix();
-		glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2]+0.75);
-		glRotatef(90, 90, 1, 0);
-		glScalef(0.05, 0.05, 0.04);
-		glCallList(BUILDINGOBJ);
-		
-		glPopMatrix();
+		cont++;
+		if (animaController.cities.compBuilding+animaController.cities.compTrees>cont) {
+			accessIndex = animaController.cities.validPositionsActive[i];
+			glPushMatrix();
+			glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2] + 0.75);
+			glRotatef(90, 90, 1, 0);
+			glScalef(0.05, 0.05, 0.04);
+			if (!animaController.cities.validPositionsActiveContent[i])
+				glCallList(BUILDINGOBJ);
+			if (animaController.cities.validPositionsActiveContent[i]) {
+				glScalef(10, 10,10);
+				glCallList(TREEOBJ);
+			}
+			glPopMatrix();
+		}
 	}
 }

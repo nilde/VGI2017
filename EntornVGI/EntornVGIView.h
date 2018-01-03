@@ -149,6 +149,7 @@ public:
 	COBJModel* R0CKET3;
 	COBJModel* R0CKET4;
 	COBJModel* BUILDING;
+	COBJModel* TREE;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Paràmetre t pel Timer.

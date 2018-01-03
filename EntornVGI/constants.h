@@ -62,6 +62,7 @@
 #define ROCKET4OBJ 1237
 
 #define BUILDINGOBJ 1238
+#define TREEOBJ		1239
 
 // -------------- VGI: Definició dels valors del pla near i far del Volum de Visualització en Perspectiva
 const int p_near=1;

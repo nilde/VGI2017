@@ -3863,9 +3863,16 @@ void CEntornVGIView::buildingCreation()
 	if (BUILDING == NULL) {
 		nom = "./objects/cities/farmhouse_obj.obj";
 		char *nomfitx = CString2Char(nom);
+		nom = "./objects/cities/Tree.obj";
+		char *nomfitxTree= CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
-		if (BUILDING == NULL) BUILDING = new COBJModel;
+		if (BUILDING == NULL)
+		{
+			BUILDING = new COBJModel;
+			TREE = new COBJModel;
+		}
 		BUILDING->LoadModel(nomfitx, BUILDINGOBJ);
+		TREE->LoadModel(nomfitxTree, TREEOBJ);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 	}
 	InvalidateRect(NULL, false);
