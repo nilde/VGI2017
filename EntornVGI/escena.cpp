@@ -321,7 +321,7 @@ void generateRandomCities(AnimaController &animaController) {
 		glPushMatrix();
 		glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2]+0.75);
 		glRotatef(90, 90, 1, 0);
-		glScalef(0.02, 0.02, 0.08);
+		glScalef(0.05, 0.05, 0.04);
 		glCallList(BUILDINGOBJ);
 		
 		glPopMatrix();
