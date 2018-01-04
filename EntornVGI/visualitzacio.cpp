@@ -772,5 +772,9 @@ void oneView(int minx, int miny, GLsizei w, GLsizei h, float zoom)
 	glLoadIdentity(); // Inicialització de GL_PROJECTION
 
 	gluPerspective(60.0, 1.0*w / h, p_near, p_far); // Matriu de projecció i Volum de Visualització
+
+// Activaci� matriu MODELVIEW (tancar matriu PROJECTION)
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 

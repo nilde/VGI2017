@@ -94,7 +94,7 @@ void Rocket::Initialize() {
 
 	xo = 71;
 	yo = -59.5;
-	zo = 6372;
+	zo = 6371;
 	//zo = yo = xo = 0;
 
 	m_x = xo;

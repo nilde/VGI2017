@@ -758,7 +758,7 @@ void CEntornVGIView::OnPaint()
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
 
-	case MULTI_VIEW://PERSPECT
+	case PERSPECT:
 // PROJECCI� PERSPECTIVA
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Set Perspective Calculations To Most Accurate
 		glDisable(GL_SCISSOR_TEST);		// Desactivaci� del retall de pantalla
@@ -783,7 +783,7 @@ void CEntornVGIView::OnPaint()
 // Intercanvia l'escena al front de la pantalla
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
-	case PERSPECT://MULTI_VIEW
+	case MULTI_VIEW:
 				  // Activaci� del retall de pantalla
 		glEnable(GL_SCISSOR_TEST);
 
