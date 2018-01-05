@@ -40,6 +40,8 @@ protected: // Crear sólo a partir de serialización
 public:
 	bool firstIter = true;
 
+	float altura;
+
 	int iter = 0;
 
 	float dist = 10;

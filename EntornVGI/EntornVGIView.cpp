@@ -202,6 +202,8 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Variables de control per Men� Vista: canvi PV interactiu, Zoom i dibuixar eixos 
 	mobil = true;	zzoom = true;	satelit = false;	pan = false;	navega = false;		eixos = true;
 
+	altura = 6371;
+
 // Entorn VGI: Variables opci� Vista->Pan
 	fact_pan = 1;
 	tr_cpv.x = 0;	tr_cpv.y = 0;	tr_cpv.z = 0;		tr_cpvF.x = 0;	tr_cpvF.y = 0;	tr_cpvF.z = 0;
@@ -804,9 +806,21 @@ void CEntornVGIView::OnPaint()
 			firstIter = false;
 		}
 
+		if (opvNStatic1.z < animaController.rocket.m_z - 90) {
+			opvNStatic1.x = animaController.rocket.m_x;
+			opvNStatic1.y = animaController.rocket.m_y - 4;
+			opvNStatic1.z = animaController.rocket.m_z + 90;
+			firstIter = false;
+		}
+
 		n[0] = animaController.rocket.m_x;
 		n[1] = animaController.rocket.m_y;
 		n[2] = animaController.rocket.m_z + 0.5;
+
+		altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
 
 		Vista_Navega(opvNStatic1, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
@@ -830,6 +844,11 @@ void CEntornVGIView::OnPaint()
 		n[1] = 0;// animaController.rocket.m_y;
 		n[2] = 0;// animaController.rocket.m_z;
 
+		 altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
+
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
 
@@ -850,6 +869,11 @@ void CEntornVGIView::OnPaint()
 		n[1] = animaController.rocket.m_y;
 		n[2] = animaController.rocket.m_z + 0.5;
 
+		 altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
+
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
 
@@ -863,8 +887,11 @@ void CEntornVGIView::OnPaint()
 
 		//CAMARA 4
 		oneView(w / 2, 0, w / 2, h / 2, OPV.R);
+
+		OPV.beta += 1;
 		
 		n[0] = 0;		n[1] = 0;		n[2] = 0;
+
 		Vista_Esferica(OPV, Vis_Polar, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, mida, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura,
 			textura_map, ifixe, eixos, center);
@@ -2326,17 +2353,17 @@ BOOL CEntornVGIView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: Agregue aqu� su c�digo de controlador de mensajes o llame al valor predeterminado
+
+
+	if (animaController.lookat == PLANET) {
+		OPV.beta += 1;
+
+	}
+
 	if (anima)	{
 		
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
 		executeTrayectory();
-
-
-		c_fons.r = cfr - 0.0008*(animaController.rocket.m_z - 6371);
-		c_fons.g = cfg - 0.00079*(animaController.rocket.m_z - 6371) ;
-		c_fons.b = cfb - 0.00068*(animaController.rocket.m_z - 6371) ;
-
-		
 
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
@@ -3679,6 +3706,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	iter = 0;
 	this->setCenterWith(ROCKET);
 	InvalidateRect(NULL, false);
+	firstIter = true ;
 }
 
 
@@ -3785,6 +3813,9 @@ void CEntornVGIView::OnMiraraPlanet()
 
 	OPV.R = animaController.planet.radius * 3;
 	INCRM = 130;
+	c_fons.r = 0;
+	c_fons.g = 0;
+	c_fons.b = 0;
 	InvalidateRect(NULL, false);
 
 }

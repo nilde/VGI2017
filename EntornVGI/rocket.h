@@ -82,6 +82,8 @@ public:
 
 	//Constructor
 	Rocket();
+
+	float get_altura();
 	
 	//Overwrite of the constructor with some parameters
 	//Rocket(some params)

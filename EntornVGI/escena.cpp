@@ -135,13 +135,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPopMatrix();
 
 		
-		char iluminacio = GOURAUD; //PLANA, ,FILFERROS
-		GLfloat mida = 0.55;
-		glPushMatrix();
-		glTranslatef(70, -90, 6366);
-		glScalef(mida, mida, mida);
-		fract(iluminacio, true, animaController.step);
-		glPopMatrix();
+		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
+			char iluminacio = GOURAUD; //PLANA, ,FILFERROS
+			GLfloat mida = 0.55;
+			glPushMatrix();
+			glTranslatef(70, -90, 6366);
+			glScalef(mida, mida, mida);
+			fract(iluminacio, true, animaController.step);
+			glPopMatrix();
+		}
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -156,31 +158,33 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			gluEsfera(6300+200*i, 100, 100);
 			glPopMatrix();
 		}
-
 	
-
-
-		
 
 		glBindTexture(GL_TEXTURE_2D, texturID[8]);
 		glEnable(GL_TEXTURE_2D);
 		glColor4f(1, 1, 1, 0.15);
 		glPushMatrix();
 		glRotatef(312, 155, 1, 1);
-		gluEsfera(10000, 1000, 10000);
+		if (animaController.lookat == ROCKET) {
+			gluEsfera(10000, 1000, 10000);
+		}
+		else {
+			gluEsfera(9000000, 1000, 10000);
+		}
 		glPopMatrix();
 		//glDisable(GL_TEXTURE_2D);
 	
 		// animaController.DrawHumo();
 		
-		//Plataforma de llençament
-		glPushMatrix();
-		glTranslatef(67, -60, 6370);
-		glRotatef(90, 1, 0, 0);
-		glScalef(1.5, 0.6, 1.5);
-		glCallList(PLATAFORMAOBJ);
-		glPopMatrix();
-
+		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
+			//Plataforma de llençament
+			glPushMatrix();
+			glTranslatef(67, -60, 6370);
+			glRotatef(90, 1, 0, 0);
+			glScalef(1.5, 0.6, 1.5);
+			glCallList(PLATAFORMAOBJ);
+			glPopMatrix();
+		}
 		
 		/////////// COHETE!!
 		//glColor3f(1.0, 0, 1.0);

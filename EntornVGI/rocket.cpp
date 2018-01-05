@@ -87,6 +87,10 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	m_y = m_y + vy*step;
 }
 
+float Rocket::get_altura() {
+	return sqrt(m_z*m_z + m_y*m_y);
+}
+
 
 void Rocket::Initialize() {
 	float angle = 90; // entre 0 y 90
