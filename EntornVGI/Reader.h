@@ -15,18 +15,26 @@ public:
 
 	void readFromFile(char* fileToRead);
 
-	void setAttribute1(string newValue);
-	string getAttribute1();
+	void setSizePlanet(string newValue);
+	int getSizePlanet();
 
-	void setAttribute2(string newValue);
-	string getAttribute2();
+	void setRocketType(string newValue);
+	int getRocketType();
 
-	void setAttribute3(string newValue);
-	string getAttribute3();
+	void setPlanetType(string newValue);
+	int getPlanetType();
 
-	string Attribute1;
-	string Attribute2;
-	string Attribute3;
+	void setPropellantType(string newValue);
+	int getPropellantType();
+
+	void setGravityPlanet(string newValue);
+	float getGravityPlanet();
+
+	string sizePlanet;
+	string rocketType;
+	string planetType;
+	string propellantType;
+	string gravityPlanet;
 
 
 };

@@ -20,8 +20,11 @@ Reader::Reader(char* fileToRead) {
 
 //Operator copy
 void Reader::operator=(Reader &readerToCopy) {
-	Attribute1 = readerToCopy.Attribute1;
-	Attribute1 = readerToCopy.Attribute1;
+	sizePlanet = readerToCopy.sizePlanet;
+	rocketType = readerToCopy.rocketType;
+	planetType = readerToCopy.planetType;
+	propellantType = readerToCopy.propellantType;
+	gravityPlanet = readerToCopy.gravityPlanet;
 }
 
 //Read Attributes from file
@@ -34,48 +37,74 @@ void Reader::readFromFile(char* fileToRead) {
 		string delimiter = ":";
 
 		file.getline(container, BUFFERSIZE);
-		Attribute1 = container;
-		Attribute1=Attribute1.substr(Attribute1.find(delimiter) + 1, Attribute1.length() - 1);
+		sizePlanet = container;
+		sizePlanet=sizePlanet.substr(sizePlanet.find(delimiter) + 1, sizePlanet.length() - 1);
 
 		file.getline(container, BUFFERSIZE);
-		Attribute2 = container;
-		Attribute2=Attribute2.substr(Attribute2.find(delimiter) + 1, Attribute2.length() - 1);
+		rocketType = container;
+		rocketType = rocketType.substr(rocketType.find(delimiter) + 1, rocketType.length() - 1);
 
 		file.getline(container, BUFFERSIZE);
-		Attribute3 = container;
-		Attribute3=Attribute3.substr(Attribute3.find(delimiter) + 1, Attribute3.length() - 1);
+		planetType = container;
+		planetType=planetType.substr(planetType.find(delimiter) + 1, planetType.length() - 1);
+
+		file.getline(container, BUFFERSIZE);
+		propellantType = container;
+		propellantType = propellantType.substr(propellantType.find(delimiter) + 1, propellantType.length() - 1);
+	
+		file.getline(container, BUFFERSIZE);
+		gravityPlanet = container;
+		gravityPlanet = gravityPlanet.substr(gravityPlanet.find(delimiter) + 1, gravityPlanet.length() - 1);
+
 	}
 	file.close();
 }
 
-//Setter & Getter for Attribute1
-void Reader::setAttribute1(string newValue) {
-	Attribute3 = newValue;
+//Setter & Getter for size planet
+void Reader::setSizePlanet(string newValue) {
+	sizePlanet = newValue;
 }
 
-string Reader::getAttribute1() {
-	return Attribute1;
-
-}
-
-
-//Setter & Getter for Attribute2
-void Reader::setAttribute2(string newValue) {
-	Attribute3 = newValue;
-}
-
-string Reader::getAttribute2() {
-
-	return Attribute2;
+int Reader::getSizePlanet() {
+	return stoi(sizePlanet);
 
 }
 
 
-//Setter & Getter for Attribute3
-void Reader::setAttribute3(string newValue) {
-	Attribute3 = newValue;
+//Setter & Getter for rocket type
+void Reader::setRocketType(string newValue) {
+	rocketType = newValue;
 }
 
-string Reader::getAttribute3() {
-	return Attribute3;
+int Reader::getRocketType() {
+
+	return stoi(rocketType);
+
+}
+
+
+//Setter & Getter for planet type
+void Reader::setPlanetType(string newValue) {
+	planetType = newValue;
+}
+
+int Reader::getPlanetType() {
+	return stoi(planetType);
+}
+
+//Setter & Getter for propellant type
+void Reader::setPropellantType(string newValue) {
+	propellantType = newValue;
+}
+
+int Reader::getPropellantType() {
+	return stoi(propellantType);
+}
+//Setter & Getter for gravity of the planet
+void Reader::setGravityPlanet(string newValue) {
+	gravityPlanet = newValue;
+}
+
+float Reader::getGravityPlanet() {
+	return stof(gravityPlanet);
 }
