@@ -202,6 +202,8 @@ CEntornVGIView::CEntornVGIView()
 // Entorn VGI: Variables de control per Men� Vista: canvi PV interactiu, Zoom i dibuixar eixos 
 	mobil = true;	zzoom = true;	satelit = false;	pan = false;	navega = false;		eixos = true;
 
+	altura = 6371;
+
 // Entorn VGI: Variables opci� Vista->Pan
 	fact_pan = 1;
 	tr_cpv.x = 0;	tr_cpv.y = 0;	tr_cpv.z = 0;		tr_cpvF.x = 0;	tr_cpvF.y = 0;	tr_cpvF.z = 0;
@@ -241,7 +243,7 @@ CEntornVGIView::CEntornVGIView()
 	llumGL.difusa[0] = 0.7f;		llumGL.difusa[1] = 0.7f;		llumGL.difusa[2] = 0.7f;		llumGL.difusa[3] = 1.0f;
 	llumGL.especular[0] = 1.0f;		llumGL.especular[1] = 1.0f;		llumGL.especular[2] = 1.0f;		llumGL.especular[3] = 1.0f;
 
-	llumGL.posicio.R = 40000;		llumGL.posicio.alfa = 60.0;		llumGL.posicio.beta = 0.0;		// Posici� llum (x,y,z)=(0,0,75)
+	llumGL.posicio.R = 40000;		llumGL.posicio.alfa = 40.0;		llumGL.posicio.beta = 130.0;		// Posici� llum (x,y,z)=(0,0,75)
 	llumGL.atenuacio.a = 0.0;		llumGL.atenuacio.b = 0.0;		llumGL.atenuacio.c = 1.0;		// Llum sense atenuaci� per dist�ncia (a,b,c)=(0,0,1)
 	llumGL.restringida = false;
 	llumGL.spotdirection[0] = 0.0;	llumGL.spotdirection[1] = 0.0;	llumGL.spotdirection[2] = 0.0;
@@ -503,9 +505,11 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 // Permet la coexistencia d'altres contextes de generaci�
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
 
-	this->OnCoheteUno();
+
 	this->OnMiraraRocket();
+	this->OnCoheteUno();
 	this->OnPlanetaTierra();
+	this->OnCoheteLanzadera();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 	this->insertPlataforma();
 
@@ -758,7 +762,7 @@ void CEntornVGIView::OnPaint()
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
 
-	case MULTI_VIEW://PERSPECT
+	case PERSPECT:
 // PROJECCI� PERSPECTIVA
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Set Perspective Calculations To Most Accurate
 		glDisable(GL_SCISSOR_TEST);		// Desactivaci� del retall de pantalla
@@ -783,7 +787,7 @@ void CEntornVGIView::OnPaint()
 // Intercanvia l'escena al front de la pantalla
 		SwapBuffers(m_pDC->GetSafeHdc());
 		break;
-	case PERSPECT://MULTI_VIEW
+	case MULTI_VIEW:
 				  // Activaci� del retall de pantalla
 		glEnable(GL_SCISSOR_TEST);
 
@@ -804,9 +808,21 @@ void CEntornVGIView::OnPaint()
 			firstIter = false;
 		}
 
+		if (opvNStatic1.z < animaController.rocket.m_z - 90) {
+			opvNStatic1.x = animaController.rocket.m_x;
+			opvNStatic1.y = animaController.rocket.m_y - 4;
+			opvNStatic1.z = animaController.rocket.m_z + 90;
+			firstIter = false;
+		}
+
 		n[0] = animaController.rocket.m_x;
 		n[1] = animaController.rocket.m_y;
 		n[2] = animaController.rocket.m_z + 0.5;
+
+		altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
 
 		Vista_Navega(opvNStatic1, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
@@ -830,6 +846,11 @@ void CEntornVGIView::OnPaint()
 		n[1] = 0;// animaController.rocket.m_y;
 		n[2] = 0;// animaController.rocket.m_z;
 
+		 altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
+
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
 
@@ -850,6 +871,11 @@ void CEntornVGIView::OnPaint()
 		n[1] = animaController.rocket.m_y;
 		n[2] = animaController.rocket.m_z + 0.5;
 
+		 altura = sqrt(opvNStatic1.z*opvNStatic1.z + opvNStatic1.y*opvNStatic1.y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
+
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
 
@@ -863,8 +889,12 @@ void CEntornVGIView::OnPaint()
 
 		//CAMARA 4
 		oneView(w / 2, 0, w / 2, h / 2, OPV.R);
+
+		OPV.beta += 1.5;
+
 		
 		n[0] = 0;		n[1] = 0;		n[2] = 0;
+
 		Vista_Esferica(OPV, Vis_Polar, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, mida, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura,
 			textura_map, ifixe, eixos, center);
@@ -2326,17 +2356,16 @@ BOOL CEntornVGIView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: Agregue aqu� su c�digo de controlador de mensajes o llame al valor predeterminado
+
+	if (animaController.lookat == PLANET) {
+		OPV.beta += 1;
+
+	}
+
 	if (anima)	{
 		
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
 		executeTrayectory();
-
-
-		c_fons.r = cfr - 0.0008*(animaController.rocket.m_z - 6371);
-		c_fons.g = cfg - 0.00079*(animaController.rocket.m_z - 6371) ;
-		c_fons.b = cfb - 0.00068*(animaController.rocket.m_z - 6371) ;
-
-		
 
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
@@ -2344,6 +2373,10 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 
 		
 		}
+
+	if (animaController.rocket.combustible == false) {
+		projeccio = PERSPECT;
+	}
 	else if (satelit)	{	// OPCI� SAT�LIT: Increment OPV segons moviments mouse.
 		//OPV.R = OPV.R + m_EsfeIncEAvall.R;
 		OPV.alfa = OPV.alfa + m_EsfeIncEAvall.alfa;
@@ -3661,6 +3694,9 @@ void CEntornVGIView::executeTrayectory() {
 void CEntornVGIView::OnLaunch()
 {
 	anima = true;
+	this->OnTrayectoriaRestart();
+	this->OnCameraMultiview();
+	animaController.rocket.combustible = true; 
 	
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
@@ -3679,6 +3715,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	iter = 0;
 	this->setCenterWith(ROCKET);
 	InvalidateRect(NULL, false);
+	firstIter = true ;
 }
 
 
@@ -3784,7 +3821,10 @@ void CEntornVGIView::OnMiraraPlanet()
 	setCenterWith(PLANET);
 
 	OPV.R = animaController.planet.radius * 3;
-	INCRM = 990;
+	INCRM = 130;
+	c_fons.r = 0;
+	c_fons.g = 0;
+	c_fons.b = 0;
 	InvalidateRect(NULL, false);
 
 }
@@ -3888,7 +3928,7 @@ void CEntornVGIView::insertPlataforma()
 void CEntornVGIView::OnCoheteLanzadera()
 {
 	if (R0CKET2 == NULL) {
-		nom = "./objects/Lanzadera.obj";
+		nom = "./objects/Transbordador/Transbordador.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
@@ -3944,7 +3984,7 @@ void CEntornVGIView::OnUpdateCoheteTres(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteQuatre()
 {
 	if (R0CKET4 == NULL) {
-		nom = "./objects/Falcon_9_entero/Falcon9.obj";
+		nom = "./objects/enric_fusio_final.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL

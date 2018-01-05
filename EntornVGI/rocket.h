@@ -80,8 +80,14 @@ public:
 	float ay;
 	float az;
 
+	bool combustible = true;
+
+	int max_iter = 500;
+
 	//Constructor
 	Rocket();
+
+	float get_altura();
 	
 	//Overwrite of the constructor with some parameters
 	//Rocket(some params)

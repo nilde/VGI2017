@@ -28,7 +28,7 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 	GLfloat angv,angh;
 
 // Configuraci� de la font de llum LIGHT0
-	GLfloat position[]{333,3333,7371,0.0};
+	GLfloat position[]{0,0,7371,0.0};
 	GLfloat especular[]={0.0,0.0,0.0,1.0};
     GLfloat ambientg[]={0.1,0.1,0.2,1.0};
 	
@@ -85,6 +85,10 @@ void Iluminacio(char ilumin,bool ifix,bool ll_amb,LLUM lumin,bool textur,bool te
 				//position2[1] = lumin.posicio.R*sin(angh)*cos(angv);
 				//position2[2] = lumin.posicio.R*sin(angv);
 				//position2[3] = 1.0;
+				position2[0] = lumin.posicio.R*cos(angh)*cos(angv);
+				position2[1] = lumin.posicio.R*sin(angh)*cos(angv);
+				position2[2] = lumin.posicio.R*sin(angv);
+				position2[3] = 1.0;
 				position2[0] = lumin.posicio.R*cos(angh)*cos(angv);
 				position2[1] = lumin.posicio.R*sin(angh)*cos(angv);
 				position2[2] = lumin.posicio.R*sin(angv);
@@ -768,5 +772,9 @@ void oneView(int minx, int miny, GLsizei w, GLsizei h, float zoom)
 	glLoadIdentity(); // Inicialització de GL_PROJECTION
 
 	gluPerspective(60.0, 1.0*w / h, p_near, p_far); // Matriu de projecció i Volum de Visualització
+
+// Activaci� matriu MODELVIEW (tancar matriu PROJECTION)
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 

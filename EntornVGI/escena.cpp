@@ -119,7 +119,8 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
-	
+
+
 		glColor3f(1.0, 1.0, 1.0);
 		glBindTexture(GL_TEXTURE_2D, texturID[6]);
 
@@ -135,13 +136,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPopMatrix();
 
 		
-		char iluminacio = GOURAUD; //PLANA, ,FILFERROS
-		GLfloat mida = 0.55;
-		glPushMatrix();
-		glTranslatef(70, -90, 6366);
-		glScalef(mida, mida, mida);
-		fract(iluminacio, true, animaController.step);
-		glPopMatrix();
+		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6550)) {
+			char iluminacio = GOURAUD; //PLANA, ,FILFERROS
+			GLfloat mida = 0.55;
+			glPushMatrix();
+			glTranslatef(70, -90, 6366);
+			glScalef(mida, mida, mida);
+			fract(iluminacio, true, animaController.step);
+			glPopMatrix();
+		}
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -156,31 +159,33 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			gluEsfera(6300+200*i, 100, 100);
 			glPopMatrix();
 		}
-
 	
-
-
-		
 
 		glBindTexture(GL_TEXTURE_2D, texturID[8]);
 		glEnable(GL_TEXTURE_2D);
 		glColor4f(1, 1, 1, 0.15);
 		glPushMatrix();
 		glRotatef(312, 155, 1, 1);
-		gluEsfera(10000, 1000, 10000);
+		if (animaController.lookat == ROCKET) {
+			gluEsfera(10000, 1000, 10000);
+		}
+		else {
+			gluEsfera(9000000, 1000, 10000);
+		}
 		glPopMatrix();
 		//glDisable(GL_TEXTURE_2D);
 	
 		// animaController.DrawHumo();
 		
-		//Plataforma de llençament
-		glPushMatrix();
-		glTranslatef(70, -59, 6371);
-		glRotatef(90, 1, 0, 0);
-		glScalef(0.5, 0.5, 0.7);
-		glCallList(PLATAFORMAOBJ);
-		glPopMatrix();
-
+		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
+			//Plataforma de llençament
+			glPushMatrix();
+			glTranslatef(67, -60, 6370);
+			glRotatef(90, 1, 0, 0);
+			glScalef(1.5, 0.6, 1.5);
+			glCallList(PLATAFORMAOBJ);
+			glPopMatrix();
+		}
 		
 		/////////// COHETE!!
 		//glColor3f(1.0, 0, 1.0);
@@ -189,7 +194,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
+		glRotatef(max(0, 270 - animaController.count*0.055), 0, 1, 0);
 		glScalef(0.05, 0.05, 0.05);
+		animaController.count--;
 
 		switch (animaController.activeRocket) {
 		case '1':
@@ -206,13 +213,11 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		case '3':
 		{
-
 			glCallList(ROCKET3OBJ);
 			break;
 		}
 		case '4':
 		{
-
 			glCallList(ROCKET4OBJ);
 			break;
 		}
@@ -223,24 +228,24 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glScalef(0.005, 0.005, 0.005);
 		glTranslatef(0, 0, -2);
 
-		if (animaController.count % 500 == 0) {
+
+	
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
-			animaController.fuego.draw();
-			animaController.humo.draw();
-
-		}
-		if (animaController.count == 32760) {
-			animaController.count = 0;
-		}
+			glDisable(GL_LIGHTING);
+			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
+				animaController.fuego.draw();
+				animaController.humo.draw();
+			}
+		
 	
 		glPopMatrix();
-
+		//glDisable(GL_LIGHTING);
 		glPushMatrix();
 		glTranslatef(0,0,6490);
 		glRotatef(90, 1, 0, 0);
 		//glScalef(1,1,1);
-		glBindTexture(GL_TEXTURE_2D, texturID[0]);
+		glBindTexture(GL_TEXTURE_2D, texturID[1]);
 		glEnable(GL_TEXTURE_2D);
 		glScalef(0.05, 0.05, 0.05);
 		generateRandomClouds(animaController);
