@@ -136,7 +136,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPopMatrix();
 
 		
-		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
+		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6550)) {
 			char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 			GLfloat mida = 0.55;
 			glPushMatrix();
@@ -194,7 +194,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
+		glRotatef(max(0, 270 - animaController.count*0.055), 0, 1, 0);
 		glScalef(0.05, 0.05, 0.05);
+		animaController.count--;
 
 		switch (animaController.activeRocket) {
 		case '1':
@@ -216,8 +218,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		case '4':
 		{
-
-			//glCallList(ROCKET4OBJ);
+			glCallList(ROCKET4OBJ);
 			break;
 		}
 		default:
@@ -237,9 +238,6 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 				animaController.humo.draw();
 			}
 		
-		if (animaController.count == 32760) {
-			animaController.count = 0;
-		}
 	
 		glPopMatrix();
 		//glDisable(GL_LIGHTING);

@@ -505,9 +505,11 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 // Permet la coexistencia d'altres contextes de generaci�
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
 
-	this->OnCoheteUno();
+
 	this->OnMiraraRocket();
+	this->OnCoheteUno();
 	this->OnPlanetaTierra();
+	this->OnCoheteLanzadera();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 	this->insertPlataforma();
 
@@ -888,7 +890,8 @@ void CEntornVGIView::OnPaint()
 		//CAMARA 4
 		oneView(w / 2, 0, w / 2, h / 2, OPV.R);
 
-		OPV.beta += 1;
+		OPV.beta += 1.5;
+
 		
 		n[0] = 0;		n[1] = 0;		n[2] = 0;
 
@@ -2370,6 +2373,10 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 
 		
 		}
+
+	if (animaController.rocket.combustible == false) {
+		projeccio = PERSPECT;
+	}
 	else if (satelit)	{	// OPCI� SAT�LIT: Increment OPV segons moviments mouse.
 		//OPV.R = OPV.R + m_EsfeIncEAvall.R;
 		OPV.alfa = OPV.alfa + m_EsfeIncEAvall.alfa;
@@ -3687,6 +3694,9 @@ void CEntornVGIView::executeTrayectory() {
 void CEntornVGIView::OnLaunch()
 {
 	anima = true;
+	this->OnTrayectoriaRestart();
+	this->OnCameraMultiview();
+	animaController.rocket.combustible = true; 
 	
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
@@ -3974,7 +3984,7 @@ void CEntornVGIView::OnUpdateCoheteTres(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteQuatre()
 {
 	if (R0CKET4 == NULL) {
-		nom = "./objects/Falcon_9_entero/Falcon9.obj";
+		nom = "./objects/enric_fusio_final.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL

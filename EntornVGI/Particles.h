@@ -8,7 +8,7 @@
 
 class Particles {
 public:
-	const int static MAX_PARTICLES = 800;
+	const int static MAX_PARTICLES = 1500;
 	int ORIGIN_X;
 	int ORIGIN_Y;
 	int ORIGIN_Z;
