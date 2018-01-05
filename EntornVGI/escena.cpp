@@ -119,7 +119,8 @@ GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, AnimaController &animaController)
 {
 	float altfar = 0;
-	
+
+
 		glColor3f(1.0, 1.0, 1.0);
 		glBindTexture(GL_TEXTURE_2D, texturID[6]);
 
@@ -226,15 +227,16 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glScalef(0.005, 0.005, 0.005);
 		glTranslatef(0, 0, -2);
 
-		if (animaController.count % 500 == 0) {
+
+	
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
 			glDisable(GL_LIGHTING);
-
-			animaController.fuego.draw();
-			animaController.humo.draw();
-
-		}
+			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
+				animaController.fuego.draw();
+				animaController.humo.draw();
+			}
+		
 		if (animaController.count == 32760) {
 			animaController.count = 0;
 		}

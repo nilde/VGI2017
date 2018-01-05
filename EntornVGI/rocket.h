@@ -80,6 +80,10 @@ public:
 	float ay;
 	float az;
 
+	bool combustible = true;
+
+	int max_iter = 500;
+
 	//Constructor
 	Rocket();
 

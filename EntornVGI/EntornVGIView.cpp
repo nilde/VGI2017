@@ -2354,7 +2354,6 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: Agregue aqu� su c�digo de controlador de mensajes o llame al valor predeterminado
 
-
 	if (animaController.lookat == PLANET) {
 		OPV.beta += 1;
 
