@@ -4,6 +4,7 @@
 #include "Particles.h"
 #include "clouds.h"
 #include "cities.h"
+#include "reader.h"
 
 const int numActivePointsCat = 111250;
 const int numTrueActivePoints = 5000;
@@ -18,6 +19,7 @@ public:
 	Planet planet;
 	Clouds clouds;
 	Cities cities;
+	Reader reader;
 
 	Particles fuego;
 	Particles humo;
