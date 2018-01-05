@@ -6,9 +6,10 @@
 
 AnimaController::AnimaController()
 {
+	reader = Reader("./../fitxerAModificar.txt");
 	rocket = Rocket();
 	planet = Planet(6371);
-	reader = Reader("./../fitxerAModificar.txt");
+	
 
 
 	// modificamos los par�metros de las part�culas de humo

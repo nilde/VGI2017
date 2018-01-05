@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-using namespace std;
+
 
 //Base constructor
 Reader::Reader() {
@@ -20,9 +20,8 @@ Reader::Reader(char* fileToRead) {
 
 //Operator copy
 void Reader::operator=(Reader &readerToCopy) {
-	memcpy(Attribute1, readerToCopy.Attribute1, sizeof(Attribute1));
-	memcpy(Attribute2, readerToCopy.Attribute2, sizeof(Attribute2));
-	memcpy(Attribute3, readerToCopy.Attribute3, sizeof(Attribute3));
+	Attribute1 = readerToCopy.Attribute1;
+	Attribute1 = readerToCopy.Attribute1;
 }
 
 //Read Attributes from file
@@ -31,47 +30,52 @@ void Reader::readFromFile(char* fileToRead) {
 	file.open(fileToRead, ifstream::in);
 	if (file.good())
 	{
-		file.getline(Attribute1, BUFFERSIZE);
-		file.getline(Attribute2, BUFFERSIZE);
-		file.getline(Attribute3, BUFFERSIZE);
+		char container[BUFFERSIZE];
+		string delimiter = ":";
+
+		file.getline(container, BUFFERSIZE);
+		Attribute1 = container;
+		Attribute1=Attribute1.substr(Attribute1.find(delimiter) + 1, Attribute1.length() - 1);
+
+		file.getline(container, BUFFERSIZE);
+		Attribute2 = container;
+		Attribute2=Attribute2.substr(Attribute2.find(delimiter) + 1, Attribute2.length() - 1);
+
+		file.getline(container, BUFFERSIZE);
+		Attribute3 = container;
+		Attribute3=Attribute3.substr(Attribute3.find(delimiter) + 1, Attribute3.length() - 1);
 	}
 	file.close();
 }
 
 //Setter & Getter for Attribute1
-void Reader::setAttribute1(char* container) {
-	memset(Attribute1, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(Attribute1, container, sizeof(char)*BUFFERSIZE);
+void Reader::setAttribute1(string newValue) {
+	Attribute3 = newValue;
 }
 
-void Reader::getAttribute1(char* container) {
-	memset(container, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(container, Attribute1, sizeof(char)*BUFFERSIZE);
+string Reader::getAttribute1() {
+	return Attribute1;
 
 }
 
 
 //Setter & Getter for Attribute2
-void Reader::setAttribute2(char* container) {
-	memset(Attribute1, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(Attribute1, container, sizeof(char)*BUFFERSIZE);
-
+void Reader::setAttribute2(string newValue) {
+	Attribute3 = newValue;
 }
 
-void Reader::getAttribute2(char* container) {
-	memset(container, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(container, Attribute2, sizeof(char)*BUFFERSIZE);
+string Reader::getAttribute2() {
+
+	return Attribute2;
 
 }
 
 
 //Setter & Getter for Attribute3
-void Reader::setAttribute3(char* container) {
-	memset(Attribute1, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(Attribute1, container, sizeof(char)*BUFFERSIZE);
+void Reader::setAttribute3(string newValue) {
+	Attribute3 = newValue;
 }
 
-void Reader::getAttribute3(char* container) {
-	memset(container, '\0', sizeof(char)*BUFFERSIZE);
-	memcpy(container, Attribute3, sizeof(char)*BUFFERSIZE);
+string Reader::getAttribute3() {
+	return Attribute3;
 }

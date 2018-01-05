@@ -1,7 +1,8 @@
 #ifndef _READER
 #define _READER
 
-#include <string.h>
+#include <string>
+using namespace std;
 const int BUFFERSIZE = 256;
 
 class Reader {
@@ -14,18 +15,18 @@ public:
 
 	void readFromFile(char* fileToRead);
 
-	void setAttribute1(char* container);
-	void getAttribute1(char* container);
+	void setAttribute1(string newValue);
+	string getAttribute1();
 
-	void setAttribute2(char* container);
-	void getAttribute2(char* container);
+	void setAttribute2(string newValue);
+	string getAttribute2();
 
-	void setAttribute3(char* container);
-	void getAttribute3(char* container);
+	void setAttribute3(string newValue);
+	string getAttribute3();
 
-	char Attribute1[BUFFERSIZE] = { '\0' };
-	char Attribute2[BUFFERSIZE] = { '\0' };
-	char Attribute3[BUFFERSIZE] = { '\0' };
+	string Attribute1;
+	string Attribute2;
+	string Attribute3;
 
 
 };

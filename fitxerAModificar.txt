@@ -1,3 +1,5 @@
-Dale a tu cuerpo
-Alegria Macarena
-Que tu cuerpo es pa darle...
+Tamaño Planeta:6371
+Tipo Cohete:1
+Tipo Planeta:1
+Combustible:1000
+Gravedad del planeta:9.8
