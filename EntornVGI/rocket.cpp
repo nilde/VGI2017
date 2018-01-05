@@ -68,20 +68,20 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	float real_az = 0;
 	float real_ay = 0;
 	if (m_z >= 0) {
-		real_az = az - 9.8 * seno(betta);
+		real_az = az - gravity * seno(betta);
 	}
 	else {
-		real_az = az + 9.8 * seno(betta);
+		real_az = az + gravity * seno(betta);
 	}
 	if (m_y >= 0) {
 		if (iteracion > 200 ) {
-			real_ay = ay - 9.8 * coseno(betta);
+			real_ay = ay - gravity * coseno(betta);
 		}
 		
 	}
 	else {
 		if (iteracion > 200) {
-			real_ay = ay + 9.8 * coseno(betta);
+			real_ay = ay + gravity * coseno(betta);
 		}
 	}
 
@@ -130,4 +130,8 @@ void Rocket::Initialize() {
 
 void Rocket::Restart(){
 	Initialize();
+}
+
+void Rocket::setGravity(float actualGravity) {
+	gravity = actualGravity;
 }

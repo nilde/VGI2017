@@ -92,6 +92,8 @@ public:
 
 	void Initialize();
 
+	void setGravity(float);
+
 	//No implementada
 	float Rocket::angleGenerated(float previousX, float previousY, float actualX, float actualY);
 	
@@ -104,6 +106,7 @@ private:
 	float weight;
 	float height;
 	float utilCharge;
+	float gravity;
 
 };
 

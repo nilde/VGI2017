@@ -76,9 +76,9 @@ void Reader::setRocketType(string newValue) {
 	rocketType = newValue;
 }
 
-int Reader::getRocketType() {
+char Reader::getRocketType() {
 
-	return stoi(rocketType);
+	return rocketType[0];
 
 }
 
@@ -88,8 +88,8 @@ void Reader::setPlanetType(string newValue) {
 	planetType = newValue;
 }
 
-int Reader::getPlanetType() {
-	return stoi(planetType);
+char Reader::getPlanetType() {
+	return planetType[0];
 }
 
 //Setter & Getter for propellant type
@@ -97,8 +97,8 @@ void Reader::setPropellantType(string newValue) {
 	propellantType = newValue;
 }
 
-int Reader::getPropellantType() {
-	return stoi(propellantType);
+char Reader::getPropellantType() {
+	return propellantType[0];
 }
 //Setter & Getter for gravity of the planet
 void Reader::setGravityPlanet(string newValue) {

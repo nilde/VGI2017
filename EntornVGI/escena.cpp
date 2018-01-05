@@ -215,23 +215,26 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	
 		glPopMatrix();
 
-		glPushMatrix();
-		glTranslatef(150,50,6400);
-		glRotatef(90, 1, 0, 0);
-		//glScalef(1,1,1);
-		glBindTexture(GL_TEXTURE_2D, texturID[0]);
-		glEnable(GL_TEXTURE_2D);
-		glScalef(0.05, 0.05, 0.05);
-		//generateRandomClouds(animaController);
-		glPopMatrix();
+		if (animaController.clouds.isActive) {
+			glPushMatrix();
+			glTranslatef(150, 50, 6400);
+			glRotatef(90, 1, 0, 0);
+			//glScalef(1,1,1);
+			glBindTexture(GL_TEXTURE_2D, texturID[0]);
+			glEnable(GL_TEXTURE_2D);
+			glScalef(0.05, 0.05, 0.05);
+			generateRandomClouds(animaController);
+			glPopMatrix();
+		}
 
-
-		//Generacion de las ciudades
-		glPushMatrix();
-		glTranslatef(35, -231, 6370);
-		glScalef(0.55, 0.55, 0.55);
-		generateRandomCities(animaController);
-		glPopMatrix();
+		if (animaController.cities.isActive) {
+			//Generacion de las ciudades
+			glPushMatrix();
+			glTranslatef(35, -231, 6370);
+			glScalef(0.55, 0.55, 0.55);
+			generateRandomCities(animaController);
+			glPopMatrix();
+		}
 	// Enviar les comandes grafiques a pantalla
 	glFlush();
 
@@ -286,7 +289,10 @@ void dibuixa(char obj)
 
 void generateRandomClouds(AnimaController &animaController) {
 	float alpha = 0;
-
+	if (animaController.rocket.m_z > animaController.clouds.maxHighCloud + 50) {
+		animaController.clouds.isActive = false;
+		return;
+	}
 	//Print all the data of the blocks
 	if (animaController.rocket.m_z + 300 > animaController.clouds.maxHighCloud)
 		animaController.clouds.rocketOverClouds = true;
@@ -316,6 +322,10 @@ void generateRandomClouds(AnimaController &animaController) {
 void generateRandomCities(AnimaController &animaController) {
 	int accessIndex = 0;
 	int cont = 0;
+		if (animaController.rocket.m_z-30> animaController.clouds.minHighCloud+6575) {
+			animaController.cities.isActive = false;
+			return;
+		}
 	for (int i = 0; i < animaController.cities.numOfBlocks; i++) {
 		cont++;
 		if (animaController.cities.compBuilding+animaController.cities.compTrees>cont) {

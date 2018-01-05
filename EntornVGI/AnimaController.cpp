@@ -8,7 +8,9 @@ AnimaController::AnimaController()
 {
 	reader = Reader("./../fitxerAModificar.txt");
 	rocket = Rocket();
-	planet = Planet(6371);
+	rocket.setGravity(reader.getGravityPlanet());
+	activeRocket = reader.getRocketType();
+	planet = Planet(reader.getSizePlanet());
 	
 
 

@@ -19,13 +19,13 @@ public:
 	int getSizePlanet();
 
 	void setRocketType(string newValue);
-	int getRocketType();
+	char getRocketType();
 
 	void setPlanetType(string newValue);
-	int getPlanetType();
+	char getPlanetType();
 
 	void setPropellantType(string newValue);
-	int getPropellantType();
+	char getPropellantType();
 
 	void setGravityPlanet(string newValue);
 	float getGravityPlanet();

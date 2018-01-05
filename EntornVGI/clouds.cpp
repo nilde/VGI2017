@@ -163,6 +163,8 @@ void Clouds::calcPositions() {
 					cloudContentOffset[cloud][prof][row][col][2] = actualOffsetZ + sizeOfBox*prof*((rand() % (8 - 3) + 3) / 10.0);
 					if (maxHighCloud < cloudContentOffset[cloud][prof][row][col][2])
 						maxHighCloud = cloudContentOffset[cloud][prof][row][col][2]-100;
+					if (minHighCloud > cloudContentOffset[cloud][prof][row][col][2] && cloudContentOffset[cloud][prof][row][col][2]>0)
+						minHighCloud = cloudContentOffset[cloud][prof][row][col][2];
 				}
 			}
 		}
