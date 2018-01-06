@@ -352,8 +352,9 @@ BEGIN
     POPUP "Planeta"
     BEGIN
         MENUITEM "Tierra",                      ID_PLANETA_TIERRA
+        MENUITEM "Marte",                       ID_PLANETA_MARTE
+        MENUITEM "Luna",                        ID_PLANETA_LUNA
     END
-
     POPUP "cohete"
     BEGIN
         MENUITEM "uno",                         ID_COHETE_UNO

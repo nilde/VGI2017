@@ -3,8 +3,8 @@
 
 const int numOfPosiblePositions = 111250;
 const int numOfActiveBlocks = 4000;
-const int numBuildings = 200;
-const int numTrees=200;
+const int numBuildings = 50;
+const int numTrees=50;
 
 class Cities {
 public:

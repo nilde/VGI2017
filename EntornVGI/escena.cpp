@@ -101,7 +101,7 @@ void gluEsfera(GLdouble radius, GLint slices, GLint stacks)
 
 
 // TEXTURES: Vector de noms de textura
-GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
 
 
 
@@ -112,7 +112,18 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 
 		glColor3f(1.0, 1.0, 1.0);
-		glBindTexture(GL_TEXTURE_2D, texturID[6]);
+		if (animaController.activePlanet == TIERRA) {
+			glBindTexture(GL_TEXTURE_2D, texturID[6]);
+
+		}
+		else if (animaController.activePlanet == LUNA) {
+			glBindTexture(GL_TEXTURE_2D, texturID[10]);
+
+		}
+		else if (animaController.activePlanet == MARTE) {
+			glBindTexture(GL_TEXTURE_2D, texturID[9]);
+
+		}
 
 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -247,7 +258,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			generateRandomClouds(animaController);
 			glPopMatrix();
 		}
-
+		
 		if (animaController.cities.isActive) {
 			//Generacion de las ciudades
 			glPushMatrix();
@@ -343,13 +354,13 @@ void generateRandomClouds(AnimaController &animaController) {
 void generateRandomCities(AnimaController &animaController) {
 	int accessIndex = 0;
 	int cont = 0;
-		if (animaController.rocket.m_z-30> animaController.clouds.minHighCloud+6575) {
-			animaController.cities.isActive = false;
-			return;
-		}
+	if (animaController.rocket.m_z - 30> animaController.clouds.minHighCloud + 6575) {
+		animaController.cities.isActive = false;
+		return;
+	}
 	for (int i = 0; i < animaController.cities.numOfBlocks; i++) {
 		cont++;
-		if (animaController.cities.compBuilding+animaController.cities.compTrees>cont) {
+		if (animaController.cities.compBuilding + animaController.cities.compTrees>cont) {
 			accessIndex = animaController.cities.validPositionsActive[i];
 			glPushMatrix();
 			glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2] + 0.75);
@@ -358,7 +369,7 @@ void generateRandomCities(AnimaController &animaController) {
 			if (!animaController.cities.validPositionsActiveContent[i])
 				glCallList(BUILDINGOBJ);
 			if (animaController.cities.validPositionsActiveContent[i]) {
-				glScalef(10, 10,10);
+				glScalef(10, 10, 10);
 				glCallList(TREEOBJ);
 			}
 			glPopMatrix();
