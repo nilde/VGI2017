@@ -130,8 +130,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glPushMatrix();
 			glTranslatef(70, -90, 6366);
 			glScalef(mida, mida, mida);
-			fract(iluminacio, true, animaController.step);
-			glPopMatrix();
+			fract(iluminacio, true, animaController.step, animaController.matrixContainer, false);			glPopMatrix();
 		}
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
