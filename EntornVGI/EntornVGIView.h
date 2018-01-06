@@ -371,6 +371,10 @@ public:
 	afx_msg void OnUpdateBuildingCreation(CCmdUI *pCmdUI);
 	afx_msg void OnCameraMultiview();
 	afx_msg void OnUpdateCameraMultiview(CCmdUI *pCmdUI);
+	afx_msg void OnPlanetaMarte();
+	afx_msg void OnUpdatePlanetaMarte(CCmdUI *pCmdUI);
+	afx_msg void OnPlanetaLuna();
+	afx_msg void OnUpdatePlanetaLuna(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // Versi�n de depuraci�n en EntornVGIView.cpp

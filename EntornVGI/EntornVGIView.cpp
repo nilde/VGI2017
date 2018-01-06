@@ -178,6 +178,10 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_UPDATE_COMMAND_UI(ID_CAMERA_MULTIVIEW, &CEntornVGIView::OnUpdateCameraMultiview)
 		ON_COMMAND(ID_BUILDING, &CEntornVGIView::buildingCreation)
 		ON_UPDATE_COMMAND_UI(ID_BUILDING, &CEntornVGIView::OnUpdateBuildingCreation)
+		ON_COMMAND(ID_PLANETA_MARTE, &CEntornVGIView::OnPlanetaMarte)
+		ON_UPDATE_COMMAND_UI(ID_PLANETA_MARTE, &CEntornVGIView::OnUpdatePlanetaMarte)
+		ON_COMMAND(ID_PLANETA_LUNA, &CEntornVGIView::OnPlanetaLuna)
+		ON_UPDATE_COMMAND_UI(ID_PLANETA_LUNA, &CEntornVGIView::OnUpdatePlanetaLuna)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -513,6 +517,19 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->OnCoheteUno();
 	this->buildingCreation();
 	this->OnMiraraRocket();
+
+	// Entorn VGI: Activaci� el contexte OpenGL
+	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
+
+	//loadIMA("./textures/tierra.jpg", 0);
+
+	Init_Textures_Terra();
+
+	// Desactivaci� contexte OpenGL: Permet la coexistencia d'altres contextes de generaci�
+	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
+
+	// Crida a OnPaint() per redibuixar l'escena
+
 	this->OnPlanetaTierra();
 	this->OnCoheteLanzadera();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
@@ -3855,19 +3872,9 @@ void CEntornVGIView::OnUpdateMiraraPlanet(CCmdUI *pCmdUI)
 void CEntornVGIView::OnPlanetaTierra()
 {
 	animaController.activePlanet = TIERRA;
-
-	// Entorn VGI: Activaci� el contexte OpenGL
-	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
-
-	//loadIMA("./textures/tierra.jpg", 0);
-
-	Init_Textures_Terra();
-
-	// Desactivaci� contexte OpenGL: Permet la coexistencia d'altres contextes de generaci�
-	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
-
-	// Crida a OnPaint() per redibuixar l'escena
 	InvalidateRect(NULL, false);
+
+
 }
 
 
@@ -4068,4 +4075,41 @@ void CEntornVGIView::OnUpdateBuildingCreation(CCmdUI *pCmdUI)
 {
 	pCmdUI->SetCheck(1);
 	
+}
+
+void CEntornVGIView::OnPlanetaMarte()
+{
+	animaController.activePlanet = MARTE;
+	InvalidateRect(NULL, false);
+
+}
+
+
+void CEntornVGIView::OnUpdatePlanetaMarte(CCmdUI *pCmdUI)
+{
+	if (animaController.activePlanet == MARTE) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
+}
+
+
+void CEntornVGIView::OnPlanetaLuna()
+{
+	animaController.activePlanet = LUNA;
+	InvalidateRect(NULL, false);
+
+}
+
+
+void CEntornVGIView::OnUpdatePlanetaLuna(CCmdUI *pCmdUI)
+{
+	if (animaController.activePlanet == LUNA) {
+		pCmdUI->SetCheck(1);
+	}
+	else {
+		pCmdUI->SetCheck(0);
+	}
 }

@@ -38,6 +38,8 @@
 #define TRUCK 'T'
 #define ROCKET 'R'
 #define TIERRA '}'
+#define MARTE '{'
+#define LUNA '´'
 #define PLANET '¨'
 #define VAIXELL 'v'
 #define OBJ3DS '3'		// Objecte format 3DS
@@ -63,8 +65,8 @@
 #define ROCKET4OBJ 1237
 #define PLATAFORMAOBJ 1238
 
-#define BUILDINGOBJ 1238
-#define TREEOBJ		1239
+#define BUILDINGOBJ 1239
+#define TREEOBJ		1240
 
 // -------------- VGI: Definició dels valors del pla near i far del Volum de Visualització en Perspectiva
 const int p_near=1;
@@ -78,7 +80,7 @@ const int p_far=50000;
 
 // -------------- VGI: CONSTANTS TEXTURES
 // Nombre màxim de textures
-#define NUM_MAX_TEXTURES 10
+#define NUM_MAX_TEXTURES 20
 
 // Tipus de textures
 #define CAP ' '
