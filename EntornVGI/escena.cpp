@@ -240,6 +240,10 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		
 	
 		glPopMatrix();
+
+
+
+
 		//glDisable(GL_LIGHTING);
 		glPushMatrix();
 		glTranslatef(0,0,6490);
