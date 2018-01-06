@@ -16,6 +16,9 @@ public:
 
 	void generateStructuresForClouds();
 	Rocket rocket;
+	Rocket rocket2;
+	Rocket rocket3;
+	Rocket rocket4;
 	Planet planet;
 	Clouds clouds;
 

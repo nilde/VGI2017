@@ -1,6 +1,6 @@
 
 #include "stdafx.h"
-
+#include "math.h"
 #include "InformationWnd.h"
 #include "Resource.h"
 #include "MainFrm.h"
@@ -185,6 +185,9 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	for (int i = m_wndInformationDebug.GetCount() - 1; i >= 0; i--) {
 		m_wndInformationDebug.DeleteString(i);
 	}
+
+	double distance = sqrt((rocket.m_x*rocket.m_x) +  (rocket.m_y*rocket.m_y) + (rocket.m_z*rocket.m_z)) - 6371;
+
 	//ax,ay,az,m_alpha,m_x,m_y,m_z,vx,vy,vz
 	str.Format(_T("Aceleración en el eje X: %.3f "),rocket.ax);
 	m_wndInformationDebug.AddString(str);
@@ -205,5 +208,7 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	str.Format(_T("Velocidad en el eje Y: %.3f "), rocket.vy);
 	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Velocidad en el eje Z: %.3f "), rocket.vz);
+	m_wndInformationDebug.AddString(str);
+	str.Format(_T("Distancia a la Tierra: %.3f "), distance);
 	m_wndInformationDebug.AddString(str);
 }

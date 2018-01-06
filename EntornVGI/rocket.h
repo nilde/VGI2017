@@ -61,6 +61,7 @@ public:
 	int m_y;
 	int m_z;
 	int m_alpha;
+	int m_special;
 
 	bool stop;
 
@@ -82,7 +83,7 @@ public:
 
 	bool combustible = true;
 
-	int max_iter = 500;
+	int max_iter = 600;
 
 	//Constructor
 	Rocket();
@@ -93,6 +94,8 @@ public:
 	//Rocket(some params)
 
 	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
+
+	void ExecuteTrayectory_Semi(int iteracion, float step, GLfloat center[3]);
 
 	void Restart();
 
