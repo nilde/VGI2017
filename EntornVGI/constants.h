@@ -181,7 +181,10 @@ struct LLUM
 };
 
 //Constants del Planeta
-const double Terra_Massa = 5.974 * pow(10, 24);
+
+const double Tradi = 6361;
+double const_G = (6.68*pow(10, -11));
+
 //const double 
 
 #endif

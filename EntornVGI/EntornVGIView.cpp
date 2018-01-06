@@ -3670,13 +3670,16 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 void CEntornVGIView::executeTrayectory() {
 
 	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center);
+	animaController.rocket2.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center);
+	animaController.rocket3.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center);
+	animaController.rocket4.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center);
 	t += animaController.TSTEP;
 	iter++; 
 	
 	//MODIFICACIONES PROPIAS
 	//evils line
 	if (true) {
-		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket);
+		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket2);
 	}
 	// FINAL MODIFICACIONES PROPIAS
 
@@ -3714,6 +3717,9 @@ void CEntornVGIView::OnTrayectoriaStop()
 void CEntornVGIView::OnTrayectoriaRestart()
 {
 	animaController.rocket.Restart();
+	animaController.rocket2.Restart();
+	animaController.rocket3.Restart();
+	animaController.rocket4.Restart();
 	animaController.clouds.deleteCatalunya = false;
 	t = 0;
 	iter = 0;

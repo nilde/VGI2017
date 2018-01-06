@@ -219,17 +219,42 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			}
 		glPopMatrix();
 
-		//Other Rockets (De momento no lo printa)
+		//Other Rockets
+		//Coete Deposito
 		glPushMatrix();
-		glTranslatef(animaController.rocket2.m_x+20, animaController.rocket2.m_y, animaController.rocket2.m_z);
+		glTranslatef(animaController.rocket2.m_x+0.25, animaController.rocket2.m_y, animaController.rocket2.m_z);
 		glRotatef(animaController.rocket2.m_alpha, 90, 1, 0);
 		glRotatef(270, 0, 90, 0);
-		glRotatef(animaController.rocket2.m_special, 0, 90, 0);
 		glScalef(0.05, 0.05, 0.05);
-		//glScalef(0.005, 0.005, 0.005);
-
 		glCallList(ROCKET3OBJ);
+		glTranslatef(0, 0, -2);
+		glBindTexture(GL_TEXTURE_2D, texturID[0]);
+		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
+		glPopMatrix();
 
+		//Coete Aux1
+		glPushMatrix();
+		glTranslatef(animaController.rocket3.m_x + 0.25, animaController.rocket3.m_y-0.25, animaController.rocket3.m_z);
+		glRotatef(animaController.rocket3.m_alpha, 90, 1, 0);
+		glRotatef(270, 0, 90, 0);
+		glRotatef(animaController.rocket3.m_special, 0, 90, 0);
+		glScalef(0.05, 0.05, 0.05);
+		glCallList(ROCKET1OBJ);
+		glTranslatef(0, 0, -2);
+		glBindTexture(GL_TEXTURE_2D, texturID[0]);
+		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
+		glPopMatrix();
+
+		//Coete Aux2
+		glPushMatrix();
+		glTranslatef(animaController.rocket4.m_x + 0.25, animaController.rocket4.m_y+0.25, animaController.rocket4.m_z);
+		glRotatef(animaController.rocket4.m_alpha, 90, 1, 0);
+		glRotatef(270, 0, 90, 0);
+		glRotatef(animaController.rocket4.m_special, 0, 90, 0);
+		glScalef(0.05, 0.05, 0.05);
+		glCallList(ROCKET1OBJ);
 		glTranslatef(0, 0, -2);
 		glBindTexture(GL_TEXTURE_2D, texturID[0]);
 		glEnable(GL_TEXTURE_2D);

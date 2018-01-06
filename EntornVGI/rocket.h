@@ -83,7 +83,8 @@ public:
 
 	bool combustible = true;
 
-	int max_iter = 600;
+	int max_iter = 500;
+	int Diff_Fase = 250;
 
 	//Constructor
 	Rocket();
@@ -95,7 +96,11 @@ public:
 
 	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
 
-	void ExecuteTrayectory_Semi(int iteracion, float step, GLfloat center[3]);
+	void ExecuteTrayectory2(int iteracion, float step, GLfloat center[3]);
+
+	void ExecuteTrayectory3(int iteracion, float step, GLfloat center[3]);
+
+	void ExecuteTrayectory4(int iteracion, float step, GLfloat center[3]);
 
 	void Restart();
 
@@ -115,7 +120,7 @@ private:
 	float weight;
 	float height;
 	float utilCharge;
-	float gravity;
+	double gravity;
 
 };
 
