@@ -31,16 +31,17 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	if (iteracion == max_iter) {
 		az = ax = ay = 0;
 	}
-	if (iteracion == max_iter - 200) {
+	if (iteracion >= max_iter - 250  && iteracion < max_iter) {
 		az = ax = 0;
 		ay = 14;
-
+		if (m_special != 90) {
+			m_special++;
+		}
 	}
-
-	if (iteracion == max_iter - 222) {
+		
+	if (iteracion == max_iter - 250) {
 		combustible = false;
 	}
-
 
 	float dy =  center[1] - m_y;
 	float dz =  center[2] - m_z;
@@ -92,6 +93,69 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	m_y = m_y + vy*step;
 }
 
+void Rocket::ExecuteTrayectory_Semi(int iteracion, float step, GLfloat center[3]) {
+	if (iteracion == max_iter) {
+		az = ax = ay = 0;
+	}
+	if (iteracion == max_iter - 200) {
+		az = ax = ay = 0;
+	}
+
+	if (iteracion == max_iter - 222) {
+		combustible = false;
+	}
+
+
+	float dy = center[1] - m_y;
+	float dz = center[2] - m_z;
+
+
+	if (vy != 0) {
+		m_alpha = arcotangente(vz / vy);
+		if (vy < 0) {
+			m_alpha = m_alpha + 180;
+		}
+	}
+
+	float betta;
+
+	if (m_y != 0) {
+		betta = arcotangente(float(abs(m_z)) / float(abs(m_y)));
+	}
+	else {
+		betta = 90;
+	}
+
+	float distancia = sqrt(dy*dy + dz*dz);
+
+	float real_az = 0;
+	float real_ay = 0;
+	if (m_z >= 0) {
+		real_az = az - 9.8 * seno(betta);
+	}
+	else {
+		real_az = az + 9.8 * seno(betta);
+	}
+	if (m_y >= 0) {
+		if (iteracion > 200) {
+			real_ay = ay - 9.8 * coseno(betta);
+		}
+
+	}
+	else {
+		if (iteracion > 200) {
+			real_ay = ay + 9.8 * coseno(betta);
+		}
+	}
+	vx = vx + ax * step;
+	vy = vy + real_ay * step;
+	vz = vz + real_az * step;
+
+	m_z = m_z + vz*step;
+	m_x = m_x + vx*step;
+	m_y = m_y + vy*step;
+}
+
 float Rocket::get_altura() {
 	return sqrt(m_z*m_z + m_y*m_y);
 }
@@ -114,6 +178,7 @@ void Rocket::Initialize() {
 	m_y = yo;
 	m_z = zo;
 	m_alpha = angle;
+	m_special = 0;
 
 	vx = vz = vy = 0;
 

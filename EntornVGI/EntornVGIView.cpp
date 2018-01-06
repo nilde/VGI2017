@@ -3664,8 +3664,6 @@ void CEntornVGIView::OnUpdateObjecteRocket(CCmdUI *pCmdUI)
 
 void CEntornVGIView::executeTrayectory() {
 
-
-
 	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center);
 	t += animaController.TSTEP;
 	iter++; 

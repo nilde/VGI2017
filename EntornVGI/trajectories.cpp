@@ -91,7 +91,6 @@ float ComputeAngleX(CPunt3D eix,CPunt3D tangent)
 {  
 //	float sinus,cosinus,normeix,normtg
 	float angle=0;
-
 	return angle;
 }
 

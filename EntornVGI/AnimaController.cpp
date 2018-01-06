@@ -7,6 +7,9 @@
 AnimaController::AnimaController()
 {
 	rocket = Rocket();
+	rocket2 = Rocket();
+	rocket3 = Rocket();
+	rocket4 = Rocket();
 	planet = Planet(6371);
 
 	// modificamos los par�metros de las part�culas de humo
