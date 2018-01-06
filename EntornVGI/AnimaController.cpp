@@ -6,11 +6,17 @@
 
 AnimaController::AnimaController()
 {
+	reader = Reader("./../fitxerAModificar.txt");
 	rocket = Rocket();
 	rocket2 = Rocket();
 	rocket3 = Rocket();
 	rocket4 = Rocket();
+	rocket.setGravity(reader.getGravityPlanet());
+	activeRocket = reader.getRocketType();
+	// planet = Planet(reader.getSizePlanet());
+	
 	planet = Planet(6371);
+
 
 	// modificamos los par�metros de las part�culas de humo
 
@@ -31,40 +37,6 @@ AnimaController::AnimaController()
 	humo.size_min = 20;
 	humo.size_max = 30;
 	humo.alpha = 0.45;
-
-
-}
-
-//AnimaController::~AnimaController() {
-	//some mine code
-	//Delete of dynamic matrix
-	/*
-	for (int i = 0; i < numRows; ++i) {
-		delete cloudProbability[i];
-	}
-	delete[] cloudProbability;
-
-	for (int i = 0; i < numClouds; ++i) {
-		for (int j = 0; j < numClouds; ++j) {
-			cloudContentOffsetZ[i][j];
-		}
-		delete cloudContentOffsetZ[i];
-	}
-	delete[] cloudContentOffsetZ;
-
-	for (int i = 0; i < numClouds; ++i) {
-		for (int j = 0; j < numClouds; ++j) {
-			cloudContentOffsetY[i][j];
-		}
-		delete cloudContentOffsetY[i];
-	}
-	delete[] cloudContentOffsetY;
-
-	delete[] OffsetsX;
-	delete[] OffsetsY;
-	delete[] OffsetsZ;*/
-//}
-void AnimaController::generateStructuresForClouds() {
 
 
 }

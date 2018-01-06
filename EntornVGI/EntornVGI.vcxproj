@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClInclude Include="AnimaController.h" />
     <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="cities.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="clouds.h" />
     <ClInclude Include="constants.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Particula.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="PropertiesWnd.h" />
+    <ClInclude Include="Reader.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="rocket.h" />
     <ClInclude Include="stdafx.h" />
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="cities.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="clouds.cpp" />
     <ClCompile Include="EntornVGI.cpp" />
@@ -179,6 +182,7 @@
     <ClCompile Include="Particula.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="PropertiesWnd.cpp" />
+    <ClCompile Include="Reader.cpp" />
     <ClCompile Include="rocket.cpp" />
     <ClCompile Include="AnimaController.cpp" />
     <ClCompile Include="stdafx.cpp">

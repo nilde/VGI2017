@@ -3,8 +3,11 @@
 #include "Planet.h"
 #include "Particles.h"
 #include "clouds.h"
+#include "cities.h"
+#include "reader.h"
 
-
+const int numActivePointsCat = 111250;
+const int numTrueActivePoints = 5000;
 
 class AnimaController {
 public:
@@ -12,15 +15,14 @@ public:
 	int count = 0;
 
 	AnimaController();
-	//~AnimaController();
-
-	void generateStructuresForClouds();
 	Rocket rocket;
 	Rocket rocket2;
 	Rocket rocket3;
 	Rocket rocket4;
 	Planet planet;
 	Clouds clouds;
+	Cities cities;
+	Reader reader;
 
 	Particles fuego;
 	Particles humo;
@@ -37,6 +39,13 @@ public:
 	char lookat = ROCKET;
 
 	int step;
+	
+	
+	//matrix for the respectives heights of Catalunya map
+	double matrixContainer[FMAX + 1][FMAX + 1];
+	int matrixPointsCoords[numActivePointsCat][3];
+	
+
 
 	const float TSTEP = 0.1;
 	const float TIMER = 100; // milisegundos

@@ -68,20 +68,20 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	float real_az = 0;
 	float real_ay = 0;
 	if (m_z >= 0) {
-		real_az = az - 9.8 * seno(betta);
+		real_az = az - gravity * seno(betta);
 	}
 	else {
-		real_az = az + 9.8 * seno(betta);
+		real_az = az + gravity * seno(betta);
 	}
 	if (m_y >= 0) {
 		if (iteracion > 200 ) {
-			real_ay = ay - 9.8 * coseno(betta);
+			real_ay = ay - gravity * coseno(betta);
 		}
 		
 	}
 	else {
 		if (iteracion > 200) {
-			real_ay = ay + 9.8 * coseno(betta);
+			real_ay = ay + gravity * coseno(betta);
 		}
 	}
 	vx = vx + ax * step;
@@ -165,12 +165,9 @@ void Rocket::Initialize() {
 	float angle = 90; // entre 0 y 90
 	float impulse = 12;
 
-	max_iter = 600;
-
-	xo = 71;
-	yo = -59.5;
-	zo = 6371;
-	//zo = yo = xo = 0;
+	xo = 70;
+	yo = -60;
+	zo = 6375;
 
 	combustible = false;
 
@@ -195,4 +192,8 @@ void Rocket::Initialize() {
 
 void Rocket::Restart(){
 	Initialize();
+}
+
+void Rocket::setGravity(float actualGravity) {
+	gravity = actualGravity;
 }

@@ -22,13 +22,17 @@ Clouds::Clouds()
 
 	calcTrueActiveBlocks();
 	calcPositions();
-
+	maxPrune();
+	optimizedVersionOfClouds();
 
 	
 
 }
 
 Clouds::~Clouds() {
+	for (int i = 0; i < numOfActivePoints ; i++)
+		delete [] optimizationForClouds[i];
+	delete[] optimizationForClouds;
 
 
 }
@@ -157,10 +161,65 @@ void Clouds::calcPositions() {
 					cloudContentOffset[cloud][prof][row][col][0] = actualOffsetX + sizeOfBox*row*((rand()%(8-3)+3) / 10.0);
 					cloudContentOffset[cloud][prof][row][col][1] = actualOffsetY + sizeOfBox*col*((rand() % (8 - 3) + 3) / 10.0);
 					cloudContentOffset[cloud][prof][row][col][2] = actualOffsetZ + sizeOfBox*prof*((rand() % (8 - 3) + 3) / 10.0);
-					
+					if (maxHighCloud < cloudContentOffset[cloud][prof][row][col][2])
+						maxHighCloud = cloudContentOffset[cloud][prof][row][col][2]-100;
+					if (minHighCloud > cloudContentOffset[cloud][prof][row][col][2] && cloudContentOffset[cloud][prof][row][col][2]>0)
+						minHighCloud = cloudContentOffset[cloud][prof][row][col][2];
 				}
 			}
 		}
 	}
 
+}
+void Clouds::maxPrune() {
+	int numPrunesForCloud = (numCols*numRows*numProf)/2;
+	int numPrunesClouds = numClouds / 3;
+
+	int randomIndexCloud = 0;
+	int randomPositionSelected = 0;
+	int randomProf = 0;
+	int randomCol = 0;
+	int randomRow = 0;
+
+	for (int actualCloud = 0; actualCloud < numPrunesClouds; ++actualCloud) {
+		randomIndexCloud = rand() % (numClouds - 1);
+		for (int actualPrune = 0; actualPrune < numPrunesForCloud; ++actualPrune) {
+			randomProf = rand() % (numProf - 1);
+			randomRow = rand() % (numRows - 1);
+			randomCol = rand() % (numCols - 1);
+			cloudContentActive[randomIndexCloud][randomProf][randomRow][randomCol] = 0;
+		}
+	}
+}
+void Clouds::optimizedVersionOfClouds() {
+	for (int cloud = 0; cloud < numClouds; cloud++) {
+		for (int prof = 0; prof < numProf; prof++) {
+			for (int row = 0; row < numRows; row++) {
+				for (int col = 0; col < numCols; col++) {
+					if (cloudContentActive[cloud][prof][row][col]) {
+						numOfActivePoints++;
+					}
+				}
+			}
+		}
+	}
+	optimizationForClouds = new int*[numOfActivePoints];
+	for (int i = 0; i < numOfActivePoints; ++i) {
+		optimizationForClouds[i] = new int[3]; //x y z
+	}
+	int counter = 0;
+	for (int cloud = 0; cloud < numClouds; cloud++) {
+		for (int prof = 0; prof < numProf; prof++) {
+			for (int row = 0; row < numRows; row++) {
+				for (int col = 0; col < numCols; col++) {
+					if (cloudContentActive[cloud][prof][row][col]) {
+						optimizationForClouds[counter][0] = cloudContentOffset[cloud][prof][row][col][0];
+						optimizationForClouds[counter][1] = cloudContentOffset[cloud][prof][row][col][1];
+						optimizationForClouds[counter][2] = cloudContentOffset[cloud][prof][row][col][2];
+						counter++;
+					}
+				}
+			}
+		}
+	}
 }
