@@ -139,7 +139,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 			GLfloat mida = 0.55;
 			glPushMatrix();
-			glTranslatef(70, -90, 6366);
+			glTranslatef(70, -90, 6370);
 			glScalef(mida, mida, mida);
 			fract(iluminacio, true, animaController.step, animaController.matrixContainer, false);			glPopMatrix();
 		}
@@ -175,7 +175,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
 			//Plataforma de llençament
 			glPushMatrix();
-			glTranslatef(67, -60, 6370);
+			glTranslatef(67, -60, 6374);
 			glRotatef(90, 1, 0, 0);
 			glScalef(1.5, 0.6, 1.5);
 			glCallList(PLATAFORMAOBJ);
@@ -379,13 +379,13 @@ void generateRandomClouds(AnimaController &animaController) {
 void generateRandomCities(AnimaController &animaController) {
 	int accessIndex = 0;
 	int cont = 0;
-	if (animaController.rocket.m_z - 30> animaController.clouds.minHighCloud + 6575) {
+	if (animaController.rocket.m_z - 30 > animaController.clouds.minHighCloud + 6575) {
 		animaController.cities.isActive = false;
 		return;
 	}
 	for (int i = 0; i < animaController.cities.numOfBlocks; i++) {
 		cont++;
-		if (animaController.cities.compBuilding + animaController.cities.compTrees>cont) {
+		if (animaController.cities.compBuilding + animaController.cities.compTrees > cont) {
 			accessIndex = animaController.cities.validPositionsActive[i];
 			glPushMatrix();
 			glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2] + 0.75);

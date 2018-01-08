@@ -277,7 +277,7 @@ void Rocket::Initialize() {
 
 	xo = 71;
 	yo = -59.5;
-	zo = 6371;
+	zo = 6375;
 
 	combustible = false;
 
