@@ -73,3 +73,8 @@ void Cities::activateSpecificBlocks() {
 	}
 	
 }
+void Cities::randomAgain() {
+	numActiveBuildings = compBuilding;
+	numActiveTrees = compTrees;
+	activateSpecificBlocks();
+}

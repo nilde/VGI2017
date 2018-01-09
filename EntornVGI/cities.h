@@ -2,9 +2,10 @@
 #define _CITIES
 
 const int numOfPosiblePositions = 111250;
-const int numOfActiveBlocks = 4000;
-const int numBuildings = 30;
-const int numTrees= 30;
+
+const int numBuildings = 3000;
+const int numTrees = 3000;
+const int numOfActiveBlocks = numBuildings + numTrees;
 
 class Cities {
 public:
@@ -14,11 +15,12 @@ public:
 	void chargeMatrixContainer();
 	void activateSpecificBlocks();
 	unsigned long long Randomize();
+	void randomAgain();
 
 	//Vars
 	double matrixContainer[FMAX + 1][FMAX + 1];
 	double validPositionsFromScratch[numOfPosiblePositions][3]; // index 0,1,2 for position and 4 identifier for buildings/trees
-	int validPositionsActive[numOfActiveBlocks] = {0};// first component contains the index of the position, and  second contain the value(0-building,1-tree)
+	int validPositionsActive[numOfActiveBlocks] = { 0 };// first component contains the index of the position, and  second contain the value(0-building,1-tree)
 	int validPositionsActiveContent[numOfActiveBlocks] = { -1 };
 	int countOfTrueValues = 0;
 	int numOfBlocks = numOfActiveBlocks;

@@ -387,12 +387,29 @@ void generateRandomCities(AnimaController &animaController) {
 			glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2] + 0.75);
 			glRotatef(90, 90, 1, 0);
 			glScalef(0.05, 0.05, 0.04);
-			if (!animaController.cities.validPositionsActiveContent[i])
-				glCallList(BUILDINGOBJ);
-			if (animaController.cities.validPositionsActiveContent[i]) {
-				glScalef(10, 10, 10);
-				glCallList(TREEOBJ);
+			if (!animaController.cities.validPositionsActiveContent[i] && animaController.cities.validPositionsFromScratch[accessIndex][0] >= 40 && animaController.cities.validPositionsFromScratch[accessIndex][0] <= 106 && animaController.cities.validPositionsFromScratch[accessIndex][1] >= 260 && animaController.cities.validPositionsFromScratch[accessIndex][1] <= 340)
+			{
+				if ((animaController.cities.validPositionsFromScratch[accessIndex][0] <= 50 || animaController.cities.validPositionsFromScratch[accessIndex][0] >= 80))
+					glCallList(BUILDINGOBJ);
+				else
+					if ((animaController.cities.validPositionsFromScratch[accessIndex][1] <= 285 || animaController.cities.validPositionsFromScratch[accessIndex][1] >= 325))
+						glCallList(BUILDINGOBJ);
 			}
+			if (animaController.cities.validPositionsActiveContent[i] && animaController.cities.validPositionsFromScratch[accessIndex][0] >= 40 && animaController.cities.validPositionsFromScratch[accessIndex][0] <= 106 && animaController.cities.validPositionsFromScratch[accessIndex][1] >= 270 && animaController.cities.validPositionsFromScratch[accessIndex][1] <= 340) {
+				if ((animaController.cities.validPositionsFromScratch[accessIndex][0] <= 50 || animaController.cities.validPositionsFromScratch[accessIndex][0] >= 80))
+				{
+					glScalef(10, 10, 10);
+					glCallList(TREEOBJ);
+				}
+				else
+					if ((animaController.cities.validPositionsFromScratch[accessIndex][1] <= 285 || animaController.cities.validPositionsFromScratch[accessIndex][1] >= 325))
+					{
+						glScalef(10, 10, 10);
+						glCallList(TREEOBJ);
+					}
+
+			}
+
 			glPopMatrix();
 		}
 	}
