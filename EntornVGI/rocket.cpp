@@ -26,7 +26,7 @@ float arcotangente(float x) {
 }
 
 
-void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
+void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3],int defective) {
 	if (iteracion == max_iter) {
 		az = ax = ay = 0;
 	}
@@ -88,7 +88,7 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3]) {
 	m_y = m_y + vy*step;
 }
 
-void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3]) {
+void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3],int defective) {
 	/*if (iteracion == max_iter - Diff_Fase + 20) {
 		az = ax = ay = 0;
 	}*/
@@ -146,7 +146,7 @@ void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3]) {
 	m_y = m_y + vy*step;
 }
 
-void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3]) {
+void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int defective) {
 	if (iteracion == max_iter - Diff_Fase + 10) {
 		az = ax = ay = 0;
 	}
@@ -206,7 +206,7 @@ void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3]) {
 	m_y = m_y + vy*step;
 }
 
-void Rocket::ExecuteTrayectory4(int iteracion, float step, GLfloat center[3]) {
+void Rocket::ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int defective) {
 	if (iteracion == max_iter - Diff_Fase + 10) {
 		az = ax = ay = 0;
 	}

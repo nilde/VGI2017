@@ -26,9 +26,14 @@ public:
 
 	Particles fuego;
 	Particles humo;
+	Particles fuegoDefectuoso;
+	Particles onCrash;
 
 	char activePlanet = CAP;
 	char activeRocket = '1';
+
+	float speedup;
+	int defective;
 
 	bool seguir = true;
 

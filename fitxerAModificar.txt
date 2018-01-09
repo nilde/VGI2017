@@ -3,3 +3,5 @@ Tipo Cohete:1
 Tipo Planeta:1
 Tipo de Combustible:1
 Gravedad del planeta:9.8
+Defectuoso:0
+Velocidad Augmentada:1

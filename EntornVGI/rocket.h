@@ -94,13 +94,14 @@ public:
 	//Overwrite of the constructor with some parameters
 	//Rocket(some params)
 
-	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3]);
 
-	void ExecuteTrayectory2(int iteracion, float step, GLfloat center[3]);
+	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3],int defective);
 
-	void ExecuteTrayectory3(int iteracion, float step, GLfloat center[3]);
+	void ExecuteTrayectory2(int iteracion, float step, GLfloat center[3],int defective);
 
-	void ExecuteTrayectory4(int iteracion, float step, GLfloat center[3]);
+	void ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int defective);
+
+	void ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int defective);
 
 	void Restart();
 

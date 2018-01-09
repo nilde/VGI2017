@@ -56,6 +56,14 @@ void Reader::readFromFile(char* fileToRead) {
 		gravityPlanet = container;
 		gravityPlanet = gravityPlanet.substr(gravityPlanet.find(delimiter) + 1, gravityPlanet.length() - 1);
 
+		file.getline(container, BUFFERSIZE);
+		defective = container;
+		defective = defective.substr(defective.find(delimiter) + 1, defective.length() - 1);
+
+		file.getline(container, BUFFERSIZE);
+		speedup = container;
+		speedup = speedup.substr(speedup.find(delimiter) + 1, speedup.length() - 1);
+
 	}
 	file.close();
 }
