@@ -266,7 +266,7 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables que controlen par�metres visualitzaci�: Mides finestra Windows i PV
 	w = 0;			h = 0;								// Mides finestra
-	OPV.R = 110.0;		OPV.alfa = 00.0;		OPV.beta = 90.0;	// Origen PV en esf�riques
+	OPV.R = 110.0;		OPV.alfa = 10.0;		OPV.beta = -100.0;	// Origen PV en esf�riques
 	Vis_Polar = POLARZ;
 
 // Entorn VGI: Color de fons i de l'objecte
@@ -3720,6 +3720,7 @@ void CEntornVGIView::OnLaunch()
 {
 	anima = true;
 	this->OnTrayectoriaRestart();
+	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
 	animaController.rocket.combustible = true; 
 	
