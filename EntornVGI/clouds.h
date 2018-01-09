@@ -42,8 +42,11 @@ public:
 	int numDimensionsR = numDimensions; //5D
 	int maxHighCloud = 0;
 	int minHighCloud = 999999;
-	bool rocketOverClouds=false;
-	int numStepsBeforeDelete = 20;
+	bool rocketOverClouds = false;
+
+
+	const int fixedStepsBeforeDelete = 20;
+	int numStepsBeforeDelete = fixedStepsBeforeDelete;
 	bool deleteCatalunya = false;
 	bool isActive = true;
 
