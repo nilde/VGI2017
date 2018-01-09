@@ -33,7 +33,9 @@ void Cities::chargeMatrixContainer() { //gotta rewrite that on future
 			}
 		}
 	}
-
+	numActiveBuildings = numBuildings;
+	numActiveTrees = numTrees;
+	numOfBlocks = numOfActiveBlocks;
 
 }
 
@@ -46,30 +48,50 @@ unsigned long long Cities::Randomize() {
 }
 
 void Cities::activateSpecificBlocks() {
-	srand(time(NULL));
+	//srand(time(NULL));
 	unsigned long long randomBlockIndex = 0;
-	int counter = numOfActiveBlocks;
 	int iter = 0;
-	while (counter >= 0) {
+	while ((numActiveBuildings+numActiveTrees)>0) {
 		randomBlockIndex = Randomize();
-		if (randomBlockIndex < 111250 && numActiveBuildings>=0) {
-			validPositionsActive[iter] = randomBlockIndex;
-			validPositionsActiveContent[iter] = 0;
-			iter++;
-			counter--;
-			numActiveBuildings--;
-		}
-		else {
-			if (randomBlockIndex < 111250 && numActiveTrees >= 0) {
-				validPositionsActive[iter] = randomBlockIndex;
-				validPositionsActiveContent[iter] = 1;
-				iter++;
-				counter--;
-				numActiveTrees--;
+		if (randomBlockIndex < 111250 && randomBlockIndex>0 && numActiveBuildings >0) {
+			if (validPositionsFromScratch[randomBlockIndex][0] >= 40.0 && validPositionsFromScratch[randomBlockIndex][0] <= 106.0 && validPositionsFromScratch[randomBlockIndex][1] >= 270.0 && validPositionsFromScratch[randomBlockIndex][1] <= 340.0) {
+				if ((validPositionsFromScratch[randomBlockIndex][0] <= 50.0 || validPositionsFromScratch[randomBlockIndex][0] >= 80.0)) {
+					validPositionsActive[iter] = randomBlockIndex;
+					validPositionsActiveContent[iter] = 0;
+					iter++;
+					numActiveBuildings--;
+				}
+				else {
+					if (validPositionsFromScratch[randomBlockIndex][1] <= 285.0 || validPositionsFromScratch[randomBlockIndex][1] >= 325.0) {
+						validPositionsActive[iter] = randomBlockIndex;
+						validPositionsActiveContent[iter] = 0;
+						iter++;
+						numActiveBuildings--;
+					}
+				}
 			}
 		}
-		if (iter==numTrees+numBuildings)
-			counter = -1;
+		else {
+			if (randomBlockIndex < 111250 && randomBlockIndex>0 && numActiveTrees > 0) {
+				if (validPositionsFromScratch[randomBlockIndex][0] >= 40.0 && validPositionsFromScratch[randomBlockIndex][0] <= 106.0 && validPositionsFromScratch[randomBlockIndex][1] >= 270.0 && validPositionsFromScratch[randomBlockIndex][1] <= 340.0) {
+					if ((validPositionsFromScratch[randomBlockIndex][0] <= 50.0 || validPositionsFromScratch[randomBlockIndex][0] >= 80.0)) {
+						validPositionsActive[iter] = randomBlockIndex;
+						validPositionsActiveContent[iter] = 1;
+						iter++;
+						numActiveTrees--;
+					}
+					else {
+						if (validPositionsFromScratch[randomBlockIndex][1] <= 285.0 || validPositionsFromScratch[randomBlockIndex][1] >= 325.0) {
+							validPositionsActive[iter] = randomBlockIndex;
+							validPositionsActiveContent[iter] = 1;
+							iter++;
+							numActiveTrees--;
+						}
+
+					}
+				}
+			}
+		}
 	}
 	
 }

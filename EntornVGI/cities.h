@@ -2,9 +2,8 @@
 #define _CITIES
 
 const int numOfPosiblePositions = 111250;
-
-const int numBuildings = 3000;
-const int numTrees = 3000;
+const int numBuildings = 50;
+const int numTrees = 50;
 const int numOfActiveBlocks = numBuildings + numTrees;
 
 class Cities {
@@ -19,16 +18,14 @@ public:
 
 	//Vars
 	double matrixContainer[FMAX + 1][FMAX + 1];
-	double validPositionsFromScratch[numOfPosiblePositions][3]; // index 0,1,2 for position and 4 identifier for buildings/trees
+	double validPositionsFromScratch[numOfPosiblePositions][3] = {0}; // index 0,1,2 for position and 4 identifier for buildings/trees
 	int validPositionsActive[numOfActiveBlocks] = { 0 };// first component contains the index of the position, and  second contain the value(0-building,1-tree)
 	int validPositionsActiveContent[numOfActiveBlocks] = { -1 };
-	int countOfTrueValues = 0;
 	int numOfBlocks = numOfActiveBlocks;
-	const int sizeOfBlock = 4;
 	int numActiveBuildings = numBuildings;
-	int numActiveTrees = numTrees;
-	int compBuilding = numBuildings;
-	int compTrees = numTrees;
+	int numActiveTrees = 50;
+	const int compBuilding = numBuildings;
+	const int compTrees = numTrees;
 	bool isActive = true;
 
 };
