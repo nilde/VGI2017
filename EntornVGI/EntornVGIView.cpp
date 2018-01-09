@@ -3807,6 +3807,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	iter = 0;
 	this->setCenterWith(ROCKET);
 	firstIter = true ;
+	animaController.cities.randomAgain();
 	InvalidateRect(NULL, false);
 
 }
@@ -3942,6 +3943,7 @@ void CEntornVGIView::OnPlanetaTierra()
 	animaController.activeFractal = true;
 	animaController.moved = 0;
 	animaController.activePlanet = TIERRA;
+	animaController.cities.randomAgain();
 	InvalidateRect(NULL, false);
 
 
@@ -4172,6 +4174,7 @@ void CEntornVGIView::OnPlanetaMarte()
 	animaController.activeFractal = true;
 	animaController.moved = 0;
 	animaController.activePlanet = MARTE;
+	animaController.cities.randomAgain();
 	InvalidateRect(NULL, false);
 
 }
@@ -4195,6 +4198,7 @@ void CEntornVGIView::OnPlanetaLuna()
 	animaController.activeFractal = true;
 	animaController.activePlanet = LUNA;
 	animaController.moved = 0;//si se elimina el fractal ponerlo a 4.3 i mirr de ajustar las camaras
+	animaController.cities.randomAgain();
 	InvalidateRect(NULL, false);
 
 }
