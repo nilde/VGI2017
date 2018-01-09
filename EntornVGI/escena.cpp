@@ -9,6 +9,7 @@
 #include "escena.h"
 #include "AnimaController.h"
 #include "fractals.h"
+#include "constants.h"
 
 //////////////////////////////////////////////////////////////
 const float PI = 3.141516;
@@ -141,15 +142,18 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		for (int i = 0; i < 4; i++) {
-			glBindTexture(GL_TEXTURE_2D, texturID[3]);
-			glEnable(GL_TEXTURE_2D);
-			glColor4f(0.5, 0.8, 1, 0.13-0.005*i);
-			glPushMatrix();
-			glRotatef(300+50*i, 50*i, 90*i+10*i, 1);
-			gluEsfera(6300+500*i, 100, 100);
-			glPopMatrix();
+		if (animaController.activePlanet == TIERRA) {
+			for (int i = 0; i < 4; i++) {
+				glBindTexture(GL_TEXTURE_2D, texturID[3]);
+				glEnable(GL_TEXTURE_2D);
+				glColor4f(0.5, 0.8, 1, 0.13 - 0.005*i);
+				glPushMatrix();
+				glRotatef(300 + 50 * i, 50 * i, 90 * i + 10 * i, 1);
+				gluEsfera(6300 + 500 * i, 100, 100);
+				glPopMatrix();
+			}
 		}
+		
 
 
 		glBindTexture(GL_TEXTURE_2D, texturID[6]);
@@ -262,7 +266,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glDisable(GL_LIGHTING);
 			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
 				animaController.fuego.draw();
-				if (animaController.activePlanet == '1')
+				if (animaController.activePlanet == TIERRA)
 					animaController.humo.draw();
 			}
 		glPopMatrix();

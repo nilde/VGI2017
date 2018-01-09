@@ -821,7 +821,15 @@ void CEntornVGIView::OnPaint()
 // PROJECCI� PERSPECTIVA
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Set Perspective Calculations To Most Accurate
 		glDisable(GL_SCISSOR_TEST);		// Desactivaci� del retall de pantalla
-
+		 altura = sqrt(animaController.rocket.m_z*animaController.rocket.m_z + animaController.rocket.m_y*animaController.rocket.m_y);
+		c_fons.r = cfr - 0.0008*(altura - 6371);
+		c_fons.g = cfg - 0.00079*(altura - 6371);
+		c_fons.b = cfb - 0.00068*(altura - 6371);
+		if (animaController.activePlanet != TIERRA) {
+			c_fons.r = 0;
+			c_fons.g = 0;
+			c_fons.b = 0;
+		}
 		// Definici� de Viewport, Projecci� i C�mara
 		Projeccio_Perspectiva(0, 0, w, h, OPV.R);
 		if (navega)	{	Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
@@ -878,6 +886,12 @@ void CEntornVGIView::OnPaint()
 		c_fons.r = cfr - 0.0008*(altura - 6371);
 		c_fons.g = cfg - 0.00079*(altura - 6371);
 		c_fons.b = cfb - 0.00068*(altura - 6371);
+		if (animaController.activePlanet != TIERRA) {
+			c_fons.r = 0;
+			c_fons.g = 0;
+			c_fons.b = 0;
+		}
+		
 
 		Vista_Navega(opvNStatic1, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
@@ -905,6 +919,11 @@ void CEntornVGIView::OnPaint()
 		c_fons.r = cfr - 0.0008*(altura - 6371);
 		c_fons.g = cfg - 0.00079*(altura - 6371);
 		c_fons.b = cfb - 0.00068*(altura - 6371);
+		if (animaController.activePlanet != TIERRA) {
+			c_fons.r = 0;
+			c_fons.g = 0;
+			c_fons.b = 0;
+		}
 
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
@@ -930,6 +949,11 @@ void CEntornVGIView::OnPaint()
 		c_fons.r = cfr - 0.0008*(altura - 6371);
 		c_fons.g = cfg - 0.00079*(altura - 6371);
 		c_fons.b = cfb - 0.00068*(altura - 6371);
+		if (animaController.activePlanet != TIERRA) {
+			c_fons.r = 0;
+			c_fons.g = 0;
+			c_fons.b = 0;
+		}
 
 		Vista_Navega(opvN, false, n, vpv, pan, tr_cpv, tr_cpvF, c_fons, col_obj, objecte, true, pas,
 			oculta, test_vis, back_line, ilumina, llum_ambient, llumGL, textura, textura_map, ifixe, eixos);
@@ -2417,6 +2441,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 
 	}
 
+
 	if (anima)	{
 		
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
@@ -3750,7 +3775,6 @@ void CEntornVGIView::executeTrayectory() {
 void CEntornVGIView::OnLaunch()
 {
 	anima = true;
-	this->OnTrayectoriaRestart();
 	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
 	animaController.rocket.combustible = true; 
@@ -3767,11 +3791,12 @@ void CEntornVGIView::OnTrayectoriaStop()
 
 void CEntornVGIView::OnTrayectoriaRestart()
 {
+	anima = false;
 	animaController.rocket.Restart();
 	animaController.rocket2.Restart();
 	animaController.rocket3.Restart();
 	animaController.rocket4.Restart();
-	if (animaController.activePlanet == '1')
+	if (animaController.activePlanet == TIERRA)
 	{
 		animaController.clouds.isActive = true;
 		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
@@ -3780,8 +3805,9 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	t = 0;
 	iter = 0;
 	this->setCenterWith(ROCKET);
-	InvalidateRect(NULL, false);
 	firstIter = true ;
+	InvalidateRect(NULL, false);
+
 }
 
 
@@ -4061,7 +4087,7 @@ void CEntornVGIView::OnUpdateCoheteTres(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteQuatre()
 {
 	if (R0CKET4 == NULL) {
-		nom = "./objects/enric_fusio_final.obj";
+		nom = "./objects/Cabezon/Cabezon.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
