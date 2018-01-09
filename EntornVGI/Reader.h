@@ -35,6 +35,8 @@ public:
 	string planetType;
 	string propellantType;
 	string gravityPlanet;
+	string defective;
+	string speedup;
 
 
 };

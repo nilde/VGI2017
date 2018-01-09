@@ -15,6 +15,8 @@ AnimaController::AnimaController()
 	activeRocket = reader.getRocketType();
 	// planet = Planet(reader.getSizePlanet());
 	
+	speedup = atof(reader.speedup.c_str());
+	defective = atoi(reader.defective.c_str());
 	planet = Planet(6371);
 
 
