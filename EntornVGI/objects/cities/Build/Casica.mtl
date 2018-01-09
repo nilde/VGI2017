@@ -1,0 +1,71 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl Mirror_01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\Mirror_01.jpg
+
+newmtl Wood_Floor_Dark
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\Wood_Floor_Dark.jpg
+
+newmtl Wood_Veneer_01.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\Wood_Veneer_01.jpg
+
+newmtl __Wood_Cherry_Original_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\__Wood_Cherry_Original_1.jpg
+
+newmtl __Wood_Floor_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\__Wood_Floor_1.jpg
+
+newmtl __auto_
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.511373 0.511373 0.511373
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl __auto__Wood_Veneer_01.jpg.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.511373 0.511373 0.511373
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd casica\Wood_Veneer_01.jpg
