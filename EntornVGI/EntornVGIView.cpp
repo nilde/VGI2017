@@ -3739,7 +3739,9 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	animaController.rocket2.Restart();
 	animaController.rocket3.Restart();
 	animaController.rocket4.Restart();
-	animaController.clouds.deleteCatalunya = false;
+	animaController.clouds.isActive = true;
+	animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+	animaController.cities.isActive = true;
 	t = 0;
 	iter = 0;
 	this->setCenterWith(ROCKET);
