@@ -247,8 +247,9 @@ double soroll(int i,int j,double alf,char noise)
 // TRIANGULACIO DEL TERRENY. Dibuix de la muntanya fractal
 // Variables: - Iluminaci�: Defineix el tipus d'iluminaci� (filferros, plana o suau).
 //            - step: Pas de dibuix del fractal.
-void fract(char iluminacio, bool paletaColor, int step,double matrixContainer[FMAX + 1][FMAX + 1],bool needToCopy)
+void fract(char iluminacio, bool paletaColor, int step,double matrixContainer[FMAX + 1][FMAX + 1],bool needToCopy, int paleta)
 {
+	colorPalette = paleta;
 	//MODIFICACIONES PROPIAS
 	if(needToCopy)
 	memcpy(matrixContainer,zz,sizeof(zz));
@@ -483,7 +484,6 @@ int getColorPalette()
 {
 	return colorPalette;
 }
-
 // Fixa una paleta de colors concreta
 void setColorPalette(int colorPaletteValue)
 {

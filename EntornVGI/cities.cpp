@@ -19,7 +19,7 @@ void Cities::chargeMatrixContainer() { //gotta rewrite that on future
 	char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 	int step= llegir_pts("./../Muntanyes_fractals/CAT128P.MNT");
 	itera_fractal(S_SENSE,step);
-	fract(iluminacio, true, 4, matrixContainer,true);
+	fract(iluminacio, true, 4, matrixContainer,true, 1);
 	int counter = 0;
 
 	//Find the values that are okay to print there(over sea level)
