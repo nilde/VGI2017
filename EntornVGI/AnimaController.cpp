@@ -14,7 +14,22 @@ AnimaController::AnimaController()
 	rocket.setGravity(reader.getGravityPlanet());
 
 	activeRocket = reader.getRocketType();
-	activePlanet = reader.getPlanetType();
+	char planetReader = reader.getPlanetType();
+	switch (planetReader)
+	{
+	case '1':
+		activePlanet = TIERRA;
+		break;
+	case '2':
+		activePlanet = MARTE;
+		break;
+	case '3':
+		activePlanet = LUNA;
+		break;
+	default:
+		activePlanet = TIERRA;
+		break;
+	}
 	speedup = atof(reader.speedup.c_str());
 	defective = atoi(reader.defective.c_str());
 

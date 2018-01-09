@@ -533,13 +533,13 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	switch (animaController.activePlanet)
 	{
-	case '1':
+	case TIERRA:
 		this->OnPlanetaTierra();
 		break;
-	case '2':
+	case MARTE:
 		this->OnPlanetaMarte();
 		break;
-	case '3':
+	case LUNA:
 		this->OnPlanetaLuna();
 		break;
 	default:
@@ -3800,6 +3800,7 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	{
 		animaController.clouds.isActive = true;
 		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.clouds.rocketOverClouds = false;
 		animaController.cities.isActive = true;
 	}
 	t = 0;
