@@ -1,0 +1,42 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl Vegetation_Blur_03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd arbolico\__Vegetation_Blur_03_1.jpg
+
+newmtl Vegetation_Blur_03_Vegetation_Blur_03.jpg
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd arbolico\Vegetation_Blur_03.jpg
+
+newmtl Wood_Veneer_01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd arbolico\Wood_Veneer_01.jpg
+
+newmtl __Vegetation_Blur_03_1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd arbolico\Vegetation_Blur_03.jpg
