@@ -293,6 +293,8 @@ CEntornVGIView::CEntornVGIView()
 	R0CKET4 = NULL;
 	PLATAFORMA = NULL;
 	BUILDING = NULL;
+	SUBROCKET1 = NULL;
+	SUBROCKET2 = NULL;
 
 // Entorn VGI: Variables del Timer
 	t = 0;			anima = false;
@@ -3950,6 +3952,24 @@ void CEntornVGIView::OnCoheteLanzadera()
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 		if (R0CKET2 == NULL) R0CKET2 = new COBJModel;
 		R0CKET2->LoadModel(nomfitx, ROCKET2OBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+	if (SUBROCKET1 == NULL) {
+		nom = "./objects/Transbordador/Tanque_Principal.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (SUBROCKET1 == NULL) SUBROCKET1 = new COBJModel;
+		SUBROCKET1->LoadModel(nomfitx, SUBROCKET1OBJ);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
+	}
+	if (SUBROCKET2 == NULL) {
+		nom = "./objects/Transbordador/Tanque_Secundario.obj";
+		//nom = "./objects/citi/table-mountain.obj";
+		char *nomfitx = CString2Char(nom);
+		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
+		if (SUBROCKET2 == NULL) SUBROCKET2 = new COBJModel;
+		SUBROCKET2->LoadModel(nomfitx, SUBROCKET2OBJ);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 	}
 

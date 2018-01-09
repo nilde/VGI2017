@@ -155,6 +155,8 @@ public:
 	COBJModel* BUILDING;
 	COBJModel* TREE;
 	COBJModel* PLATAFORMA;
+	COBJModel* SUBROCKET1;
+	COBJModel* SUBROCKET2;
 
 // Entorn VGI: Variables del Timer
 	float t;		// Par�metre t pel Timer.

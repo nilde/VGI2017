@@ -181,6 +181,57 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glCallList(PLATAFORMAOBJ);
 			glPopMatrix();
 		}
+		//Other Rockets
+		if (animaController.activeRocket == '2')
+		{//Coete Deposito
+			glPushMatrix();
+			glTranslatef(animaController.rocket2.m_x + 0.25, animaController.rocket2.m_y, animaController.rocket2.m_z);
+			glRotatef(animaController.rocket2.m_alpha, 90, 1, 0);
+			glRotatef(270, 0, 90, 0);
+			glScalef(0.05, 0.05, 0.05);
+			glCallList(SUBROCKET1OBJ);
+			glPopMatrix();
+
+			//Coete Aux1
+			glPushMatrix();
+			glTranslatef(animaController.rocket3.m_x + 0.25, animaController.rocket3.m_y - 0.25, animaController.rocket3.m_z);
+			glRotatef(animaController.rocket3.m_alpha, 90, 1, 0);
+			glRotatef(270, 0, 90, 0);
+			glRotatef(animaController.rocket3.m_special, 0, 90, 0);
+			glScalef(0.05, 0.05, 0.05);
+			glCallList(SUBROCKET2OBJ);
+			glPopMatrix();
+
+			//Coete Aux2
+			glPushMatrix();
+			glTranslatef(animaController.rocket4.m_x + 0.25, animaController.rocket4.m_y + 0.25, animaController.rocket4.m_z);
+			glRotatef(animaController.rocket4.m_alpha, 90, 1, 0);
+			glRotatef(270, 0, 90, 0);
+			glRotatef(animaController.rocket4.m_special, 0, 90, 0);
+			glScalef(0.05, 0.05, 0.05);
+			glCallList(SUBROCKET2OBJ);
+			glPopMatrix();
+		}
+
+		if (animaController.cities.isActive) {
+			//Generacion de las ciudades
+			glPushMatrix();
+			glTranslatef(35, -231, 6370);
+			glScalef(0.55, 0.55, 0.55);
+			generateRandomCities(animaController);
+			glPopMatrix();
+		}
+		if (animaController.clouds.isActive) {
+			glPushMatrix();
+			glTranslatef(150, 50, 6400);
+			glRotatef(90, 1, 0, 0);
+			//glScalef(1,1,1);
+			glBindTexture(GL_TEXTURE_2D, texturID[0]);
+			glEnable(GL_TEXTURE_2D);
+			glScalef(0.05, 0.05, 0.05);
+			generateRandomClouds(animaController);
+			glPopMatrix();
+		}
 		
 		/////////// COHETE!!
 		//glColor3f(1.0, 0, 1.0);
@@ -230,68 +281,6 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			}
 		glPopMatrix();
 
-		//Other Rockets
-		//Coete Deposito
-		glPushMatrix();
-		glTranslatef(animaController.rocket2.m_x+0.25, animaController.rocket2.m_y, animaController.rocket2.m_z);
-		glRotatef(animaController.rocket2.m_alpha, 90, 1, 0);
-		glRotatef(270, 0, 90, 0);
-		glScalef(0.05, 0.05, 0.05);
-		glCallList(ROCKET3OBJ);
-		glTranslatef(0, 0, -2);
-		glBindTexture(GL_TEXTURE_2D, texturID[0]);
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_LIGHTING);
-		glPopMatrix();
-
-		//Coete Aux1
-		glPushMatrix();
-		glTranslatef(animaController.rocket3.m_x + 0.25, animaController.rocket3.m_y-0.25, animaController.rocket3.m_z);
-		glRotatef(animaController.rocket3.m_alpha, 90, 1, 0);
-		glRotatef(270, 0, 90, 0);
-		glRotatef(animaController.rocket3.m_special, 0, 90, 0);
-		glScalef(0.05, 0.05, 0.05);
-		glCallList(ROCKET1OBJ);
-		glTranslatef(0, 0, -2);
-		glBindTexture(GL_TEXTURE_2D, texturID[0]);
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_LIGHTING);
-		glPopMatrix();
-
-		//Coete Aux2
-		glPushMatrix();
-		glTranslatef(animaController.rocket4.m_x + 0.25, animaController.rocket4.m_y+0.25, animaController.rocket4.m_z);
-		glRotatef(animaController.rocket4.m_alpha, 90, 1, 0);
-		glRotatef(270, 0, 90, 0);
-		glRotatef(animaController.rocket4.m_special, 0, 90, 0);
-		glScalef(0.05, 0.05, 0.05);
-		glCallList(ROCKET1OBJ);
-		glTranslatef(0, 0, -2);
-		glBindTexture(GL_TEXTURE_2D, texturID[0]);
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_LIGHTING);
-		glPopMatrix();
-
-		if (animaController.clouds.isActive) {
-			glPushMatrix();
-			glTranslatef(150, 50, 6400);
-			glRotatef(90, 1, 0, 0);
-			//glScalef(1,1,1);
-			glBindTexture(GL_TEXTURE_2D, texturID[0]);
-			glEnable(GL_TEXTURE_2D);
-			glScalef(0.05, 0.05, 0.05);
-			generateRandomClouds(animaController);
-			glPopMatrix();
-		}
-		
-		if (animaController.cities.isActive) {
-			//Generacion de las ciudades
-			glPushMatrix();
-			glTranslatef(35, -231, 6370);
-			glScalef(0.55, 0.55, 0.55);
-			generateRandomCities(animaController);
-			glPopMatrix();
-		}
 	// Enviar les comandes grafiques a pantalla
 	glFlush();
 
