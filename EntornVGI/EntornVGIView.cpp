@@ -517,7 +517,6 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	this->OnMiraraRocket();
 	this->OnCoheteUno();
-	this->buildingCreation();
 	this->OnMiraraRocket();
 
 	// Entorn VGI: Activaci� el contexte OpenGL
@@ -536,6 +535,7 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->OnCoheteLanzadera();
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 	this->insertPlataforma();
+	this->buildingCreation();
 
 	return true;
 }
@@ -4049,9 +4049,9 @@ void CEntornVGIView::OnUpdateCoheteQuatre(CCmdUI *pCmdUI)
 void CEntornVGIView::buildingCreation()
 {
 	if (BUILDING == NULL) {
-		nom = "./objects/cities/farmhouse_obj.obj";
+		nom = "./objects/cities/Build/Casica.obj";
 		char *nomfitx = CString2Char(nom);
-		nom = "./objects/cities/Tree.obj";
+		nom = "./objects/cities/Arbolico/Arbolico.obj";
 		char *nomfitxTree = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 		if (BUILDING == NULL)
