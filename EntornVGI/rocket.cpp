@@ -2,8 +2,9 @@
 #include "rocket.h"
 #include <stdlib.h>
 #include "math.h"
+
 #include <iostream>
-using namespace std;
+
 
 #define PI 3.14159265
 
@@ -306,4 +307,20 @@ void Rocket::Restart(){
 
 void Rocket::setGravity(float actualGravity) {
 	gravity = actualGravity;
+}
+void Rocket::setPropellant(int propellantType) {
+	if (propellantType == 1) {
+		propellantBonus = 1.0;
+	}
+	else {
+		if (propellantType == 2) {
+			propellantBonus = 1.5;
+		}
+		else {
+			propellantBonus = 2.0;
+		}
+	}
+	
+
+
 }

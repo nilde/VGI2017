@@ -1,8 +1,8 @@
 #ifndef _ROCKET
 #define _ROCKET
 
-//SOME GENERAL CONSTANTS
-
+#include <string>
+using namespace std;
 
 //SOME CONSTANTS FOR F9 IN LEO ORBITS
 const int MAX_DYNAMIC_PRESSURE_LEO = 82;
@@ -82,6 +82,7 @@ public:
 	float az;
 
 	bool combustible = true;
+	float propellantBonus = 0.0;
 
 	int max_iter = 500;
 	int Diff_Fase = 250;
@@ -108,6 +109,7 @@ public:
 	void Initialize();
 
 	void setGravity(float);
+	void setPropellant(int type);
 
 	//No implementada
 	float Rocket::angleGenerated(float previousX, float previousY, float actualX, float actualY);
