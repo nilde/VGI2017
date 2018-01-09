@@ -516,7 +516,7 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 
 	this->OnMiraraRocket();
-	this->OnCoheteUno();
+	//this->OnCoheteUno();
 	this->OnMiraraRocket();
 
 	// Entorn VGI: Activaci� el contexte OpenGL

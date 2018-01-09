@@ -113,15 +113,15 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 		glColor3f(1.0, 1.0, 1.0);
 		if (animaController.activePlanet == TIERRA) {
-			glBindTexture(GL_TEXTURE_2D, texturID[6]);
+			glBindTexture(GL_TEXTURE_2D, texturID[1]);
 
 		}
 		else if (animaController.activePlanet == LUNA) {
-			glBindTexture(GL_TEXTURE_2D, texturID[10]);
+			glBindTexture(GL_TEXTURE_2D, texturID[6]);
 
 		}
 		else if (animaController.activePlanet == MARTE) {
-			glBindTexture(GL_TEXTURE_2D, texturID[9]);
+			glBindTexture(GL_TEXTURE_2D, texturID[5]);
 
 		}
 
@@ -142,7 +142,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		for (int i = 0; i < 4; i++) {
-			glBindTexture(GL_TEXTURE_2D, texturID[7]);
+			glBindTexture(GL_TEXTURE_2D, texturID[3]);
 			glEnable(GL_TEXTURE_2D);
 			glColor4f(0.5, 0.8, 1, 0.13-0.005*i);
 			glPushMatrix();
@@ -152,7 +152,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 
 
-		glBindTexture(GL_TEXTURE_2D, texturID[8]);
+		glBindTexture(GL_TEXTURE_2D, texturID[4]);
 		glEnable(GL_TEXTURE_2D);
 		glColor4f(1, 1, 1, 0.15);
 		glPushMatrix();
