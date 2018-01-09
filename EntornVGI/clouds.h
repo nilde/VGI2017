@@ -45,7 +45,7 @@ public:
 	bool rocketOverClouds = false;
 
 
-	const int fixedStepsBeforeDelete = 20;
+	const int fixedStepsBeforeDelete = 40;
 	int numStepsBeforeDelete = fixedStepsBeforeDelete;
 	bool deleteCatalunya = false;
 	bool isActive = true;

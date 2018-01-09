@@ -176,7 +176,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	
 		// animaController.DrawHumo();
 		
-		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
+		if ((animaController.lookat == ROCKET) && (animaController.cities.isActive)) {
 			//Plataforma de llençament
 			glPushMatrix();
 			glTranslatef(67, -60, 6374-animaController.moved);
@@ -341,13 +341,13 @@ void dibuixa(char obj)
 
 
 void generateRandomClouds(AnimaController &animaController) {
-	float alpha = 0;
+	float alpha = 0.0;
 	if (animaController.rocket.m_z > animaController.clouds.maxHighCloud + 50) {
 		animaController.clouds.isActive = false;
 		return;
 	}
 	//Print all the data of the blocks
-	if (animaController.rocket.m_z + 300 > animaController.clouds.maxHighCloud)
+	if (animaController.rocket.m_z + 400 > animaController.clouds.maxHighCloud)
 		animaController.clouds.rocketOverClouds = true;
 	if (animaController.clouds.rocketOverClouds)
 		alpha = (animaController.rocket.m_z + 400 - animaController.clouds.maxHighCloud) / 5.0;
@@ -364,7 +364,7 @@ void generateRandomClouds(AnimaController &animaController) {
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(0.97, 0.95, 0.92, 0.1 + alpha);
+		glColor4f(0.97, 0.95, 0.92,0.1+alpha);
 		glPointSize(float(animaController.clouds.sizeOfBox));
 		glBegin(GL_POINTS);
 		glVertex3f(animaController.clouds.optimizationForClouds[counter][0], animaController.clouds.optimizationForClouds[counter][1], animaController.clouds.optimizationForClouds[counter][2]);
