@@ -542,6 +542,9 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	case '3':
 		this->OnPlanetaLuna();
 		break;
+	default:
+		this->OnPlanetaTierra();
+		break;
 	}
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 	this->insertPlataforma();
@@ -559,6 +562,9 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		break;
 	case '4':
 		this->OnCoheteQuatre();
+		break;
+	default:
+		this->OnCoheteLanzadera();
 		break;
 	}
 
