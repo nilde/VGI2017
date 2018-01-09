@@ -12,11 +12,13 @@ AnimaController::AnimaController()
 	rocket3 = Rocket();
 	rocket4 = Rocket();
 	rocket.setGravity(reader.getGravityPlanet());
+
 	activeRocket = reader.getRocketType();
-	// planet = Planet(reader.getSizePlanet());
-	
+	activePlanet = reader.getPlanetType();
 	speedup = atof(reader.speedup.c_str());
 	defective = atoi(reader.defective.c_str());
+
+
 	planet = Planet(6371);
 
 

@@ -531,11 +531,36 @@ int CEntornVGIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Crida a OnPaint() per redibuixar l'escena
 
-	this->OnPlanetaTierra();
-	this->OnCoheteLanzadera();
+	switch (animaController.activePlanet)
+	{
+	case '1':
+		this->OnPlanetaTierra();
+		break;
+	case '2':
+		this->OnPlanetaMarte();
+		break;
+	case '3':
+		this->OnPlanetaLuna();
+		break;
+	}
 	this->ShowFractal("./../Muntanyes_fractals/CAT128P.MNT");
 	this->insertPlataforma();
 	this->buildingCreation();
+	switch(animaController.activeRocket)
+	{
+	case '1':
+		this->OnCoheteUno();
+		break;
+	case '2':
+		this->OnCoheteLanzadera();
+		break;
+	case '3':
+		this->OnCoheteTres();
+		break;
+	case '4':
+		this->OnCoheteQuatre();
+		break;
+	}
 
 	return true;
 }
@@ -3740,9 +3765,12 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	animaController.rocket2.Restart();
 	animaController.rocket3.Restart();
 	animaController.rocket4.Restart();
-	animaController.clouds.isActive = true;
-	animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
-	animaController.cities.isActive = true;
+	if (animaController.activePlanet == '1')
+	{
+		animaController.clouds.isActive = true;
+		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.cities.isActive = true;
+	}
 	t = 0;
 	iter = 0;
 	this->setCenterWith(ROCKET);
@@ -3876,6 +3904,10 @@ void CEntornVGIView::OnUpdateMiraraPlanet(CCmdUI *pCmdUI)
 
 void CEntornVGIView::OnPlanetaTierra()
 {
+	animaController.clouds.isActive = true;
+	animaController.cities.isActive = true;
+	animaController.activeFractal = true;
+	animaController.moved = 0;
 	animaController.activePlanet = TIERRA;
 	InvalidateRect(NULL, false);
 
@@ -4102,6 +4134,10 @@ void CEntornVGIView::OnUpdateBuildingCreation(CCmdUI *pCmdUI)
 
 void CEntornVGIView::OnPlanetaMarte()
 {
+	animaController.clouds.isActive = false;
+	animaController.cities.isActive = false;
+	animaController.activeFractal = true;
+	animaController.moved = 0;
 	animaController.activePlanet = MARTE;
 	InvalidateRect(NULL, false);
 
@@ -4121,7 +4157,11 @@ void CEntornVGIView::OnUpdatePlanetaMarte(CCmdUI *pCmdUI)
 
 void CEntornVGIView::OnPlanetaLuna()
 {
+	animaController.clouds.isActive = false;
+	animaController.cities.isActive = false;
+	animaController.activeFractal = true;
 	animaController.activePlanet = LUNA;
+	animaController.moved = 0;//si se elimina el fractal ponerlo a 4.3 i mirr de ajustar las camaras
 	InvalidateRect(NULL, false);
 
 }

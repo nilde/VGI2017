@@ -125,17 +125,13 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 		}
 
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
 		glEnable(GL_TEXTURE_2D);
 		glPushMatrix();
 		glTranslatef(animaController.planet.center[0], animaController.planet.center[1], animaController.planet.center[2]);
 		glRotatef(312, 155, 1, 1);
 		gluEsfera(animaController.planet.radius, 1000, 10000);
 		glPopMatrix();
-		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6550)) {
+		if (animaController.activeFractal && (animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6550)) {
 			char iluminacio = GOURAUD; //PLANA, ,FILFERROS
 			GLfloat mida = 0.55;
 			glPushMatrix();
@@ -175,7 +171,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		if ((animaController.lookat == ROCKET) && (animaController.rocket.get_altura() < 6700)) {
 			//Plataforma de llençament
 			glPushMatrix();
-			glTranslatef(67, -60, 6374);
+			glTranslatef(67, -60, 6374-animaController.moved);
 			glRotatef(90, 1, 0, 0);
 			glScalef(1.5, 0.6, 1.5);
 			glCallList(PLATAFORMAOBJ);
@@ -184,8 +180,9 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		//Other Rockets
 		if (animaController.activeRocket == '2')
 		{//Coete Deposito
+			animaController.rocket2.m_z -= animaController.moved;
 			glPushMatrix();
-			glTranslatef(animaController.rocket2.m_x + 0.25, animaController.rocket2.m_y, animaController.rocket2.m_z);
+			glTranslatef(animaController.rocket2.m_x + 0.25, animaController.rocket2.m_y, animaController.rocket2.m_z- animaController.moved);
 			glRotatef(animaController.rocket2.m_alpha, 90, 1, 0);
 			glRotatef(270, 0, 90, 0);
 			glScalef(0.05, 0.05, 0.05);
@@ -194,7 +191,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 			//Coete Aux1
 			glPushMatrix();
-			glTranslatef(animaController.rocket3.m_x + 0.25, animaController.rocket3.m_y - 0.25, animaController.rocket3.m_z);
+			glTranslatef(animaController.rocket3.m_x + 0.25, animaController.rocket3.m_y - 0.25, animaController.rocket3.m_z- animaController.moved);
 			glRotatef(animaController.rocket3.m_alpha, 90, 1, 0);
 			glRotatef(270, 0, 90, 0);
 			glRotatef(animaController.rocket3.m_special, 0, 90, 0);
@@ -204,7 +201,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 			//Coete Aux2
 			glPushMatrix();
-			glTranslatef(animaController.rocket4.m_x + 0.25, animaController.rocket4.m_y + 0.25, animaController.rocket4.m_z);
+			glTranslatef(animaController.rocket4.m_x + 0.25, animaController.rocket4.m_y + 0.25, animaController.rocket4.m_z- animaController.moved);
 			glRotatef(animaController.rocket4.m_alpha, 90, 1, 0);
 			glRotatef(270, 0, 90, 0);
 			glRotatef(animaController.rocket4.m_special, 0, 90, 0);
@@ -225,7 +222,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		//glColor3f(1.0, 0, 1.0);
 		//SeleccionaMaterialiColor(MAT_CAP, sw_mat, ref_mat, col_object);
 		glPushMatrix();
-		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z);
+		glTranslatef(animaController.rocket.m_x, animaController.rocket.m_y, animaController.rocket.m_z- animaController.moved);
 		//rotación variable del coete
 		glRotatef(animaController.rocket.m_alpha, 90, 1, 0);
 		//glRotatef(max(0, 270 - animaController.count*0.055), 0, 1, 0);
@@ -265,7 +262,8 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glDisable(GL_LIGHTING);
 			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
 				animaController.fuego.draw();
-				animaController.humo.draw();
+				if (animaController.activePlanet == '1')
+					animaController.humo.draw();
 			}
 		glPopMatrix();
 

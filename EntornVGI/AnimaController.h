@@ -29,9 +29,9 @@ public:
 	Particles fuegoDefectuoso;
 	Particles onCrash;
 
-	char activePlanet = CAP;
-	char activeRocket = '1';
-
+	char activePlanet;
+	char activeRocket;
+	bool activeFractal;
 	float speedup;
 	int defective;
 
@@ -44,7 +44,7 @@ public:
 	char lookat = ROCKET;
 
 	int step;
-	
+	int moved;
 	
 	//matrix for the respectives heights of Catalunya map
 	double matrixContainer[FMAX + 1][FMAX + 1];
