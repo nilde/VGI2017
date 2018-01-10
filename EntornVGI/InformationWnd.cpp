@@ -179,7 +179,7 @@ void CInformationList::OnViewOutput()
 	}
 	*/
 }
-void CInformationWnd::printRocketDetails(Rocket const rocket) {
+void CInformationWnd::printRocketDetails(Rocket rocket) {
 	CString str;
 	for (int i = m_wndInformationDebug.GetCount() - 1; i >= 0; i--) {
 		m_wndInformationDebug.DeleteString(i);
@@ -218,9 +218,9 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	m_wndInformationDebug.AddString(str);
 
 	//VENTANA INFORMACION REAL
-	str.Format(_T("Rocket height: %.1d "), rocket.height);
+	str.Format(_T("Rocket height: %.1f "), rocket.height);
 	m_wndInformationReal.AddString(str);
-	str.Format(_T("Rocket weight: %.1d "), rocket.mass);
+	str.Format(_T("Rocket weight: %.1f "), rocket.mass);
 	m_wndInformationReal.AddString(str);
 	str.Format(_T("Rocket cross section: %.3f "), rocket.crossSection);
 	m_wndInformationReal.AddString(str);
