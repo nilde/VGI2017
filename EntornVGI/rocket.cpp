@@ -90,11 +90,11 @@ void Rocket::ExecuteTrayectory(int iteracion, float step, GLfloat center[3],int 
 }
 
 void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3],int defective) {
-	/*if (iteracion == max_iter - Diff_Fase + 20) {
+	if (iteracion == (max_iter - Diff_Fase + 50)) {
 		az = ax = ay = 0;
-	}*/
-	if (iteracion == max_iter - Diff_Fase) {
-		az = -3;
+	}
+	if (iteracion == (max_iter - Diff_Fase - 10)) {
+		az = -10;
 		ax = 0;
 		ay = 5;
 		combustible = false;
@@ -113,7 +113,7 @@ void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3],int
 		betta = 90;
 	}
 
-	float distancia = sqrt(m_y*m_y + m_z*m_z + m_x*m_x);
+	float distancia = sqrt((m_y*m_y)+(m_z*m_z));
 	gravity = ((Tradi * 60000) / (distancia*distancia));//((const_G * Tmassa) / (distancia*distancia));
 	double real_az = 0;
 	double real_ay = 0;
@@ -148,17 +148,15 @@ void Rocket::ExecuteTrayectory2(int iteracion, float step, GLfloat center[3],int
 }
 
 void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int defective) {
-	if (iteracion == max_iter - Diff_Fase + 10) {
+	if (iteracion == (max_iter - Diff_Fase + 50)) {
 		az = ax = ay = 0;
 	}
-	if (iteracion == max_iter - Diff_Fase - 10) {
-		az = 0;
-		ax = 2;
-		ay = -2;
+	if (iteracion == (max_iter - Diff_Fase - 12)) {
+		az = -10;
+		ax = 0;
+		ay = 5;
 		combustible = false;
 	}
-	float dy = center[1] - m_y;
-	float dz = center[2] - m_z;
 	if (vy != 0) {
 		m_alpha = arcotangente(vz / vy);
 		if (vy < 0) {
@@ -172,10 +170,11 @@ void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int
 	else {
 		betta = 90;
 	}
-	float distancia = sqrt(m_y*m_y + m_z*m_z + m_x*m_x);
-	gravity = ((Tradi * 60000) / (distancia*distancia));
-	float real_az = 0;
-	float real_ay = 0;
+
+	float distancia = sqrt((m_y*m_y) + (m_z*m_z));
+	gravity = ((Tradi * 60000) / (distancia*distancia));//((const_G * Tmassa) / (distancia*distancia));
+	double real_az = 0;
+	double real_ay = 0;
 	if (m_z >= 0) {
 		real_az = az - gravity * seno(betta);
 	}
@@ -183,13 +182,12 @@ void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int
 		real_az = az + gravity * seno(betta);
 	}
 	if (m_y >= 0) {
-		if (iteracion > 200) {
+		if (iteracion > 100) {
 			real_ay = ay - gravity * coseno(betta);
 		}
-
 	}
 	else {
-		if (iteracion > 200) {
+		if (iteracion > 100) {
 			real_ay = ay + gravity * coseno(betta);
 		}
 	}
@@ -208,17 +206,15 @@ void Rocket::ExecuteTrayectory3(int iteracion, float step, GLfloat center[3],int
 }
 
 void Rocket::ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int defective) {
-	if (iteracion == max_iter - Diff_Fase + 10) {
+	if (iteracion == (max_iter - Diff_Fase + 50)) {
 		az = ax = ay = 0;
 	}
-
-	if (iteracion == max_iter - Diff_Fase - 10) {
-		az = 0;
-		ax = ay = 1;
+	if (iteracion == (max_iter - Diff_Fase - 13)) {
+		az = -10;
+		ax = 0;
+		ay = 5;
 		combustible = false;
 	}
-	float dy = center[1] - m_y;
-	float dz = center[2] - m_z;
 	if (vy != 0) {
 		m_alpha = arcotangente(vz / vy);
 		if (vy < 0) {
@@ -232,10 +228,11 @@ void Rocket::ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int
 	else {
 		betta = 90;
 	}
-	float distancia = sqrt(m_y*m_y + m_z*m_z + m_x*m_x);
-	gravity = ((Tradi * 60000) / (distancia*distancia));
-	float real_az = 0;
-	float real_ay = 0;
+
+	float distancia = sqrt((m_y*m_y) + (m_z*m_z));
+	gravity = ((Tradi * 60000) / (distancia*distancia));//((const_G * Tmassa) / (distancia*distancia));
+	double real_az = 0;
+	double real_ay = 0;
 	if (m_z >= 0) {
 		real_az = az - gravity * seno(betta);
 	}
@@ -243,13 +240,12 @@ void Rocket::ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int
 		real_az = az + gravity * seno(betta);
 	}
 	if (m_y >= 0) {
-		if (iteracion > 200) {
+		if (iteracion > 100) {
 			real_ay = ay - gravity * coseno(betta);
 		}
-
 	}
 	else {
-		if (iteracion > 200) {
+		if (iteracion > 100) {
 			real_ay = ay + gravity * coseno(betta);
 		}
 	}

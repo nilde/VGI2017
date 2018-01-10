@@ -3746,15 +3746,15 @@ void CEntornVGIView::executeTrayectory() {
 
 	animaController.rocket.ExecuteTrayectory(iter, animaController.TSTEP, animaController.planet.center,animaController.defective);
 	animaController.rocket2.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center, animaController.defective);
-	animaController.rocket3.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center, animaController.defective);
-	animaController.rocket4.ExecuteTrayectory2(iter, animaController.TSTEP, animaController.planet.center, animaController.defective);
+	animaController.rocket3.ExecuteTrayectory3(iter, animaController.TSTEP, animaController.planet.center, animaController.defective);
+	animaController.rocket4.ExecuteTrayectory4(iter, animaController.TSTEP, animaController.planet.center, animaController.defective);
 	t += animaController.TSTEP*animaController.speedup;
 	iter++; 
 	
 	//MODIFICACIONES PROPIAS
 	//evils line
 	if (true) {
-		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket2);
+		((CMainFrame*)AfxGetMainWnd())->m_wndInformation.printRocketDetails(animaController.rocket);
 	}
 	// FINAL MODIFICACIONES PROPIAS
 
