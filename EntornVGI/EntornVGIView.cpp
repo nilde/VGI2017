@@ -4120,14 +4120,18 @@ void CEntornVGIView::buildingCreation()
 		char *nomfitx = CString2Char(nom);
 		nom = "./objects/cities/Arbolico/Arbolico.obj";
 		char *nomfitxTree = CString2Char(nom);
+		nom = "./objects/Roca/Roca.obj";
+		char *nomfitxRock = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 		if (BUILDING == NULL)
 		{
 			BUILDING = new COBJModel;
 			TREE = new COBJModel;
+			ROCK = new COBJModel;
 		}
 		BUILDING->LoadModel(nomfitx, BUILDINGOBJ);
 		TREE->LoadModel(nomfitxTree, TREEOBJ);
+		ROCK->LoadModel(nomfitxRock, ROCKOBJ);		
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 	}
 	InvalidateRect(NULL, false);
@@ -4194,7 +4198,7 @@ void CEntornVGIView::OnUpdatePlanetaMarte(CCmdUI *pCmdUI)
 void CEntornVGIView::OnPlanetaLuna()
 {
 	animaController.clouds.isActive = false;
-	animaController.cities.isActive = false;
+	animaController.cities.isActive = true;
 	animaController.activeFractal = true;
 	animaController.activePlanet = LUNA;
 	animaController.moved = 0;//si se elimina el fractal ponerlo a 4.3 i mirr de ajustar las camaras

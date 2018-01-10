@@ -387,14 +387,25 @@ void generateRandomCities(AnimaController &animaController) {
 			glTranslatef(animaController.cities.validPositionsFromScratch[accessIndex][0], animaController.cities.validPositionsFromScratch[accessIndex][1], animaController.cities.validPositionsFromScratch[accessIndex][2] + 0.75);
 			glRotatef(90, 90, 1, 0);
 			glScalef(0.05, 0.05, 0.04);
-			if (!animaController.cities.validPositionsActiveContent[i])
+			if (animaController.activePlanet == TIERRA)
 			{
+				if (!animaController.cities.validPositionsActiveContent[i])
+				{
 					glCallList(BUILDINGOBJ);
-			}
-			if (animaController.cities.validPositionsActiveContent[i]) {
+				}
+				if (animaController.cities.validPositionsActiveContent[i]) {
 					glScalef(10, 10, 10);
 					glCallList(TREEOBJ);
 
+				}
+			}
+			else if (animaController.activePlanet == LUNA)
+			{
+				if (!animaController.cities.validPositionsActiveContent[i])
+				{
+					glScalef(10, 10, 10);
+					glCallList(ROCKOBJ);
+				}
 			}
 
 			glPopMatrix();
