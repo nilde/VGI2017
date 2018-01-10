@@ -3778,7 +3778,6 @@ void CEntornVGIView::OnLaunch()
 	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
 	animaController.rocket.combustible = true; 
-	
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 

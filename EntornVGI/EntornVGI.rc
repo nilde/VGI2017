@@ -688,7 +688,7 @@ STRINGTABLE
 BEGIN
     IDS_EXPLORER            "Explorador"
     IDS_EDIT_MENU           "Editar"
-    IDS_DEBUGR_TAB          "Debug"
+    IDS_DEBUGR_TAB          "Datos Simulación"
     IDS_REAL_TAB            "Datos Reales"
 END
 

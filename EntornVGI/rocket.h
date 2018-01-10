@@ -95,6 +95,7 @@ public:
 	//Overwrite of the constructor with some parameters
 	//Rocket(some params)
 
+	void calcTelemetry();
 
 	void ExecuteTrayectory(int iteracion, float step, GLfloat center[3],int defective);
 
@@ -111,19 +112,34 @@ public:
 	void setGravity(float);
 	void setPropellant(int type);
 
-	//No implementada
-	float Rocket::angleGenerated(float previousX, float previousY, float actualX, float actualY);
-	
-	//implementation soon
-	void calcTelemetry();
-private:
-	float time;
-	float thurst;
-	float stageNumber;
-	float weight;
-	float height;
-	float utilCharge;
+
 	double gravity;
+	float dragCoeffiecient = 0.75;
+	float rho = 1.22;//kg/m3
+	float diameter;//meters
+	float height; //meters
+	float mass;//kg
+	//boosters
+	float thurst = 12500000.0;//Newtons
+	float specificImpulse = 269.0;//seconds (2.64km/s)
+	float burnTime = 124.0;//seconds
+	//first Stage
+	float thurstFS = 5250000.0;//Newtons
+	float specificImpulseFS = 455.0;//seconds (4.46km/s)
+	float burnTimeFS = 480;//seconds
+
+	//need to be calculated
+	double crossSection;
+	double k;
+	double q;
+	double x ;
+	double t;
+	double v;
+	double y1;
+	double yc;
+	double qa;
+	double qb;
+	double ta;
 
 };
 
