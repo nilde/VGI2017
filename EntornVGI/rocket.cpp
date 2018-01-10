@@ -324,3 +324,21 @@ void Rocket::setPropellant(int propellantType) {
 
 
 }
+void Rocket::calcTelemetry() {
+	height = 56.1; //meters
+	mass = 2030000.0;//kg
+	diameter = 8.7;//meters
+	crossSection = pi*(pow((diameter / 2), 2));
+	float gravedad = 9.8;
+	k = 0.5*rho*dragCoeffiecient*crossSection;
+	q = sqrt((thurst*2 - mass*gravedad) / (k));
+	x = (2.0*k*q) / mass;
+	t = specificImpulse / thurst;
+	v = q*(1.0 - exp(-x * burnTime)) / (1.0 + exp(-x * burnTime));
+	y1 = (-mass / (2 * k))*log(((thurst - mass*gravedad - k*pow(v,2)) / (thurst - mass*gravedad)));
+	yc = (mass / (2 * k)) * log(((mass*gravedad + k*pow(v,2)) / (mass*gravedad)));
+	qa = sqrt(mass*gravedad / k);
+	qb = sqrt(gravedad*k / mass);
+	ta = atan(v / qa) / qb;
+
+}
