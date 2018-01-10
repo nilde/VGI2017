@@ -39,6 +39,7 @@
 float last_R = 1;
 float INCRM = 1;
 
+#pragma comment(lib,"Winmm.lib")
 
 /////////////////////////////////////////////////////////////////////////////
 // CEntornVGIView
@@ -3774,6 +3775,7 @@ void CEntornVGIView::executeTrayectory() {
 
 void CEntornVGIView::OnLaunch()
 {
+	PlaySound(TEXT("rocket.wav"),NULL,SND_LOOP | SND_ASYNC);
 	anima = true;
 	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
@@ -3784,6 +3786,7 @@ void CEntornVGIView::OnLaunch()
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
+	PlaySound(NULL, NULL, 0);
 	anima = !anima;
 }
 

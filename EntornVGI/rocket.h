@@ -2,6 +2,8 @@
 #define _ROCKET
 
 #include <string>
+#include <mmsystem.h>
+#include <mciapi.h>
 using namespace std;
 
 //SOME CONSTANTS FOR F9 IN LEO ORBITS

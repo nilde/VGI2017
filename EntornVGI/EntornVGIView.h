@@ -28,6 +28,7 @@
 #include "objLoader.h"	
 #include "AnimaController.h"
 
+#include <mmsystem.h>
 
 
 class CEntornVGIView : public CView

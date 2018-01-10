@@ -67,6 +67,8 @@
       <AdditionalLibraryDirectories>../lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;devil.lib;ilu.lib;ilut.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AddModuleNamesToAssembly>
+      </AddModuleNamesToAssembly>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
