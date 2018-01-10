@@ -183,11 +183,17 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	CString str;
 	for (int i = m_wndInformationDebug.GetCount() - 1; i >= 0; i--) {
 		m_wndInformationDebug.DeleteString(i);
+	
+	}
+	for (int i = m_wndInformationReal.GetCount() - 1; i >= 0; i--) {
+		m_wndInformationReal.DeleteString(i);
+
 	}
 
-	double distance = sqrt((rocket.m_x*rocket.m_x) +  (rocket.m_y*rocket.m_y) + (rocket.m_z*rocket.m_z)) - 6361;
+	double distance = sqrt((rocket.m_x*rocket.m_x) +  (rocket.m_y*rocket.m_y) + (rocket.m_z*rocket.m_z)) - Tradi;
 
 	//ax,ay,az,m_alpha,m_x,m_y,m_z,vx,vy,vz
+	//VENTANA DEBUG
 	str.Format(_T("Aceleración en el eje X: %.3f "),rocket.ax);
 	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Aceleración en el eje Y: %.3f "), rocket.ay);
@@ -210,4 +216,28 @@ void CInformationWnd::printRocketDetails(Rocket const rocket) {
 	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Distancia a la Tierra: %.3f "), distance);
 	m_wndInformationDebug.AddString(str);
+
+	//VENTANA INFORMACION REAL
+	str.Format(_T("Rocket height: %.1d "), rocket.height);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Rocket weight: %.1d "), rocket.mass);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Rocket cross section: %.3f "), rocket.crossSection);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Drag coefficient: %.3f "), rocket.dragCoeffiecient);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("rho: %.3f "), rocket.rho);
+	m_wndInformationReal.AddString(str);
+
+	str.Format(_T("Motor burn time in seconds: %.3f "), rocket.t);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Burnout velocity in m/s: %.3f "), rocket.v);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Altittude at burnout: %.3f "), rocket.y1);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Coasting distance : %.3f "), rocket.yc);
+	m_wndInformationReal.AddString(str);
+	str.Format(_T("Coasting time: %.3f "), rocket.ta);
+	m_wndInformationReal.AddString(str);
+	
 }
