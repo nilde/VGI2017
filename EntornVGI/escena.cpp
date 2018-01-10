@@ -375,7 +375,7 @@ void generateRandomClouds(AnimaController &animaController) {
 void generateRandomCities(AnimaController &animaController) {
 	int accessIndex = 0;
 	int cont = 0;
-	if (animaController.rocket.m_z - 30 > animaController.clouds.minHighCloud + 6575) {
+	if (animaController.rocket.m_z > 6400) {
 		animaController.cities.isActive = false;
 		return;
 	}
