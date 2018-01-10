@@ -2,8 +2,8 @@
 #define _CITIES
 
 const int numOfPosiblePositions = 111250;
-const int numBuildings = 20;
-const int numTrees = 20;
+const int numBuildings = 1;
+const int numTrees = 1;
 const int numOfActiveBlocks = numBuildings + numTrees;
 
 class Cities {

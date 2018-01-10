@@ -146,18 +146,20 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		if (animaController.activePlanet == TIERRA) {
-			for (int i = 0; i < 4; i++) {
-				glBindTexture(GL_TEXTURE_2D, texturID[3]);
-				glEnable(GL_TEXTURE_2D);
-				glColor4f(0.5, 0.8, 1, 0.13 - 0.005*i);
+			glBindTexture(GL_TEXTURE_2D, texturID[2]);
+			glEnable(GL_TEXTURE_2D);
+			int max = 4;
+			for (int i = 0; i < max; i++) {
+				glColor4f(1,1,1, 0.25678 - 0.005*i);
 				glPushMatrix();
-				glRotatef(300 + 50 * i, 50 * i, 90 * i + 10 * i, 1);
-				gluEsfera(6300 + 500 * i, 100, 100);
+				glRotatef(45, i, 2*i, 3*i);
+				gluEsfera(6100 + 200 * i, 100, 100);
 				glPopMatrix();
 			}
 		}
-		
+
 
 
 		glBindTexture(GL_TEXTURE_2D, texturID[6]);
@@ -166,7 +168,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		glPushMatrix();
 		glRotatef(312, 155, 1, 1);
 		if (animaController.lookat == ROCKET) {
-			gluEsfera(10000, 1000, 10000);
+			gluEsfera(9000000, 1000, 10000);
 		}
 		else {
 			gluEsfera(9000000, 1000, 10000);
@@ -342,6 +344,8 @@ void dibuixa(char obj)
 
 void generateRandomClouds(AnimaController &animaController) {
 	float alpha = 0.0;
+	float altura = animaController.rocket.m_z - 6371;
+
 	if (animaController.rocket.m_z > animaController.clouds.maxHighCloud + 50) {
 		animaController.clouds.isActive = false;
 		return;
@@ -360,11 +364,19 @@ void generateRandomClouds(AnimaController &animaController) {
 		alpha = 0.3;
 	}
 
+	if (altura < 50) {
+		alpha = 0.13 + 0.0006 * altura;
+	}
+	else {
+		alpha = 0.13 + 0.0006 * 50 - 0.0002 * altura;
+	}
+	
+
 	for (int counter = 0; counter < animaController.clouds.numOfActivePoints; ++counter) {
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(0.97, 0.95, 0.92,0.1+alpha);
+		glColor4f(0.97, 0.95, 0.92,alpha);
 		glPointSize(float(animaController.clouds.sizeOfBox));
 		glBegin(GL_POINTS);
 		glVertex3f(animaController.clouds.optimizationForClouds[counter][0], animaController.clouds.optimizationForClouds[counter][1], animaController.clouds.optimizationForClouds[counter][2]);
