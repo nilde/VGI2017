@@ -270,10 +270,16 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
 			glDisable(GL_LIGHTING);
-			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
-				animaController.fuego.draw();
-				if (animaController.activePlanet == TIERRA)
+			if (animaController.lookat == ROCKET && animaController.rocket.combustible && animaController.lookat == ROCKET) {
+				animaController.fuego1.draw();
+				animaController.fuego2.draw();
+				animaController.fuego3.draw();
+				animaController.fuego4.draw();
+				animaController.fuego5.draw();
+				animaController.fuego6.draw();
+				if (animaController.activePlanet == TIERRA) {
 					animaController.humo.draw();
+				}
 			}
 		glPopMatrix();
 
@@ -368,7 +374,7 @@ void generateRandomClouds(AnimaController &animaController) {
 		alpha = 0.13 + 0.0006 * altura;
 	}
 	else {
-		alpha = 0.13 + 0.0006 * 50 - 0.0002 * altura;
+		alpha = 0.13 + 0.0006 * 50 - 0.0004 * altura;
 	}
 	
 

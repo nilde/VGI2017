@@ -51,9 +51,9 @@ int Particles::random(string valueToRandomize) {
 void Particles::create(int i) {
 
 	particle[i].age = random("age");
-	particle[i].x = 0; // ORIGIN_X;
-	particle[i].y = 0; // ORIGIN_Y;
-	particle[i].z = 0; // ORIGIN_Z;
+	particle[i].x =  ORIGIN_X;
+	particle[i].y =  ORIGIN_Y;
+	particle[i].z =  ORIGIN_Z;
 	particle[i].sx = random("speedX");
 	particle[i].sy = random("speedY");
 	particle[i].sz = random("speedZ");
@@ -88,7 +88,7 @@ void Particles::draw() {
 		else {
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glPointSize(random("size"));
+			glPointSize(random("size")/10);
 			glBegin(GL_POINTS);
 			float r, g, b;
 			r = 0.01 * random("r");

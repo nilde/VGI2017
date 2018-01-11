@@ -28,3 +28,59 @@ Luego para aplicar la textura, se tiene que hacer antes de crear el objeto en es
 el valor de texturID[7], no es random, se tiene que depurar poniendo un breack point en el momento que se hace el loadIMA(".//",[i]) y entrar dentro de esta función. Y ir pasoa  paso hasta al final que se mete en una variable de textura. Una vez se haya ejecutado esa línea, se tiene que ver que valor se ha metido en la posición i, en este caso un 7.
 
 Por alguna duda contacten con Jordi Gonzalez Cano ;-)
+
+
+
+
+
+
+Cómo hacer pruebas con el tamaño y número de partículas:
+
+En particles.h tiene una constante:
+	const int static MAX_PARTICLES = 2500;
+
+con el número máximo de particulas de TODOS LOS FUEGOS Y HUMOS
+
+el tamaño de los puntos está en la línea 91 de Particles.cpp
+Pone: glPointSize(random("size")/10);
+
+Random("size") te da un valor entre 	
+	int size_min = 5 y 
+	int size_max = 30 que están en particles.h y se pueden modificar para un humo concreto
+(pero ahora mismo todos los fuegos lo tienen con el valor por defecto)
+
+
+Luego, puedes cambiar el 10 que va dividiendo al random de size o cambiar el min size y el máx size.
+Lo hago así porque el random ese que usamos da siempre valores enteros y el 10 lo uso pa poder tener decimales.
+
+Si quieres probar a tocar colores, duración y demás. En animaController.cpp tienes, por ejemplp:
+
+	fuego1.red_min = 80;
+	fuego1.red_max = 100;
+	fuego1.green_min = 0;
+	fuego1.green_max = 100;
+	fuego1.blue_min = 1;
+	fuego1.blue_max = 10;
+
+	fuego1.ORIGIN_Y = 200;
+	fuego1.ORIGIN_X = 400;
+	fuego1.ORIGIN_Z = -100;
+
+	Además de los colores y la posición, puedes cambiar:
+
+	int AGE_DECREMENT;
+	int VEL_DECREMENT;
+	int UPDATE_VEL_X;
+	int UPDATE_VEL_Y;
+	int UPDATE_VEL_Z;
+	int age_min = 30;
+	int age_max = 80;
+	int sx_min = -50;
+	int sx_max = 50;
+	int sy_min = -200;
+	int sy_max = -100;// esto son las velocidades
+	int sz_min = -50;
+	int sz_max = 50;
+	int size_min = 5;
+	int size_max = 30;
+
