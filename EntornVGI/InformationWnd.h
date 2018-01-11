@@ -38,7 +38,7 @@ public:
 protected:
 	CMFCTabCtrl	m_wndTabs;
 	CInformationList m_wndInformationDebug;
-	CInformationList m_wndInformationReal;
+	//CInformationList m_wndInformationReal;
 
 protected:
 	

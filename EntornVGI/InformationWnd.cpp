@@ -44,8 +44,7 @@ int CInformationWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Crear paneles de resultados:
 	const DWORD dwStyle = LBS_NOINTEGRALHEIGHT | WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL;
 
-	if (!m_wndInformationDebug.Create(dwStyle, rectDummy, &m_wndTabs, 3) ||
-		!m_wndInformationReal.Create(dwStyle, rectDummy, &m_wndTabs, 2))
+	if (!m_wndInformationDebug.Create(dwStyle, rectDummy, &m_wndTabs, 3))
 	{
 		TRACE0("No se pudieron crear las ventanas de salida\n");
 		return -1;      // no se pudo crear
@@ -60,9 +59,10 @@ int CInformationWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	bNameValid = strTabName.LoadString(IDS_DEBUGR_TAB);
 	ASSERT(bNameValid);
 	m_wndTabs.AddTab(&m_wndInformationDebug, strTabName, (UINT)0);
-	bNameValid = strTabName.LoadString(IDS_REAL_TAB);
-	ASSERT(bNameValid);
-	m_wndTabs.AddTab(&m_wndInformationReal, strTabName, (UINT)1);
+	
+	//bNameValid = strTabName.LoadString(IDS_REAL_TAB);
+	//ASSERT(bNameValid);
+	//m_wndTabs.AddTab(&m_wndInformationReal, strTabName, (UINT)1);
 
 	// Rellenar pestañas de resultados con texto ficticio (nada especial)
 	FillExampleWindow();
@@ -101,7 +101,7 @@ void CInformationWnd::AdjustHorzScroll(CListBox& wndListBox)
 void CInformationWnd::FillExampleWindow()
 {
 	m_wndInformationDebug.AddString(_T("Inicia la simulación para ver los datos del cohete."));
-	m_wndInformationReal.AddString(_T("Inicia la simulación para ver los datos del planeta."));
+	//m_wndInformationReal.AddString(_T("Inicia la simulación para ver los datos del planeta."));
 
 }
 
@@ -109,7 +109,7 @@ void CInformationWnd::FillExampleWindow()
 void CInformationWnd::UpdateFonts()
 {
 	m_wndInformationDebug.SetFont(&afxGlobalData.fontRegular);
-	m_wndInformationReal.SetFont(&afxGlobalData.fontRegular);
+	//m_wndInformationReal.SetFont(&afxGlobalData.fontRegular);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,11 +185,11 @@ void CInformationWnd::printRocketDetails(Rocket rocket) {
 		m_wndInformationDebug.DeleteString(i);
 	
 	}
-	for (int i = m_wndInformationReal.GetCount() - 1; i >= 0; i--) {
+	/*for (int i = m_wndInformationReal.GetCount() - 1; i >= 0; i--) {
 		m_wndInformationReal.DeleteString(i);
 
 	}
-
+	*/
 	double distance = sqrt((rocket.m_x*rocket.m_x) +  (rocket.m_y*rocket.m_y) + (rocket.m_z*rocket.m_z)) - Tradi;
 
 	//ax,ay,az,m_alpha,m_x,m_y,m_z,vx,vy,vz
@@ -216,7 +216,7 @@ void CInformationWnd::printRocketDetails(Rocket rocket) {
 	m_wndInformationDebug.AddString(str);
 	str.Format(_T("Distancia a la Tierra: %.3f "), distance);
 	m_wndInformationDebug.AddString(str);
-
+	/*
 	//VENTANA INFORMACION REAL
 	str.Format(_T("Rocket height: %.1f "), rocket.height);
 	m_wndInformationReal.AddString(str);
@@ -239,5 +239,5 @@ void CInformationWnd::printRocketDetails(Rocket rocket) {
 	m_wndInformationReal.AddString(str);
 	str.Format(_T("Coasting time: %.3f "), rocket.ta);
 	m_wndInformationReal.AddString(str);
-	
+	*/
 }
