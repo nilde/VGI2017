@@ -105,9 +105,6 @@ AnimaController::AnimaController()
 	fuego1.blue_min = 1;
 	fuego1.blue_max = 10;
 
-
-
-
 	fuego1.ORIGIN_Y = 200;
 	fuego1.ORIGIN_X = 400;
 	fuego1.ORIGIN_Z = -100;
