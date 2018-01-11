@@ -2455,7 +2455,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		
 		}
 
-	if (animaController.rocket.combustible == false) {
+	if (animaController.rocket.m_z >= 6750) {
 		projeccio = PERSPECT;
 	}
 	else if (satelit)	{	// OPCI� SAT�LIT: Increment OPV segons moviments mouse.
@@ -3801,6 +3801,19 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	if (animaController.activePlanet == TIERRA)
 	{
 		animaController.clouds.isActive = true;
+		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.clouds.rocketOverClouds = false;
+		animaController.cities.isActive = true;
+	}else if(animaController.activePlanet == MARTE)
+	{
+		animaController.clouds.isActive = false;
+		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.clouds.rocketOverClouds = false;
+		animaController.cities.isActive = true;
+	}
+	else if(animaController.activePlanet == LUNA)
+	{
+		animaController.clouds.isActive = false;
 		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
 		animaController.clouds.rocketOverClouds = false;
 		animaController.cities.isActive = true;
