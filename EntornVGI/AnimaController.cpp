@@ -34,6 +34,12 @@ AnimaController::AnimaController()
 	defective = atoi(reader.defective.c_str());
 	rocket.setPropellant(atoi(reader.propellantType.c_str()));
 	rocket.az += rocket.propellantBonus;
+	rocket2.setPropellant(atoi(reader.propellantType.c_str()));
+	rocket2.az += rocket.propellantBonus;
+	rocket3.setPropellant(atoi(reader.propellantType.c_str()));
+	rocket3.az += rocket.propellantBonus;
+	rocket4.setPropellant(atoi(reader.propellantType.c_str()));
+	rocket4.az += rocket.propellantBonus;
 	planet = Planet(6371);
 
 

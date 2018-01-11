@@ -2446,7 +2446,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 	if (anima)	{
 		
 		// Codi de tractament de l'animaci� quan transcorren els ms. del crono.
-		executeTrayectory();
+		this->executeTrayectory();
 
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
