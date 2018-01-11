@@ -253,6 +253,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		case '3':
 		{
+			glScalef(2.0, 2.0, 2.0);
 			glCallList(ROCKET3OBJ);
 			break;
 		}
@@ -267,14 +268,14 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		glScalef(0.005, 0.005, 0.005);
 		glTranslatef(0, 0, -2);
-			glBindTexture(GL_TEXTURE_2D, texturID[0]);
-			glEnable(GL_TEXTURE_2D);
-			glDisable(GL_LIGHTING);
-			if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
-				animaController.fuego.draw();
-				if (animaController.activePlanet == TIERRA)
-					animaController.humo.draw();
-			}
+		glBindTexture(GL_TEXTURE_2D, texturID[0]);
+		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
+		if (animaController.lookat == ROCKET && animaController.rocket.combustible) {
+			animaController.fuego.draw();
+			if (animaController.activePlanet == TIERRA)
+				animaController.humo.draw();
+		}
 		glPopMatrix();
 
 
@@ -417,6 +418,14 @@ void generateRandomCities(AnimaController &animaController) {
 				{
 					glScalef(10, 10, 10);
 					glCallList(ROCKOBJ);
+				}
+			}
+			else if (animaController.activePlanet == MARTE)
+			{
+				if (!animaController.cities.validPositionsActiveContent[i])
+				{
+					glScalef(10, 10, 10);
+					glCallList(ROCKMARTEOBJ);
 				}
 			}
 
