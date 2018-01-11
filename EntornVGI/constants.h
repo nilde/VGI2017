@@ -67,9 +67,10 @@
 #define SUBROCKET1OBJ 1241
 #define SUBROCKET2OBJ 1242
 
-#define BUILDINGOBJ 1239
-#define ROCKOBJ		1243
-#define TREEOBJ		1240
+#define BUILDINGOBJ			1239
+#define ROCKOBJ				1243
+#define ROCKMARTEOBJ		1244
+#define TREEOBJ				1240
 
 // -------------- VGI: Definició dels valors del pla near i far del Volum de Visualització en Perspectiva
 const int p_near=1;

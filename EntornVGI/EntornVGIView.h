@@ -28,6 +28,7 @@
 #include "objLoader.h"	
 #include "AnimaController.h"
 
+#include <mmsystem.h>
 
 
 class CEntornVGIView : public CView
@@ -155,6 +156,7 @@ public:
 	COBJModel* BUILDING;
 	COBJModel* TREE;
 	COBJModel* ROCK;
+	COBJModel* ROCK_MARTE;
 	COBJModel* PLATAFORMA;
 	COBJModel* SUBROCKET1;
 	COBJModel* SUBROCKET2;

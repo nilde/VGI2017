@@ -2,6 +2,8 @@
 #define _ROCKET
 
 #include <string>
+#include <mmsystem.h>
+#include <mciapi.h>
 using namespace std;
 
 //SOME CONSTANTS FOR F9 IN LEO ORBITS
@@ -106,8 +108,21 @@ public:
 	void ExecuteTrayectory4(int iteracion, float step, GLfloat center[3],int defective);
 
 	void Restart();
-
 	void Initialize();
+	Rocket& operator=(const Rocket& needToCopy) {
+		crossSection = needToCopy.crossSection;
+		this->k = needToCopy.k;
+		this->q = needToCopy.q;
+		this->x = needToCopy.x;
+		this->t = needToCopy.t;
+		this->v = needToCopy.v;
+		this->y1 = needToCopy.y1;
+		this->yc = needToCopy.yc;
+		this->qa = needToCopy.qa;
+		this->qb = needToCopy.qb;
+		this->ta = needToCopy.ta;
+		return *this;
+	}
 
 	void setGravity(float);
 	void setPropellant(int type);

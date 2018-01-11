@@ -51,9 +51,9 @@ int Particles::random(string valueToRandomize) {
 void Particles::create(int i) {
 
 	particle[i].age = random("age");
-	particle[i].x = 0; // ORIGIN_X;
-	particle[i].y = 0; // ORIGIN_Y;
-	particle[i].z = 0; // ORIGIN_Z;
+	particle[i].x =  ORIGIN_X;
+	particle[i].y =  ORIGIN_Y;
+	particle[i].z =  ORIGIN_Z;
 	particle[i].sx = random("speedX");
 	particle[i].sy = random("speedY");
 	particle[i].sz = random("speedZ");
@@ -69,6 +69,10 @@ void Particles::evolve(int i) {
 	particle[i].x = particle[i].x + (particle[i].sx * UPDATE_VEL_X);
 	particle[i].y = particle[i].y + (particle[i].sy * UPDATE_VEL_Y);
 	particle[i].z = particle[i].z + (particle[i].sz * UPDATE_VEL_Z);
+	if (!combustible && particle[i].age < 0)
+		alpha -= 0.00001;
+	if(combustible)
+		alpha = 0.6;
 
 	//particle[i].sx = particle[i].sx * VEL_DECREMENT;
 	//particle[i].sy = particle[i].sy * VEL_DECREMENT;
@@ -82,13 +86,13 @@ void Particles::evolve(int i) {
 void Particles::draw() {
 
 	for (int i = 0; i < MAX_PARTICLES; i++) {
-		if (particle[i].age < 0) {
+		if (combustible && particle[i].age < 0) {
 			create(i);
 		}
 		else {
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glPointSize(random("size"));
+			glPointSize(random("size")/10);
 			glBegin(GL_POINTS);
 			float r, g, b;
 			r = 0.01 * random("r");
@@ -114,6 +118,7 @@ void Particles::initialize() {
 	UPDATE_VEL_Y = 1;
 	UPDATE_VEL_Z = 1;
 
+	combustible = false;
 }
 
 Particles::Particles()

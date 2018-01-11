@@ -39,6 +39,7 @@
 float last_R = 1;
 float INCRM = 1;
 
+#pragma comment(lib,"Winmm.lib")
 
 /////////////////////////////////////////////////////////////////////////////
 // CEntornVGIView
@@ -2452,10 +2453,6 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 
 
 		
-		}
-
-	if (animaController.rocket.combustible == false) {
-		projeccio = PERSPECT;
 	}
 	else if (satelit)	{	// OPCI� SAT�LIT: Increment OPV segons moviments mouse.
 		//OPV.R = OPV.R + m_EsfeIncEAvall.R;
@@ -2467,6 +2464,20 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
 		}
+
+	if (animaController.rocket.m_z >= 6750) {
+		projeccio = PERSPECT;
+	}
+	if (animaController.rocket.combustible == false)
+	{
+		animaController.fuego1.combustible = false;
+		animaController.fuego2.combustible = false;
+		animaController.fuego3.combustible = false;
+		animaController.fuego4.combustible = false;
+		animaController.fuego5.combustible = false;
+		animaController.fuego6.combustible = false;
+		animaController.humo.combustible = false;
+	}
 
 	CView::OnTimer(nIDEvent);
 }
@@ -3774,16 +3785,25 @@ void CEntornVGIView::executeTrayectory() {
 
 void CEntornVGIView::OnLaunch()
 {
+	PlaySound(TEXT("rocket.wav"),NULL,SND_LOOP | SND_ASYNC);
 	anima = true;
 	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
 	animaController.rocket.combustible = true; 
+	animaController.fuego1.combustible = true;
+	animaController.fuego2.combustible = true;
+	animaController.fuego3.combustible = true;
+	animaController.fuego4.combustible = true;
+	animaController.fuego5.combustible = true;
+	animaController.fuego6.combustible = true;
+	animaController.humo.combustible = true;
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 
 
 void CEntornVGIView::OnTrayectoriaStop()
 {
+	PlaySound(NULL, NULL, 0);
 	anima = !anima;
 }
 
@@ -3798,6 +3818,19 @@ void CEntornVGIView::OnTrayectoriaRestart()
 	if (animaController.activePlanet == TIERRA)
 	{
 		animaController.clouds.isActive = true;
+		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.clouds.rocketOverClouds = false;
+		animaController.cities.isActive = true;
+	}else if(animaController.activePlanet == MARTE)
+	{
+		animaController.clouds.isActive = false;
+		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
+		animaController.clouds.rocketOverClouds = false;
+		animaController.cities.isActive = true;
+	}
+	else if(animaController.activePlanet == LUNA)
+	{
+		animaController.clouds.isActive = false;
 		animaController.clouds.numStepsBeforeDelete = animaController.clouds.fixedStepsBeforeDelete;
 		animaController.clouds.rocketOverClouds = false;
 		animaController.cities.isActive = true;
@@ -4061,7 +4094,7 @@ void CEntornVGIView::OnUpdateCoheteLanzadera(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteTres()
 {
 	if (R0CKET3 == NULL) {
-		nom = "./objects/Transbordador/Tanque_Principal.obj";
+		nom = "./objects/Tintin/tintin.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
@@ -4121,16 +4154,20 @@ void CEntornVGIView::buildingCreation()
 		char *nomfitxTree = CString2Char(nom);
 		nom = "./objects/Roca/Roca.obj";
 		char *nomfitxRock = CString2Char(nom);
+		nom = "./objects/Roca_marte/Roca_marte.obj";
+		char *nomfitxRock_marte = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 		if (BUILDING == NULL)
 		{
 			BUILDING = new COBJModel;
 			TREE = new COBJModel;
 			ROCK = new COBJModel;
+			ROCK_MARTE = new COBJModel;
 		}
 		BUILDING->LoadModel(nomfitx, BUILDINGOBJ);
 		TREE->LoadModel(nomfitxTree, TREEOBJ);
-		ROCK->LoadModel(nomfitxRock, ROCKOBJ);		
+		ROCK->LoadModel(nomfitxRock, ROCKOBJ);
+		ROCK_MARTE->LoadModel(nomfitxRock_marte, ROCKMARTEOBJ);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 	}
 	InvalidateRect(NULL, false);
@@ -4173,7 +4210,7 @@ void CEntornVGIView::OnUpdateBuildingCreation(CCmdUI *pCmdUI)
 void CEntornVGIView::OnPlanetaMarte()
 {
 	animaController.clouds.isActive = false;
-	animaController.cities.isActive = false;
+	animaController.cities.isActive = true;
 	animaController.activeFractal = true;
 	animaController.moved = 0;
 	animaController.activePlanet = MARTE;

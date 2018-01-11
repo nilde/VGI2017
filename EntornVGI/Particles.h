@@ -8,7 +8,7 @@
 
 class Particles {
 public:
-	const int static MAX_PARTICLES = 1500;
+	const int static MAX_PARTICLES = 5000;
 	int ORIGIN_X;
 	int ORIGIN_Y;
 	int ORIGIN_Z;
@@ -39,10 +39,10 @@ public:
 	int sy_max = -100;
 	int sz_min = -50;
 	int sz_max = 50;
-	int size_min = 1;
-	int size_max = 10;
+	int size_min = 5;
+	int size_max = 30;
 
-
+	bool combustible;
 
 	//Se define un struct con todas las propiedades de cada part�cula
 	//x, y, z corresponden a la posici�n

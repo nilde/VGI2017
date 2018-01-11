@@ -24,7 +24,12 @@ public:
 	Cities cities;
 	Reader reader;
 
-	Particles fuego;
+	Particles fuego1;
+	Particles fuego2;
+	Particles fuego3;
+	Particles fuego4;
+	Particles fuego5;
+	Particles fuego6;
 	Particles humo;
 	Particles fuegoDefectuoso;
 	Particles onCrash;
