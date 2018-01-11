@@ -69,6 +69,10 @@ void Particles::evolve(int i) {
 	particle[i].x = particle[i].x + (particle[i].sx * UPDATE_VEL_X);
 	particle[i].y = particle[i].y + (particle[i].sy * UPDATE_VEL_Y);
 	particle[i].z = particle[i].z + (particle[i].sz * UPDATE_VEL_Z);
+	if (!combustible && particle[i].age < 0)
+		alpha -= 0.00001;
+	if(combustible)
+		alpha = 0.6;
 
 	//particle[i].sx = particle[i].sx * VEL_DECREMENT;
 	//particle[i].sy = particle[i].sy * VEL_DECREMENT;
@@ -82,7 +86,7 @@ void Particles::evolve(int i) {
 void Particles::draw() {
 
 	for (int i = 0; i < MAX_PARTICLES; i++) {
-		if (particle[i].age < 0) {
+		if (combustible && particle[i].age < 0) {
 			create(i);
 		}
 		else {
@@ -114,6 +118,7 @@ void Particles::initialize() {
 	UPDATE_VEL_Y = 1;
 	UPDATE_VEL_Z = 1;
 
+	combustible = false;
 }
 
 Particles::Particles()

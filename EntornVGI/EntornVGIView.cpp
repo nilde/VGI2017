@@ -2453,10 +2453,6 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 
 
 		
-		}
-
-	if (animaController.rocket.m_z >= 6750) {
-		projeccio = PERSPECT;
 	}
 	else if (satelit)	{	// OPCI� SAT�LIT: Increment OPV segons moviments mouse.
 		//OPV.R = OPV.R + m_EsfeIncEAvall.R;
@@ -2468,6 +2464,20 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
 		}
+
+	if (animaController.rocket.m_z >= 6750) {
+		projeccio = PERSPECT;
+	}
+	if (animaController.rocket.combustible == false)
+	{
+		animaController.fuego1.combustible = false;
+		animaController.fuego2.combustible = false;
+		animaController.fuego3.combustible = false;
+		animaController.fuego4.combustible = false;
+		animaController.fuego5.combustible = false;
+		animaController.fuego6.combustible = false;
+		animaController.humo.combustible = false;
+	}
 
 	CView::OnTimer(nIDEvent);
 }
@@ -3780,6 +3790,13 @@ void CEntornVGIView::OnLaunch()
 	animaController.multiView = !animaController.multiView;
 	this->OnCameraMultiview();
 	animaController.rocket.combustible = true; 
+	animaController.fuego1.combustible = true;
+	animaController.fuego2.combustible = true;
+	animaController.fuego3.combustible = true;
+	animaController.fuego4.combustible = true;
+	animaController.fuego5.combustible = true;
+	animaController.fuego6.combustible = true;
+	animaController.humo.combustible = true;
 	SetTimer(WM_TIMER, animaController.TIMER, NULL);
 }
 

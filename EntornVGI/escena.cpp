@@ -271,7 +271,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 			glBindTexture(GL_TEXTURE_2D, texturID[0]);
 			glEnable(GL_TEXTURE_2D);
 			glDisable(GL_LIGHTING);
-			if (animaController.lookat == ROCKET && animaController.rocket.combustible && animaController.lookat == ROCKET) {
+			if (animaController.lookat == ROCKET) {
 				animaController.fuego1.draw();
 				animaController.fuego2.draw();
 				animaController.fuego3.draw();
