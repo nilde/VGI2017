@@ -271,7 +271,7 @@ float Rocket::get_altura() {
 
 void Rocket::Initialize() {
 	float angle = 90; // entre 0 y 90
-	float impulse = 14;
+	float impulse = 15;
 
 	xo = 71;
 	yo = -59.5;
@@ -311,10 +311,14 @@ void Rocket::setPropellant(int propellantType) {
 	}
 	else {
 		if (propellantType == 2) {
-			propellantBonus = 1.5;
+			propellantBonus = 2.0;
+		}
+		if (propellantType == 3)
+		{
+			propellantBonus = -2;
 		}
 		else {
-			propellantBonus = 2.0;
+			propellantBonus = 3.5;
 		}
 	}
 	

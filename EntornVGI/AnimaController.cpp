@@ -33,6 +33,7 @@ AnimaController::AnimaController()
 	speedup = atof(reader.speedup.c_str());
 	defective = atoi(reader.defective.c_str());
 	rocket.setPropellant(atoi(reader.propellantType.c_str()));
+	rocket.az += rocket.propellantBonus;
 	planet = Planet(6371);
 
 
