@@ -253,6 +253,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 		}
 		case '3':
 		{
+			glScalef(2.0, 2.0, 2.0);
 			glCallList(ROCKET3OBJ);
 			break;
 		}
@@ -423,6 +424,14 @@ void generateRandomCities(AnimaController &animaController) {
 				{
 					glScalef(10, 10, 10);
 					glCallList(ROCKOBJ);
+				}
+			}
+			else if (animaController.activePlanet == MARTE)
+			{
+				if (!animaController.cities.validPositionsActiveContent[i])
+				{
+					glScalef(10, 10, 10);
+					glCallList(ROCKMARTEOBJ);
 				}
 			}
 

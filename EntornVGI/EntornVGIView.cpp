@@ -4061,7 +4061,7 @@ void CEntornVGIView::OnUpdateCoheteLanzadera(CCmdUI *pCmdUI)
 void CEntornVGIView::OnCoheteTres()
 {
 	if (R0CKET3 == NULL) {
-		nom = "./objects/Transbordador/Tanque_Principal.obj";
+		nom = "./objects/Tintin/tintin.obj";
 		//nom = "./objects/citi/table-mountain.obj";
 		char *nomfitx = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
@@ -4121,16 +4121,20 @@ void CEntornVGIView::buildingCreation()
 		char *nomfitxTree = CString2Char(nom);
 		nom = "./objects/Roca/Roca.obj";
 		char *nomfitxRock = CString2Char(nom);
+		nom = "./objects/Roca_marte/Roca_marte.obj";
+		char *nomfitxRock_marte = CString2Char(nom);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Activem contexte OpenGL
 		if (BUILDING == NULL)
 		{
 			BUILDING = new COBJModel;
 			TREE = new COBJModel;
 			ROCK = new COBJModel;
+			ROCK_MARTE = new COBJModel;
 		}
 		BUILDING->LoadModel(nomfitx, BUILDINGOBJ);
 		TREE->LoadModel(nomfitxTree, TREEOBJ);
-		ROCK->LoadModel(nomfitxRock, ROCKOBJ);		
+		ROCK->LoadModel(nomfitxRock, ROCKOBJ);
+		ROCK_MARTE->LoadModel(nomfitxRock_marte, ROCKMARTEOBJ);
 		wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);	// Desactivem contexte OpenGL
 	}
 	InvalidateRect(NULL, false);
@@ -4173,7 +4177,7 @@ void CEntornVGIView::OnUpdateBuildingCreation(CCmdUI *pCmdUI)
 void CEntornVGIView::OnPlanetaMarte()
 {
 	animaController.clouds.isActive = false;
-	animaController.cities.isActive = false;
+	animaController.cities.isActive = true;
 	animaController.activeFractal = true;
 	animaController.moved = 0;
 	animaController.activePlanet = MARTE;

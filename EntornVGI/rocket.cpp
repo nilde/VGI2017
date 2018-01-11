@@ -12,6 +12,7 @@
 Rocket::Rocket()
 {
 	Initialize();
+	calcTelemetry();
 }
 
 float seno(float x) {
