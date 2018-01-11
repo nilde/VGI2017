@@ -34,7 +34,7 @@ Por alguna duda contacten con Jordi Gonzalez Cano ;-)
 
 
 
-Cómo hacer pruebas con el tamaño y número de partículas:
+__Cómo hacer pruebas con el tamaño y número de partículas:__
 
 En particles.h tiene una constante:
 	const int static MAX_PARTICLES = 2500;
